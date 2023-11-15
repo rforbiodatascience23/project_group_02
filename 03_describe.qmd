@@ -1,0 +1,35 @@
+---
+title: "03_describe.qmd"
+format: html
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+## Part 03: describe
+
+#### Import the required packages
+
+```{r}
+
+#| label: load packages
+#| echo: false
+#| message: false
+
+library("tidyverse")
+
+```
+
+#### Describing of dimensions of the data
+
+The data table is now a merged version of both the co-expression modules data, as well as the data on regulator molecules. This combined data table consists of X observations, and X variables. This can be analyzed with the code below.
+
+```{r}
+
+#| label: data dimensions
+#| echo: false
+
+# dimensions <- dim()
+# variables <- ncol()
+# observations <- nrow()
+
+```
