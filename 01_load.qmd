@@ -14,7 +14,7 @@ The first part of the project workflow is to load the raw data into the project 
 ```{r}
 
 #| label: load packages
-#| echo: false
+#| message: false
 
 library("tidyverse")
 library("readxl")
@@ -32,7 +32,6 @@ When loading the data, we are also replacing blank fields with "NA".
 ```{r}
 
 #| label: load data
-#| echo: false
 
 coexpression_raw <- read_excel("data/_raw/pone.0183928.s001.xlsx", na = c(" ", "NA"))
 regulators_before_raw <- read_excel("data/_raw/pone.0183928.s003.xlsx", na = c(" ", "NA"))
