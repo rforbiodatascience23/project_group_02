@@ -86,10 +86,9 @@ regulators_before_clean <- regulators_before_clean |>
 
 ```
 
-
 ##### After treatment
 
-As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed. 
+As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
 
 ```{r}
 
@@ -125,8 +124,6 @@ clean_regulators_after
 
 ```
 
-
-
 ```{r}
 #| label: pivot longer 
 pivot_after_treatment <- clean_regulators_after|> 
@@ -136,10 +133,6 @@ pivot_after_treatment <- clean_regulators_after|>
 pivot_after_treatment
 ```
 
-
-
-
-
 ```{r}
 #| label: removal of p-values above 0.05 
 
@@ -147,5 +140,3 @@ p_value_removal <- pivot_after_treatment |>
   filter(`p-value of overlap` <= 0.05)
 p_value_removal
 ```
-
-
