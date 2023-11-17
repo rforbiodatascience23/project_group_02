@@ -33,9 +33,9 @@ When loading the data, we are also replacing blank fields with "NA".
 
 #| label: load data
 
-coexpression_raw <- read_excel("data/_raw/pone.0183928.s001.xlsx", na = c(" ", "NA"))
-regulators_before_raw <- read_excel("data/_raw/pone.0183928.s003.xlsx", na = c(" ", "NA"))
-regulators_after_raw <- read_excel("data/_raw/pone.0183928.s003.xlsx",2, na = c(" ", "NA"))
+raw_coexpression <- read_excel("data/_raw/pone.0183928.s001.xlsx", na = c(" ", "NA"))
+raw_regulators_before <- read_excel("data/_raw/pone.0183928.s003.xlsx", na = c(" ", "NA"))
+raw_regulators_after <- read_excel("data/_raw/pone.0183928.s003.xlsx",2, na = c(" ", "NA"))
 
 ```
 
@@ -48,8 +48,8 @@ In order to enable data analysis, the original .xlsx files are converted to .tsv
 #| label: load data
 #| echo: false
 
-coexpression_load <- write_tsv(coexpression_raw, "data/coexpression_load.tsv", append = FALSE, col_names = TRUE)
-regulators_before_load <- write_tsv(regulators_before_raw, "data/regulators_b_load.tsv", append = FALSE, col_names = TRUE)
-regulators_after_load <- write_tsv(regulators_after_raw, "data/regulators_a_load.tsv", append = FALSE, col_names = TRUE)
+load_coexpression <- write_tsv(coexpression_raw, "data/coexpression_load.tsv", append = FALSE, col_names = TRUE)
+load_regulators_before <- write_tsv(regulators_before_raw, "data/regulators_b_load.tsv", append = FALSE, col_names = TRUE)
+Load_regulators_after <- write_tsv(regulators_after_raw, "data/regulators_a_load.tsv", append = FALSE, col_names = TRUE)
 
 ```
