@@ -55,7 +55,7 @@ The headers of the regulators data are corrected and the column called "Mechanis
 #| label: Correct headers of table 3, before treatment
 #| echo: false
 
-regulators_before_load <- regulators_before_load |>
+regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
   select(!"Mechanistic Network")
@@ -110,7 +110,7 @@ count <- regulators_after_load |>
                                pattern =",")+1) |> 
   arrange(desc(length_TM))
   
-clean_regulators_after <- count |> 
+regulators_after_clean <- count |> 
   separate(col = "Target molecules in dataset",
            into = str_c("Target molecule_",
                  seq(from=1, to= count |> slice(1) %>%
@@ -120,13 +120,13 @@ clean_regulators_after <- count |>
            extra = "warn",
            fill = "warn") |> 
   select(!"length_TM")
-clean_regulators_after
+regulators_after_clean
 
 ```
 
 ```{r}
 #| label: pivot longer 
-pivot_after_treatment <- clean_regulators_after|> 
+pivot_after_treatment <- regulators_after_clean|> 
   pivot_longer(cols = starts_with("target"),
                names_to = "target_n",
                values_to = "target")
