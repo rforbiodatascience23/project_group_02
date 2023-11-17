@@ -95,7 +95,7 @@ As with the data regulators from before treatment the headers are corrected and 
 #| label: Correct headers of table 3, after treatment
 #| echo: false
 
-regulators_after_load <- regulators_after_load |>
+regulators_after_clean <- regulators_after_load |>
   set_names(as.character(slice(regulators_after_load,1))) |>
   slice(-1) |> 
     select(!"Mechanistic Network")
