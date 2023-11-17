@@ -48,7 +48,7 @@ coexpression_clean <- coexpression_load |>
 
 ##### Before treatment
 
-The headers of the regulators data are corrected and the column called "Mechanistic Network" is excluded from the data, since it is not relvant for further analysis.
+The headers of the regulators data are corrected and the column called "Mechanistic Network" is excluded from the data, since it is not relevant for further analysis.
 
 ```{r}
 
@@ -58,7 +58,8 @@ The headers of the regulators data are corrected and the column called "Mechanis
 regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
-  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score"))
+  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (before)", "Molecule Type (before)", "p-value of overlap (before)", "Target molecules in dataset")))
 
 ```
 
@@ -137,13 +138,14 @@ As with the data regulators from before treatment the headers are corrected and 
 
 ```{r}
 
-#| label: Correct headers of table 3, after treatment
+#| label: Correcting headers (after)
 #| echo: false
 
-regulators_after_clean <- regulators_after_load |>
-  set_names(as.character(slice(regulators_after_load,1))) |>
-  slice(-1) |> 
-    select(!c("Mechanistic Network","Predicted Activation State","Activation z-score"))
+regulators_before_clean <- regulators_before_load |>
+  set_names(as.character(slice(regulators_before_load, 1))) |>
+  slice(-1) |>
+  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset")))
 
 ```
 
