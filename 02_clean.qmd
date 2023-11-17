@@ -105,12 +105,12 @@ regulators_after_clean <- regulators_after_load |>
 ```{r}
 #| label: seperation of the target molecule column
 
-count <- regulators_after_load |> 
+count <- regulators_after_clean |> 
   mutate(length_TM = str_count(`Target molecules in dataset`,
                                pattern =",")+1) |> 
   arrange(desc(length_TM))
   
-regulators_after_clean <- count |> 
+regulators_after_clean1 <- count |> 
   separate(col = "Target molecules in dataset",
            into = str_c("Target molecule_",
                  seq(from=1, to= count |> slice(1) %>%
@@ -120,13 +120,12 @@ regulators_after_clean <- count |>
            extra = "warn",
            fill = "warn") |> 
   select(!"length_TM")
-regulators_after_clean
-
+regulators_after_clean1
 ```
 
 ```{r}
 #| label: pivot longer 
-pivot_after_treatment <- regulators_after_clean|> 
+pivot_after_treatment <- regulators_after_clean1 |> 
   pivot_longer(cols = starts_with("target"),
                names_to = "target_n",
                values_to = "target")
