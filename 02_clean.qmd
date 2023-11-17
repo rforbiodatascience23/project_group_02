@@ -217,10 +217,10 @@ log_fold_removal_after
 ```{r}
 #| label: split of data (after)
 split_regulators_after <- log_fold_removal_after |> 
-  select(!"Target")
+  select(!"Target (after)")
 
 split_target_after <- log_fold_removal_after |> 
-  select(c("Upstream Regulator","Target"))
+  select(c("Upstream Regulator","Target (after)"))
 ```
 
 
