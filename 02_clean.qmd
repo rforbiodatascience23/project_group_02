@@ -68,13 +68,13 @@ regulators_before_clean <- regulators_before_load |>
 #| label: Separating target molecule (before)
 
 regulators_before_clean <- regulators_before_clean |>
-  mutate(Count = str_count(`Target molecules in dataset`, 
+  mutate(Count = str_count(`Target molecules in dataset (before)`, 
                            pattern = ",") + 1) |>
   arrange(desc(Count))
 
  
 regulators_before_clean <- regulators_before_clean |>
-  separate("Target molecules in dataset",
+  separate("Target molecules in dataset (before)",
            str_c("Target molecule_",
                  seq(from = 1, to = regulators_before_clean |>
                        slice(1) |>
