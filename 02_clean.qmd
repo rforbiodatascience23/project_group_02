@@ -59,7 +59,7 @@ regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
   select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
-  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (before)", "Molecule Type (before)", "p-value of overlap (before)", "Target molecules in dataset")))
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (before)", "Molecule Type (before)", "p-value of overlap (before)", "Target molecules in dataset (before)")))
 
 ```
 
@@ -145,7 +145,7 @@ regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
   select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
-  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset")))
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset (after)")))
 
 ```
 
