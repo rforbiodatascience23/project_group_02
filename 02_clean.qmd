@@ -31,7 +31,7 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 #| label: cleaning data table 1
 
 coexpression_clean <- coexpression_load |>
-  mutate(genenr = str_c("gene_",
+  add_column(genenr = str_c("gene_",
                             seq(from = 1,
                                 to = 5585)),
 # the second value is determined by the longest column in the data table with nrow(coexpression_load), aka the module with the highest number of genes
@@ -52,7 +52,7 @@ The headers of the regulators data are corrected and the column called "Mechanis
 
 ```{r}
 
-#| label: Correct headers of table 3, before treatment
+#| label: Correcting headers
 #| echo: false
 
 regulators_before_clean <- regulators_before_load |>
@@ -64,6 +64,8 @@ regulators_before_clean <- regulators_before_load |>
 ```
 
 ```{r}
+
+#| label: Separating target molecule
 
 regulators_before_clean <- regulators_before_clean |>
   mutate(Count = str_count(`Target molecules in dataset`, 
@@ -83,6 +85,28 @@ regulators_before_clean <- regulators_before_clean |>
                  fill = "warn") |>
   select(-Count)
 
+
+```
+
+```{r}
+
+#| label: pivot longer (before)
+#| 
+pivot_before_treatment <- regulators_before_clean|> 
+  pivot_longer(cols = starts_with("target"),
+               names_to = "target_n",
+               values_to = "target")
+pivot_after_treatment
+
+```
+
+```{r}
+
+#| label: removal of p-values above 0.05 (before)
+
+p_value_removal_before <- pivot_before_treatment |> 
+  filter(`p-value of overlap` <= 0.05)
+p_value_removal_before
 
 ```
 
