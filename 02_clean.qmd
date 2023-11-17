@@ -183,7 +183,7 @@ pivot_after_treatment
 ```{r}
 #| label: remove redundant variables and na (after)
 
-tidy_pivot <- pivot_after_treatment |> 
+tidy_pivot_after <- pivot_after_treatment |> 
   select(-"Target_n") |> 
   drop_na("Target") |> 
   distinct()
@@ -195,16 +195,21 @@ tidy_pivot <- pivot_after_treatment |>
 
 
 ```{r}
-regulators_before_after_data <- log_fold_removal_before |> 
-  inner_join(log_fold_removal_after,
+regulators_data <- split_expression_before |> 
+  inner_join(split_expression_after,
              by = "Upstream Regulator", 
-             relationship = "many-to-many") 
+             relationship = "many-to-many") |> 
+  distinct()
 ```
 
 ##### Joining of target data
 
 
 ```{r}
-
+expression_data <- tidy_pivot_before |> 
+  full_join(tidy_pivot_after,
+            by = "Upstream Regulator",
+            relationship = "many-to-many") |> 
+  distinct()
 ```
 
