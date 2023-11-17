@@ -157,7 +157,7 @@ expression_data <- split_expression_before |>
 
 ```{r}
 
-target_data_test <- split_target_before |> 
+target_data <- split_target_before |> 
   inner_join(split_target_after ,
             by = "Upstream Regulator",
             relationship = "many-to-many")
@@ -168,16 +168,16 @@ target_data_test <- split_target_before |>
 ```{r}
 #| label: Separating target molecule (before)
 
-target_data_test <- target_data_test |>
+target_data <- target_data |>
   mutate(Count = str_count(`Target molecules in dataset (before)`, 
                            pattern = ",") + 1) |>
   arrange(desc(Count))
 
  
-target_data_test  <- target_data_test |>
+target_data  <- target_data |>
   separate("Target molecules in dataset (before)",
            str_c("Target molecule_before_",
-                 seq(from = 1, to = target_data_test  |>
+                 seq(from = 1, to = target_data  |>
                        slice(1) |>
                        pull(Count))),
                  ",",
@@ -191,16 +191,16 @@ target_data_test  <- target_data_test |>
 ```{r}
 #| label: Separating target molecule (after)
 
-target_data_test <- target_data_test |>
+target_data <- target_data |>
   mutate(Count = str_count(`Target molecules in dataset (after)`, 
                            pattern = ",") + 1) |>
   arrange(desc(Count))
 
  
-target_data_test  <- target_data_test |>
+target_data  <- target_data |>
   separate("Target molecules in dataset (after)",
            str_c("Target molecule_after_",
-                 seq(from = 1, to = target_data_test  |>
+                 seq(from = 1, to = target_data  |>
                        slice(1) |>
                        pull(Count))),
                  ",",
@@ -210,3 +210,19 @@ target_data_test  <- target_data_test |>
   select(-Count)
 
 ```
+
+
+##### Making tsv files 
+```{r}
+#| label: tsv files 
+expression_data_clean <- write_tsv(expression_data,
+                               "data/02_expr_clean.tsv",
+                               append = FALSE,
+                               col_names = TRUE)
+target_data_clean <- write_tsv(target_data,
+                                    "data/02_target_clean.tsv",
+                                    append = FALSE,
+                                    col_names = TRUE)
+
+```
+
