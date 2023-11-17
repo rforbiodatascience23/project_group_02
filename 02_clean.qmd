@@ -171,9 +171,9 @@ regulators_after_clean1
 ```{r}
 #| label: pivot longer 
 pivot_after_treatment <- regulators_after_clean1 |> 
-  pivot_longer(cols = starts_with("target"),
-               names_to = "target_n",
-               values_to = "target")
+  pivot_longer(cols = starts_with("Target"),
+               names_to = "Target_n",
+               values_to = "Target")
 pivot_after_treatment
 ```
 
@@ -181,8 +181,8 @@ pivot_after_treatment
 #| label: remove redundant variables and na (after)
 
 tidy_pivot <- pivot_after_treatment |> 
-  select(-"target_n") |> 
-  drop_na("target") |> 
+  select(-"Target_n") |> 
+  drop_na("Target") |> 
   distinct()
 ```
 
@@ -202,6 +202,24 @@ log_fold_removal_after <- p_value_removal_after |>
 log_fold_removal_after
 ```
 
+```{r}
+#| label: split of data (after)
+split_regulators_after <- log_fold_removal_after |> 
+  select(!"Target")
 
+split_target_after <- log_fold_removal_after |> 
+  select(c("Upstream Regulator","Target"))
+```
+
+
+##### Joining of before and after 
+
+
+```{r}
+regulators_before_after_data <- log_fold_removal_before |> 
+  inner_join(log_fold_removal_after,
+             by = "Upstream Regulator", 
+             relationship = "many-to-many") 
+```
 
 
