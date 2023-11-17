@@ -121,30 +121,23 @@ split_target_before  <- split_target_before |>
 
 ```
 
+
 ```{r}
-
 #| label: pivot longer (before)
-
 pivot_before_treatment <- split_target_before |> 
-  pivot_longer(cols = starts_with("target"),
-               names_to = "target_n",
-               values_to = "target")
-pivot_before_treatment
-
+  pivot_longer(cols = starts_with("Target"),
+               names_to = "Target_n",
+               values_to = "Target (before)")
+pivot_after_treatment
 ```
 
-
 ```{r}
-
 #| label: remove redundant variables and na (before)
 
 tidy_pivot_before <- pivot_before_treatment |> 
-  select(-"target_n") |> 
-  drop_na("target") |> 
+  select(-"Target_n") |> 
+  drop_na("Target (before)") |> 
   distinct()
-
-tidy_pivot_before
-
 ```
 
 ##### After treatment
@@ -215,7 +208,7 @@ split_target_after_clean
 pivot_after_treatment <- split_target_after_clean |> 
   pivot_longer(cols = starts_with("Target"),
                names_to = "Target_n",
-               values_to = "Target")
+               values_to = "Target (after)")
 pivot_after_treatment
 ```
 
@@ -224,7 +217,7 @@ pivot_after_treatment
 
 tidy_pivot_after <- pivot_after_treatment |> 
   select(-"Target_n") |> 
-  drop_na("Target") |> 
+  drop_na("Target (after)") |> 
   distinct()
 ```
 
