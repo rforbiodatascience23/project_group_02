@@ -128,7 +128,6 @@ pivot_before_treatment <- split_target_before |>
   pivot_longer(cols = starts_with("Target"),
                names_to = "Target_n",
                values_to = "Target (before)")
-pivot_after_treatment
 ```
 
 ```{r}
@@ -149,8 +148,8 @@ As with the data regulators from before treatment the headers are corrected and 
 #| label: Correcting headers (after)
 #| echo: false
 
-regulators_before_clean <- regulators_before_load |>
-  set_names(as.character(slice(regulators_before_load, 1))) |>
+regulators_after_clean <- regulators_after_load |>
+  set_names(as.character(slice(regulators_after_load, 1))) |>
   slice(-1) |>
   select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
   set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset (after)")))
@@ -161,7 +160,7 @@ regulators_before_clean <- regulators_before_load |>
 ```{r}
 #| label: removal of p-values above 0.05 (after)
 
-p_value_removal_after <- regulators_before_clean |> 
+p_value_removal_after <- regulators_after_clean |> 
   filter(as.numeric(`p-value of overlap (after)`) <= 0.05)
 p_value_removal_after
 ```
@@ -227,11 +226,12 @@ tidy_pivot_after <- pivot_after_treatment |>
 
 
 ```{r}
-regulators_data <- split_expression_before |> 
+expression_data <- split_expression_before |> 
   inner_join(split_expression_after,
              by = "Upstream Regulator", 
              relationship = "many-to-many") |> 
-  distinct()
+  distinct() |> 
+  relocate(c("Molecule Type (before)", "Molecule Type (after)", "Expr Log Ratio (before)", "Expr Log Ratio (after)", "p-value of overlap (before)", "p-value of overlap (after)"), .after = "Upstream Regulator")
 
 ```
 
@@ -239,10 +239,11 @@ regulators_data <- split_expression_before |>
 
 
 ```{r}
-expression_data <- tidy_pivot_before |> 
+target_data <- tidy_pivot_before |> 
   full_join(tidy_pivot_after,
             by = "Upstream Regulator",
             relationship = "many-to-many") |> 
   distinct()
+target_data
 ```
 
