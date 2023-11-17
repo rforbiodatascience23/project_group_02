@@ -47,7 +47,7 @@ This can be analyzed with the code below.
 
 ```
 
-The regulator molecules in the data are categorized by molecule type. The code below generates a boxplot, depicting the number of regulator molecules in each of the defined types.
+The regulator molecules in the data table are categorized by molecule type. The code below generates a box plot, depicting the number of regulator molecules in each of the defined types.
 
 ```{r}
 
@@ -57,8 +57,7 @@ The regulator molecules in the data are categorized by molecule type. The code b
 
 ```
 
-
-### Dimensions of table XX
+### Dimensions of table II
 
 ```{r}
 
@@ -72,7 +71,16 @@ The regulator molecules in the data are categorized by molecule type. The code b
 
 ```
 
-### Dimensions of table XXX
+Each regulator molecule regulates a certain number of genes. The code below generates a box plot, showing the distribution of the number of genes per regulator molecule. 
+
+```{r}
+
+#| label: box plot of genes per regulator
+
+```
+
+
+### Dimensions of table III
 
 ```{r}
 
