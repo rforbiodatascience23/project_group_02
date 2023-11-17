@@ -227,11 +227,12 @@ tidy_pivot_after <- pivot_after_treatment |>
 
 
 ```{r}
-regulators_data <- split_expression_before |> 
+expression_data <- split_expression_before |> 
   inner_join(split_expression_after,
              by = "Upstream Regulator", 
              relationship = "many-to-many") |> 
-  distinct()
+  distinct() |> 
+  relocate(c("Molecule Type (before)", "Molecule Type (after)", "Expr Log Ratio (before)", "Expr Log Ratio (after)", "p-value of overlap (before)", "p-value of overlap (after)"), .after = "Upstream Regulator")
 
 ```
 
@@ -239,7 +240,7 @@ regulators_data <- split_expression_before |>
 
 
 ```{r}
-expression_data <- tidy_pivot_before |> 
+target_data <- tidy_pivot_before |> 
   full_join(tidy_pivot_after,
             by = "Upstream Regulator",
             relationship = "many-to-many") |> 
