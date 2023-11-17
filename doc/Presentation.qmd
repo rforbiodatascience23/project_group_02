@@ -1,26 +1,33 @@
 ---
 title: "Analyzing the effect on gene expression of triple DMARD treatment"
-format: revealjs
+title-slide-attributes: 
+  data-background-color: "#806040"
+format:
+  revealjs:
+    theme: "sky"
+    transition: slide
+    background-transition: fade
 editor: visual
-author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s194530), Katja Jagd (s185395), Olivia Ronnenberg (s183359)"
 ---
 
-# Introduction
+# Introduction {background-color="#806040"}
 
-## Background Information
+## Background Information {background-color="#806040"}
 
-The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
-Many genes, traget molecules, and cellular pathways were identified. We were curious which of the genes are significantly different expression before and after DMARD treatment.
+The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs). Many genes, traget molecules, and cellular pathways were identified. We were curious which of the genes are significantly differential expressed, before and after DMARD treatment.
 
-# Materials and Methods
+# Materials and Methods {background-color="#806040"}
 
-## The used data
+## Preparing the data {background-color="#806040"}
 
 From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
+The data table consisted of two separate parts, each part representing before and after treatment, respectively.
 
-# Results
-
-# Discussion
-
+# Results {background-color="#806040"}
 
 
+
+## Differential expressed genes {background-color="#806040"}
+
+# Discussion {background-color="#806040"}
