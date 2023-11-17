@@ -1,0 +1,26 @@
+---
+title: "Analyzing the effect on gene expression of triple DMARD treatment"
+format: revealjs
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+# Introduction
+
+## Background Information
+
+The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
+Many genes, traget molecules, and cellular pathways were identified. We were curious which of the genes are significantly different expression before and after DMARD treatment.
+
+# Materials and Methods
+
+## The used data
+
+From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
+
+# Results
+
+# Discussion
+
+
+
