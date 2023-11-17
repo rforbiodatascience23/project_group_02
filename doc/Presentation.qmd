@@ -34,9 +34,9 @@ Moreover, we wondered if these genes are relevant treatment targets, depending o
 
 ## Preparing the data {background-color="#806040"}
 
-From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
+From the available data, we were interested in Supplementary tables 1 and 3, containing co-expression modules, and gene expression regulator molecules, respectively.
 
-The data table consisted of two separate parts, each part representing before and after treatment, respectively.
+The data in supplementary table 3 consisted of two separate parts, split into the genetic patient data before and after treatment.
 
 ## Wrangling with the data {background-color="#806040"}
 
