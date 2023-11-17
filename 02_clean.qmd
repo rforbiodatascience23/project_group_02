@@ -153,12 +153,12 @@ regulators_before_clean <- regulators_before_load |>
 #| label: seperation of the target molecule column
 
 count <- regulators_after_clean |> 
-  mutate(length_TM = str_count(`Target molecules in dataset`,
+  mutate(length_TM = str_count(`Target molecules in dataset (after)`,
                                pattern =",")+1) |> 
   arrange(desc(length_TM))
   
 regulators_after_clean1 <- count |> 
-  separate(col = "Target molecules in dataset",
+  separate(col = "Target molecules in dataset (after)",
            into = str_c("Target molecule_",
                  seq(from=1, to= count |> slice(1) %>%
   pull(length_TM))),
