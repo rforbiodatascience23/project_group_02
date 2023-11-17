@@ -52,11 +52,19 @@ The following slides show our findings from the analyzed data.
 
 ## Differentially expressed genes {background-color="#806040"}
 
+To visualize the genes' up- and down-regulation, a volcano plot was made. This plot indicates the differences also between pre and post DMARD treatment by different colors.
+
+## Differentially expressed genes {background-color="#806040"}
+
+Volcano plot here :)
+
 ## Target molecules {background-color="#806040"}
 
 X genes are found to be significantly up- and down-regulated by DMARD treatment. Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. The number of target molecules, impacted by each of the significant genes, is analyzed hereafter.
 
 ## Number of corresponding target molecules to the identified genes {background-color="#806040"}
+
+Box plot here :)
 
 ## Molecular mechanisms related to the most influential genes {background-color="#806040"}
 
@@ -64,7 +72,7 @@ From the previous plots, the genes X seems most signifant, as it's expression si
 
 To better understand it's functionality, we analyzed which molecular mechanisms the gene is involved in. This is shown in the following plot or table.
 
----
+## Molecular mechanisms related to the most influential genes {background-color="#806040"}
 
 Box plot or table here of the co-expression modules :)
 

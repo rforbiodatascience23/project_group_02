@@ -24,9 +24,11 @@ library("ggrepel")
 
 #### Generate a vulcano plot of the gene expression
 
+To depict which genes are up- and down-regulated, a volcano plot is made. The differences in colors indicate the genes present before and after DMARD treatment.
+
 ```{r}
 
-#| label: vulcano plot
+#| label: volcano plot
 #| echo: false
 
 # Import 03_dat_aug.tsv file |>
