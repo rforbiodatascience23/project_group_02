@@ -1,6 +1,6 @@
 # project_group_02
 
-## The data
+## Data
 
 For this analysis, data from the study _Triple DMARD treatment in early rheumatoid arthritis modulates synovial T cell activation and plasmablast/plasma cell differentiation pathways_ by Walsh et.al. is used. It is gene expression data, obtained from synovial tissue biopsy samples from rheumatoid arthritis patients.
 
@@ -13,7 +13,7 @@ Navigate to **"Associated Data"** and then **"Supplementary Materials"** to find
 
 ### How to add the data to the correct location:
 
-After downloading these two .xlsx files, add them to a folder /data/_raw within your directory where you have downloaded this repository.
+After downloading these two .xlsx files, add them to a folder **/data/_raw** within your directory where you have downloaded this repository.
 ***Please note that it is important that your .Rproj file is in the same location as the /data folder.***
 
 ### How to run the analysis:
