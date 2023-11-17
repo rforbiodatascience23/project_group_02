@@ -157,6 +157,16 @@ pivot_after_treatment
 ```
 
 ```{r}
+#| label: remove redundant variables and na 
+
+tidy_pivot <- pivot_after_treatment |> 
+  select(-"target_n") |> 
+  drop_na("target") |> 
+  distinct()
+```
+
+
+```{r}
 #| label: removal of p-values above 0.05 
 
 p_value_removal <- pivot_after_treatment |> 
