@@ -58,8 +58,7 @@ The headers of the regulators data are corrected and the column called "Mechanis
 regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
-  select(!"Mechanistic Network")
-
+  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score"))
 
 ```
 
@@ -144,7 +143,7 @@ As with the data regulators from before treatment the headers are corrected and 
 regulators_after_clean <- regulators_after_load |>
   set_names(as.character(slice(regulators_after_load,1))) |>
   slice(-1) |> 
-    select(!"Mechanistic Network")
+    select(!c("Mechanistic Network","Predicted Activation State","Activation z-score"))
 
 ```
 
