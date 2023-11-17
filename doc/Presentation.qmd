@@ -58,7 +58,15 @@ X genes are found to be significantly up- and down-regulated by DMARD treatment.
 
 ## Number of corresponding target molecules to the identified genes {background-color="#806040"}
 
-## ost influencial gene 
+## Molecular mechanisms related to the most influential genes {background-color="#806040"}
+
+From the previous plots, the genes X seems most signifant, as it's expression significantly changes as a result of DMARD treatment and it influences X target molecules.
+
+To better understand it's functionality, we analyzed which molecular mechanisms the gene is involved in. This is shown in the following plot or table.
+
+---
+
+Box plot or table here of the co-expression modules :)
 
 # Discussion {background-color="#806040"}
 
