@@ -31,7 +31,7 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 #| label: cleaning data table 1
 
 coexpression_clean <- coexpression_load |>
-  mutate(genenr = str_c("gene_",
+  add_column(genenr = str_c("gene_",
                             seq(from = 1,
                                 to = 5585)),
 # the second value is determined by the longest column in the data table with nrow(coexpression_load), aka the module with the highest number of genes
@@ -52,18 +52,20 @@ The headers of the regulators data are corrected and the column called "Mechanis
 
 ```{r}
 
-#| label: Correct headers of table 3, before treatment
+#| label: Correcting headers
 #| echo: false
 
 regulators_before_clean <- regulators_before_load |>
   set_names(as.character(slice(regulators_before_load, 1))) |>
   slice(-1) |>
   select(!"Mechanistic Network")
-#
+
 
 ```
 
 ```{r}
+
+#| label: Separating target molecule
 
 regulators_before_clean <- regulators_before_clean |>
   mutate(Count = str_count(`Target molecules in dataset`, 
@@ -86,6 +88,29 @@ regulators_before_clean <- regulators_before_clean |>
 
 ```
 
+```{r}
+
+#| label: pivot longer (before)
+#| 
+pivot_before_treatment <- regulators_before_clean|> 
+  pivot_longer(cols = starts_with("target"),
+               names_to = "target_n",
+               values_to = "target")
+pivot_before_treatment
+
+```
+
+```{r}
+
+#| label: removal of p-values above 0.05 (before)
+
+p_value_removal_before <- pivot_before_treatment |> 
+  filter("p-value of overlap" <= 0.05)
+
+p_value_removal_before
+
+```
+
 ##### After treatment
 
 As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
@@ -105,12 +130,12 @@ regulators_after_clean <- regulators_after_load |>
 ```{r}
 #| label: seperation of the target molecule column
 
-count <- regulators_after_load |> 
+count <- regulators_after_clean |> 
   mutate(length_TM = str_count(`Target molecules in dataset`,
                                pattern =",")+1) |> 
   arrange(desc(length_TM))
   
-regulators_after_clean <- count |> 
+regulators_after_clean1 <- count |> 
   separate(col = "Target molecules in dataset",
            into = str_c("Target molecule_",
                  seq(from=1, to= count |> slice(1) %>%
@@ -120,13 +145,12 @@ regulators_after_clean <- count |>
            extra = "warn",
            fill = "warn") |> 
   select(!"length_TM")
-regulators_after_clean
-
+regulators_after_clean1
 ```
 
 ```{r}
 #| label: pivot longer 
-pivot_after_treatment <- regulators_after_clean|> 
+pivot_after_treatment <- regulators_after_clean1 |> 
   pivot_longer(cols = starts_with("target"),
                names_to = "target_n",
                values_to = "target")
