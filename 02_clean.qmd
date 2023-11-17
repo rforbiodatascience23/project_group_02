@@ -91,8 +91,8 @@ regulators_before_clean <- regulators_before_clean |>
 ```{r}
 
 #| label: pivot longer (before)
-#| 
-pivot_before_treatment <- regulators_before_clean|> 
+
+pivot_before_treatment <- regulators_before_clean |> 
   pivot_longer(cols = starts_with("target"),
                names_to = "target_n",
                values_to = "target")
@@ -102,9 +102,20 @@ pivot_before_treatment
 
 ```{r}
 
+#| label: remove redundant variables and na 
+
+tidy_pivot_before <- pivot_before_treatment |> 
+  select(-"target_n") |> 
+  drop_na("target") |> 
+  distinct()
+
+```
+
+```{r}
+
 #| label: removal of p-values above 0.05 (before)
 
-p_value_removal_before <- regulators_before_clean |> 
+p_value_removal_before <- tidy_pivot_before |> 
   filter(as.numeric(`p-value of overlap`) <= 0.05)
 
 p_value_removal_before
