@@ -5,9 +5,9 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-## Part 03: describe
+# Part 03: describe
 
-#### Import the required packages
+## Import the required packages
 
 ```{r}
 
@@ -18,18 +18,58 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 library("tidyverse")
 
 ```
+## Describing the data tables
 
-#### Describing of dimensions of the data
+After cleaning and augmenting the data three tables will be present. One table containing the regulators and target molecules from before and after treatment, a second table containing the target regulators and the  ..... 
 
-The data table is now a merged version of both the co-expression modules data, as well as the data on regulator molecules. This combined data table consists of X observations, and X variables. This can be analyzed with the code below.
+
+
+## Describing of dimensions of the data
+
+The data tables each consists of:
+
+Table X: X observations, and X variables. 
+Table XX: X observations, and X variables.
+Table XXX: X observations, and X variables.
+
+This can be analyzed with the code below.
+
+### Dimensions of table X 
 
 ```{r}
 
 #| label: data dimensions
 #| echo: false
 
-# dimensions <- dim()
-# variables <- ncol()
-# observations <- nrow()
+
+# table1_dimensions <- dim()
+# table1_variables <- ncol()
+# table1_observations <- nrow()
+
+```
+
+### Dimensions of table XX
+```{r}
+
+#| label: data dimensions
+#| echo: false
+
+
+# table2_dimensions <- dim()
+# table2_variables <- ncol()
+# table3_observations <- nrow()
+
+```
+
+### Dimensions of table XXX
+```{r}
+
+#| label: data dimensions
+#| echo: false
+
+
+# table3_dimensions <- dim()
+# table3_variables <- ncol()
+# table4_observations <- nrow()
 
 ```

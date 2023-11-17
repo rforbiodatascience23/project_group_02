@@ -65,18 +65,51 @@ regulators_before_clean <- regulators_before_load |>
 
 ```{r}
 
+#| label: removal of p-values above 0.05 (before)
+
+p_value_removal_before <- regulators_before_clean |> 
+  filter(as.numeric(`p-value of overlap (before)`) <= 0.05)
+
+p_value_removal_before
+
+```
+
+```{r}
+
+#| label: removal of log2(fold-change) above or below 1.5 (before)
+
+log_fold_removal_before <- p_value_removal_before |> 
+  filter(as.numeric(`Expr Log Ratio (before)`) > 1.5 | (`Expr Log Ratio (before)`) < -1.5)
+
+log_fold_removal_before
+
+```
+
+
+```{r}
+#| label: split of data (before)
+split_expression_before <- log_fold_removal_before |> 
+  select(!"Target molecules in dataset (before)")
+
+split_target_before <- log_fold_removal_before |> 
+  select(c("Upstream Regulator","Target molecules in dataset (before)"))
+```
+
+
+```{r}
+
 #| label: Separating target molecule (before)
 
-regulators_before_clean <- regulators_before_clean |>
+split_target_before <- split_target_before |>
   mutate(Count = str_count(`Target molecules in dataset (before)`, 
                            pattern = ",") + 1) |>
   arrange(desc(Count))
 
  
-regulators_before_clean <- regulators_before_clean |>
+split_target_before  <- split_target_before |>
   separate("Target molecules in dataset (before)",
            str_c("Target molecule_",
-                 seq(from = 1, to = regulators_before_clean |>
+                 seq(from = 1, to = split_target_before  |>
                        slice(1) |>
                        pull(Count))),
                  ",",
@@ -88,58 +121,23 @@ regulators_before_clean <- regulators_before_clean |>
 
 ```
 
+
 ```{r}
-
 #| label: pivot longer (before)
-
-pivot_before_treatment <- regulators_before_clean |> 
-  pivot_longer(cols = starts_with("target"),
-               names_to = "target_n",
-               values_to = "target")
-pivot_before_treatment
-
+pivot_before_treatment <- split_target_before |> 
+  pivot_longer(cols = starts_with("Target"),
+               names_to = "Target_n",
+               values_to = "Target (before)")
+pivot_after_treatment
 ```
 
 ```{r}
-
 #| label: remove redundant variables and na (before)
 
 tidy_pivot_before <- pivot_before_treatment |> 
-  select(-"target_n") |> 
-  drop_na("target") |> 
+  select(-"Target_n") |> 
+  drop_na("Target (before)") |> 
   distinct()
-
-```
-
-```{r}
-
-#| label: removal of p-values above 0.05 (before)
-
-p_value_removal_before <- tidy_pivot_before |> 
-  filter(as.numeric(`p-value of overlap`) <= 0.05)
-
-p_value_removal_before
-
-```
-
-```{r}
-
-#| label: removal of log2(fold-change) above or below 1.5 (before)
-
-log_fold_removal_before <- p_value_removal_before |> 
-  filter(as.numeric(`Expr Log Ratio`) > 1.5 | (`Expr Log Ratio`) < -1.5)
-log_fold_removal_before
-
-```
-
-
-```{r}
-#| label: split of data (before)
-split_expression_before <- log_fold_removal_before |> 
-  select(!"Target (before)")
-
-split_target_before <- log_fold_removal_before |> 
-  select(c("Upstream Regulator","Target (before)"))
 ```
 
 ##### After treatment
@@ -159,15 +157,40 @@ regulators_before_clean <- regulators_before_load |>
 
 ```
 
+
+```{r}
+#| label: removal of p-values above 0.05 (after)
+
+p_value_removal_after <- regulators_before_clean |> 
+  filter(as.numeric(`p-value of overlap (after)`) <= 0.05)
+p_value_removal_after
+```
+
+```{r}
+#| label: removal of log2(fold-change) above or below 1.5 (after)
+log_fold_removal_after <- p_value_removal_after |> 
+  filter(as.numeric(`Expr Log Ratio (after)`) > 1.5 | (`Expr Log Ratio (after)`) < -1.5)
+log_fold_removal_after
+```
+
+```{r}
+#| label: split of data (after)
+split_expression_after <- log_fold_removal_after |> 
+  select(!"Target molecules in dataset (after)")
+
+split_target_after <- log_fold_removal_after |> 
+  select(c("Upstream Regulator","Target molecules in dataset (after)"))
+```
+
 ```{r}
 #| label: seperation of the target molecule column
 
-count <- regulators_after_clean |> 
+count <- split_target_after |> 
   mutate(length_TM = str_count(`Target molecules in dataset (after)`,
                                pattern =",")+1) |> 
   arrange(desc(length_TM))
   
-regulators_after_clean1 <- count |> 
+split_target_after_clean <- count |> 
   separate(col = "Target molecules in dataset (after)",
            into = str_c("Target molecule_",
                  seq(from=1, to= count |> slice(1) %>%
@@ -177,62 +200,49 @@ regulators_after_clean1 <- count |>
            extra = "warn",
            fill = "warn") |> 
   select(!"length_TM")
-regulators_after_clean1
+split_target_after_clean
 ```
 
 ```{r}
 #| label: pivot longer 
-pivot_after_treatment <- regulators_after_clean1 |> 
+pivot_after_treatment <- split_target_after_clean |> 
   pivot_longer(cols = starts_with("Target"),
                names_to = "Target_n",
-               values_to = "Target")
+               values_to = "Target (after)")
 pivot_after_treatment
 ```
 
 ```{r}
 #| label: remove redundant variables and na (after)
 
-tidy_pivot <- pivot_after_treatment |> 
+tidy_pivot_after <- pivot_after_treatment |> 
   select(-"Target_n") |> 
-  drop_na("Target") |> 
+  drop_na("Target (after)") |> 
   distinct()
 ```
 
-
-```{r}
-#| label: removal of p-values above 0.05 (after)
-
-p_value_removal_after <- tidy_pivot |> 
-  filter(as.numeric(`p-value of overlap`) <= 0.05)
-p_value_removal_after
-```
-
-```{r}
-#| label: removal of log2(fold-change) above or below 1.5 (after)
-log_fold_removal_after <- p_value_removal_after |> 
-  filter(as.numeric(`Expr Log Ratio`) > 1.5 | (`Expr Log Ratio`) < -1.5)
-log_fold_removal_after
-```
-
-```{r}
-#| label: split of data (after)
-split_expression_after <- log_fold_removal_after |> 
-  select(!"Target (after)")
-
-split_target_after <- log_fold_removal_after |> 
-  select(c("Upstream Regulator","Target (after)"))
-```
 
 
 ##### Joining of expression data 
 
 
 ```{r}
-regulators_before_after_data <- log_fold_removal_before |> 
-  inner_join(log_fold_removal_after,
+regulators_data <- split_expression_before |> 
+  inner_join(split_expression_after,
              by = "Upstream Regulator", 
-             relationship = "many-to-many") 
+             relationship = "many-to-many") |> 
+  distinct()
+
 ```
 
 ##### Joining of target data
+
+
+```{r}
+expression_data <- tidy_pivot_before |> 
+  full_join(tidy_pivot_after,
+            by = "Upstream Regulator",
+            relationship = "many-to-many") |> 
+  distinct()
+```
 
