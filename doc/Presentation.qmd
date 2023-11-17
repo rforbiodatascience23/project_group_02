@@ -1,26 +1,56 @@
 ---
 title: "Analyzing the effect on gene expression of triple DMARD treatment"
-format: revealjs
+title-slide-attributes: 
+  data-background-color: "#806040"
+format:
+  revealjs:
+    theme: "sky"
+    transition: slide
+    background-transition: fade
 editor: visual
-author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s194530), Katja Jagd (s185395), Olivia Ronnenberg (s183359)"
 ---
 
-# Introduction
+# Introduction {background-color="#806040"}
 
-## Background Information
+
+## Background Information {background-color="#806040"}
 
 The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
-Many genes, traget molecules, and cellular pathways were identified. We were curious which of the genes are significantly different expression before and after DMARD treatment.
 
-# Materials and Methods
+For this purpose, synovial tissue biopsy samples were taken from 19 RA patients, before and after six months of DMARD therapy.
 
-## The used data
+It is hypothesized that multiple biological pathways are impacted by DMARD, but specifics of the pathways are unknown.
+
+## Study's findings {background-color="#806040"}
+
+From the 8000 analyzed genes, <300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
+
+## Research purpose {background-color="#806040"}
+
+Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment.
+
+# Materials and Methods {background-color="#806040"}
+
+
+
+## Preparing the data {background-color="#806040"}
 
 From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
 
-# Results
+The data table consisted of two separate parts, each part representing before and after treatment, respectively.
 
-# Discussion
+# Results {background-color="#806040"}
 
 
 
+## Differential expressed genes {background-color="#806040"}
+
+
+
+# Discussion {background-color="#806040"}
+
+Here we can describe which genes we found to be significantly up or down regulated.
+The article found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
+
+This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
