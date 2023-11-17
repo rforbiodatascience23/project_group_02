@@ -98,13 +98,52 @@ split_target_before <- log_fold_removal_before |>
 
 ```{r}
 
-#| label: Counting target molecules (before)
+#| label: Separating target molecule (before)
 
-target_molecule_count_before <- split_target_before |>
-  mutate("Number of target molecules (before)" = str_count(`Target molecules in dataset (before)`, 
+split_target_before <- split_target_before |>
+  mutate(Count = str_count(`Target molecules in dataset (before)`, 
                            pattern = ",") + 1) |>
-  select(-`Target molecules in dataset (before)`)
+  arrange(desc(Count))
 
+ 
+split_target_before  <- split_target_before |>
+  separate("Target molecules in dataset (before)",
+           str_c("Target molecule_",
+                 seq(from = 1, to = split_target_before  |>
+                       slice(1) |>
+                       pull(Count))),
+                 ",",
+                 remove = TRUE,
+                 extra = "warn",
+                 fill = "warn") |>
+  select(-Count)
+
+
+```
+
+```{r}
+
+#| label: pivot longer (before)
+
+pivot_before_treatment <- split_target_before |> 
+  pivot_longer(cols = starts_with("target"),
+               names_to = "target_n",
+               values_to = "target")
+pivot_before_treatment
+
+```
+
+
+```{r}
+
+#| label: remove redundant variables and na (before)
+
+tidy_pivot_before <- pivot_before_treatment |> 
+  select(-"target_n") |> 
+  drop_na("target") |> 
+  distinct()
+
+tidy_pivot_before
 
 ```
 
