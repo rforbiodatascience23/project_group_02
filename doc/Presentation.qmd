@@ -48,8 +48,6 @@ For our analysis, we wanted to distinguish between genetic up- and down-regulati
 
 # Results {background-color="#806040"}
 
-The following slides show our findings from the analyzed data.
-
 ## Differentially expressed genes {background-color="#806040"}
 
 To visualize the genes' up- and down-regulation, a volcano plot was made. This plot indicates the differences also between pre and post DMARD treatment by different colors.
@@ -78,7 +76,10 @@ Box plot or table here of the co-expression modules :)
 
 # Discussion {background-color="#806040"}
 
-Here we can describe which genes we found to be significantly up or down regulated.
-The article found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
+## Findings from the study {background-color="#806040"}
+
+The study by Walsh et.al. found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
 
 This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
+
+## Our findings {background-color="#806040"}
