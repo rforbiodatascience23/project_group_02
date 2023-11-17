@@ -215,8 +215,6 @@ split_target_after <- log_fold_removal_after |>
 ##### Joining of before and after 
 
 
-
-
 ```{r}
 regulators_before_after_data <- log_fold_removal_before |> 
   inner_join(log_fold_removal_after,
