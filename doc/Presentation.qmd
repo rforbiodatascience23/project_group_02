@@ -51,7 +51,7 @@ The following slides show our findings from the analyzed data.
 
 X genes are found to be significantly up- and down-regulated by DMARD treatment. Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. The number of target molecules, impacted by each of the significant genes, is analyzed hereafter.
 
-## Number of corresponding target molecules of the co the influenced genes {background-color="#806040"}
+## Number of corresponding target molecules to the identified genes {background-color="#806040"}
 
 # Discussion {background-color="#806040"}
 
