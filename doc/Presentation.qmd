@@ -13,7 +13,6 @@ author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s1
 
 # Introduction {background-color="#806040"}
 
-
 ## Background Information {background-color="#806040"}
 
 The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
@@ -33,13 +32,19 @@ Moreover, we wondered if these genes are relevant treatment targets, depending o
 
 # Materials and Methods {background-color="#806040"}
 
-
-
 ## Preparing the data {background-color="#806040"}
 
 From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
 
 The data table consisted of two separate parts, each part representing before and after treatment, respectively.
+
+## Wrangling with the data {background-color="#806040"}
+
+In order to perform our analysis, some data wrangling was required. In this process, we split, pivoted, joined, the data of interest. We furthermore removed redundant data.
+
+## Adding further required variables {background-color="#806040"}
+
+For our analysis, we wanted to distinguish between genetic up- and down-regulation. We did this by adding a factor, dividing the genes into the two distinctive groups. 
 
 # Results {background-color="#806040"}
 
@@ -52,6 +57,8 @@ The following slides show our findings from the analyzed data.
 X genes are found to be significantly up- and down-regulated by DMARD treatment. Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. The number of target molecules, impacted by each of the significant genes, is analyzed hereafter.
 
 ## Number of corresponding target molecules to the identified genes {background-color="#806040"}
+
+## ost influencial gene 
 
 # Discussion {background-color="#806040"}
 
