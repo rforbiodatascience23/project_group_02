@@ -106,19 +106,6 @@ target_molecule_count_before <- split_target_before |>
   select(-`Target molecules in dataset (before)`)
 
 
-regulators_before_clean <- regulators_before_clean |>
-  separate("Target molecules in dataset (before)",
-           str_c("Target molecule_",
-                 seq(from = 1, to = regulators_before_clean |>
-                       slice(1) |>
-                       pull(Count))),
-                 ",",
-                 remove = TRUE,
-                 extra = "warn",
-                 fill = "warn") |>
-  select(-Count)
-
-
 ```
 
 ##### After treatment
