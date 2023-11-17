@@ -135,7 +135,7 @@ log_fold_removal_before
 
 ```{r}
 #| label: split of data (before)
-split_regulators_before <- log_fold_removal_before |> 
+split_expression_before <- log_fold_removal_before |> 
   select(!"Target (before)")
 
 split_target_before <- log_fold_removal_before |> 
@@ -216,7 +216,7 @@ log_fold_removal_after
 
 ```{r}
 #| label: split of data (after)
-split_regulators_after <- log_fold_removal_after |> 
+split_expression_after <- log_fold_removal_after |> 
   select(!"Target (after)")
 
 split_target_after <- log_fold_removal_after |> 
@@ -224,7 +224,7 @@ split_target_after <- log_fold_removal_after |>
 ```
 
 
-##### Joining of before and after 
+##### Joining of expression data 
 
 
 ```{r}
@@ -234,4 +234,5 @@ regulators_before_after_data <- log_fold_removal_before |>
              relationship = "many-to-many") 
 ```
 
+##### Joining of target data
 
