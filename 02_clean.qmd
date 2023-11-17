@@ -31,7 +31,7 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 #| label: cleaning data table 1
 
 coexpression_clean <- coexpression_load |>
-  add_column(genenr = str_c("gene_",
+  mutate(genenr = str_c("gene_",
                             seq(from = 1,
                                 to = 5585)),
 # the second value is determined by the longest column in the data table with nrow(coexpression_load), aka the module with the highest number of genes
