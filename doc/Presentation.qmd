@@ -15,7 +15,19 @@ author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s1
 
 ## Background Information {background-color="#806040"}
 
-The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs). Many genes, traget molecules, and cellular pathways were identified. We were curious which of the genes are significantly differential expressed, before and after DMARD treatment.
+The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
+
+For this purpose, synovial tissue biopsy samples were taken from 19 RA patients, before and after six months of DMARD therapy.
+
+It is hypothesized that multiple biological pathways are impacted by DMARD, but specifics of the pathways are unknown.
+
+## Study's findings {background-color="#806040"}
+
+From the 8000 analyzed genes, <300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
+
+## Research purpose {background-color="#806040"}
+
+Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment.
 
 # Materials and Methods {background-color="#806040"}
 
