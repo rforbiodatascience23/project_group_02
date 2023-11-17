@@ -242,8 +242,8 @@ expression_data <- split_expression_before |>
 ```{r}
 target_data <- tidy_pivot_before |> 
   full_join(tidy_pivot_after,
-            by = "Upstream Regulator",
-            relationship = "many-to-many") |> 
-  distinct()
+            by = "Upstream Regulator", 
+            relationship = "many-to-many")
+target_data
 ```
 
