@@ -96,49 +96,6 @@ split_target_before <- log_fold_removal_before |>
 ```
 
 
-```{r}
-
-#| label: Separating target molecule (before)
-
-split_target_before <- split_target_before |>
-  mutate(Count = str_count(`Target molecules in dataset (before)`, 
-                           pattern = ",") + 1) |>
-  arrange(desc(Count))
-
- 
-split_target_before  <- split_target_before |>
-  separate("Target molecules in dataset (before)",
-           str_c("Target molecule_",
-                 seq(from = 1, to = split_target_before  |>
-                       slice(1) |>
-                       pull(Count))),
-                 ",",
-                 remove = TRUE,
-                 extra = "warn",
-                 fill = "warn") |>
-  select(-Count)
-
-
-```
-
-
-```{r}
-#| label: pivot longer (before)
-pivot_before_treatment <- split_target_before |> 
-  pivot_longer(cols = starts_with("Target"),
-               names_to = "Target_n",
-               values_to = "Target (before)")
-```
-
-```{r}
-#| label: remove redundant variables and na (before)
-
-tidy_pivot_before <- pivot_before_treatment |> 
-  select(-"Target_n") |> 
-  drop_na("Target (before)") |> 
-  distinct()
-```
-
 ##### After treatment
 
 As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
@@ -181,46 +138,6 @@ split_target_after <- log_fold_removal_after |>
   select(c("Upstream Regulator","Target molecules in dataset (after)"))
 ```
 
-```{r}
-#| label: seperation of the target molecule column
-
-count <- split_target_after |> 
-  mutate(length_TM = str_count(`Target molecules in dataset (after)`,
-                               pattern =",")+1) |> 
-  arrange(desc(length_TM))
-  
-split_target_after_clean <- count |> 
-  separate(col = "Target molecules in dataset (after)",
-           into = str_c("Target molecule_",
-                 seq(from=1, to= count |> slice(1) %>%
-  pull(length_TM))),
-           ",",
-           remove = TRUE,
-           extra = "warn",
-           fill = "warn") |> 
-  select(!"length_TM")
-split_target_after_clean
-```
-
-```{r}
-#| label: pivot longer 
-pivot_after_treatment <- split_target_after_clean |> 
-  pivot_longer(cols = starts_with("Target"),
-               names_to = "Target_n",
-               values_to = "Target (after)")
-pivot_after_treatment
-```
-
-```{r}
-#| label: remove redundant variables and na (after)
-
-tidy_pivot_after <- pivot_after_treatment |> 
-  select(-"Target_n") |> 
-  drop_na("Target (after)") |> 
-  distinct()
-```
-
-
 
 ##### Joining of expression data 
 
@@ -235,15 +152,61 @@ expression_data <- split_expression_before |>
 
 ```
 
+
 ##### Joining of target data
+
+```{r}
+
+target_data_test <- split_target_before |> 
+  inner_join(split_target_after ,
+            by = "Upstream Regulator",
+            relationship = "many-to-many")
+
+```
 
 
 ```{r}
-target_data <- tidy_pivot_before |> 
- full_join(tidy_pivot_after,
-            by = "Upstream Regulator",
-            relationship = "many-to-many") |> 
-  distinct()
-target_data
+#| label: Separating target molecule (before)
+
+target_data_test <- target_data_test |>
+  mutate(Count = str_count(`Target molecules in dataset (before)`, 
+                           pattern = ",") + 1) |>
+  arrange(desc(Count))
+
+ 
+target_data_test  <- target_data_test |>
+  separate("Target molecules in dataset (before)",
+           str_c("Target molecule_before_",
+                 seq(from = 1, to = target_data_test  |>
+                       slice(1) |>
+                       pull(Count))),
+                 ",",
+                 remove = TRUE,
+                 extra = "warn",
+                 fill = "warn") |>
+  select(-Count)
+
 ```
 
+```{r}
+#| label: Separating target molecule (after)
+
+target_data_test <- target_data_test |>
+  mutate(Count = str_count(`Target molecules in dataset (after)`, 
+                           pattern = ",") + 1) |>
+  arrange(desc(Count))
+
+ 
+target_data_test  <- target_data_test |>
+  separate("Target molecules in dataset (after)",
+           str_c("Target molecule_after_",
+                 seq(from = 1, to = target_data_test  |>
+                       slice(1) |>
+                       pull(Count))),
+                 ",",
+                 remove = TRUE,
+                 extra = "warn",
+                 fill = "warn") |>
+  select(-Count)
+
+```
