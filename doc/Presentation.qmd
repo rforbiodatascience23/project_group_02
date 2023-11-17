@@ -13,6 +13,7 @@ author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s1
 
 # Introduction {background-color="#806040"}
 
+
 ## Background Information {background-color="#806040"}
 
 The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
@@ -31,9 +32,12 @@ Many genes, target molecules, and cellular pathways were identified in this stud
 
 # Materials and Methods {background-color="#806040"}
 
+
+
 ## Preparing the data {background-color="#806040"}
 
 From the provided data, we were interested in Supplementary table 3, containing identified regulator molecules from before and after DMARD treatment.
+
 The data table consisted of two separate parts, each part representing before and after treatment, respectively.
 
 # Results {background-color="#806040"}
@@ -42,4 +46,11 @@ The data table consisted of two separate parts, each part representing before an
 
 ## Differential expressed genes {background-color="#806040"}
 
+
+
 # Discussion {background-color="#806040"}
+
+Here we can describe which genes we found to be significantly up or down regulated.
+The article found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
+
+This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
