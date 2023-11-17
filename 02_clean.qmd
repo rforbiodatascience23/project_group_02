@@ -122,6 +122,16 @@ p_value_removal_before
 
 ```
 
+```{r}
+
+#| label: removal of log2(fold-change) above or below 1.5 (before)
+
+log_fold_removal_before <- p_value_removal_before |> 
+  filter(as.numeric(`Expr Log Ratio`) > 1.5 | (`Expr Log Ratio`) < -1.5)
+log_fold_removal_before
+
+```
+
 ##### After treatment
 
 As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
