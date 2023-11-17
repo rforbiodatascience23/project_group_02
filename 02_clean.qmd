@@ -132,6 +132,16 @@ log_fold_removal_before
 
 ```
 
+
+```{r}
+#| label: split of data (before)
+split_regulators_before <- log_fold_removal_before |> 
+  select(!"Target (before)")
+
+split_target_before <- log_fold_removal_before |> 
+  select(c("Upstream Regulator","Target (before)"))
+```
+
 ##### After treatment
 
 As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
