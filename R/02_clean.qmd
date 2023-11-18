@@ -1,0 +1,228 @@
+---
+title: "02_clean.qmd"
+format: html
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+## Part 02: clean
+
+#### Import the required packages
+
+```{r}
+
+#| label: load packages
+#| echo: false
+#| message: false
+
+library("tidyverse")
+library("patchwork")
+
+```
+
+#### Cleaning of co-expression data
+
+As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied, so that each column represents a single module, and the row lists all genes within that given module.
+
+#### Cleaning of table 1
+
+```{r}
+
+#| label: cleaning data table 1
+
+coexpression_clean <- coexpression_load |>
+  add_column(genenr = str_c("gene_",
+                            seq(from = 1,
+                                to = 5585)),
+# the second value is determined by the longest column in the data table with nrow(coexpression_load), aka the module with the highest number of genes
+             .before = "Module 1") |>
+  pivot_longer(cols = -genenr,
+               names_to = "modules",
+               values_to = "gene") |>
+  pivot_wider(names_from = genenr,
+              values_from = gene)
+
+```
+
+#### Cleaning of table 3
+
+##### Before treatment
+
+The headers of the regulators data are corrected and the column called "Mechanistic Network" is excluded from the data, since it is not relevant for further analysis.
+
+```{r}
+
+#| label: Correcting headers (before)
+#| echo: false
+
+regulators_before_clean <- regulators_before_load |>
+  set_names(as.character(slice(regulators_before_load, 1))) |>
+  slice(-1) |>
+  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (before)", "Molecule Type (before)", "p-value of overlap (before)", "Target molecules in dataset (before)")))
+
+```
+
+```{r}
+
+#| label: removal of p-values above 0.05 (before)
+
+p_value_removal_before <- regulators_before_clean |> 
+  filter(as.numeric(`p-value of overlap (before)`) <= 0.05)
+
+p_value_removal_before
+
+```
+
+```{r}
+
+#| label: removal of log2(fold-change) above or below 1.5 (before)
+
+log_fold_removal_before <- p_value_removal_before |> 
+  filter(as.numeric(`Expr Log Ratio (before)`) > 1.5 | (`Expr Log Ratio (before)`) < -1.5)
+
+log_fold_removal_before
+
+```
+
+
+```{r}
+#| label: split of data (before)
+split_expression_before <- log_fold_removal_before |> 
+  select(!"Target molecules in dataset (before)")
+
+split_target_before <- log_fold_removal_before |> 
+  select(c("Upstream Regulator","Target molecules in dataset (before)"))
+```
+
+
+##### After treatment
+
+As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
+
+```{r}
+
+#| label: Correcting headers (after)
+#| echo: false
+
+regulators_after_clean <- regulators_after_load |>
+  set_names(as.character(slice(regulators_after_load, 1))) |>
+  slice(-1) |>
+  select(!c("Mechanistic Network", "Predicted Activation State", "Activation z-score")) |>
+  set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset (after)")))
+
+```
+
+
+```{r}
+#| label: removal of p-values above 0.05 (after)
+
+p_value_removal_after <- regulators_after_clean |> 
+  filter(as.numeric(`p-value of overlap (after)`) <= 0.05)
+p_value_removal_after
+```
+
+```{r}
+#| label: removal of log2(fold-change) above or below 1.5 (after)
+log_fold_removal_after <- p_value_removal_after |> 
+  filter(as.numeric(`Expr Log Ratio (after)`) > 1.5 | (`Expr Log Ratio (after)`) < -1.5)
+log_fold_removal_after
+```
+
+```{r}
+#| label: split of data (after)
+split_expression_after <- log_fold_removal_after |> 
+  select(!"Target molecules in dataset (after)")
+
+split_target_after <- log_fold_removal_after |> 
+  select(c("Upstream Regulator","Target molecules in dataset (after)"))
+```
+
+
+##### Joining of expression data 
+
+
+```{r}
+expression_data <- split_expression_before |> 
+  inner_join(split_expression_after,
+             by = "Upstream Regulator", 
+             relationship = "many-to-many") |> 
+  distinct() |> 
+  relocate(c("Molecule Type (before)", "Molecule Type (after)", "Expr Log Ratio (before)", "Expr Log Ratio (after)", "p-value of overlap (before)", "p-value of overlap (after)"), .after = "Upstream Regulator")
+
+```
+
+
+##### Joining of target data
+
+```{r}
+
+target_data <- split_target_before |> 
+  inner_join(split_target_after ,
+            by = "Upstream Regulator",
+            relationship = "many-to-many")
+
+```
+
+
+```{r}
+#| label: Separating target molecule (before)
+
+target_data <- target_data |>
+  mutate(Count = str_count(`Target molecules in dataset (before)`, 
+                           pattern = ",") + 1) |>
+  arrange(desc(Count))
+
+ 
+target_data  <- target_data |>
+  separate("Target molecules in dataset (before)",
+           str_c("Target molecule_before_",
+                 seq(from = 1, to = target_data  |>
+                       slice(1) |>
+                       pull(Count))),
+                 ",",
+                 remove = TRUE,
+                 extra = "warn",
+                 fill = "warn") |>
+  select(-Count)
+
+```
+
+```{r}
+#| label: Separating target molecule (after)
+
+target_data <- target_data |>
+  mutate(Count = str_count(`Target molecules in dataset (after)`, 
+                           pattern = ",") + 1) |>
+  arrange(desc(Count))
+
+ 
+target_data  <- target_data |>
+  separate("Target molecules in dataset (after)",
+           str_c("Target molecule_after_",
+                 seq(from = 1, to = target_data  |>
+                       slice(1) |>
+                       pull(Count))),
+                 ",",
+                 remove = TRUE,
+                 extra = "warn",
+                 fill = "warn") |>
+  select(-Count)
+
+```
+
+
+##### Making tsv files 
+```{r}
+#| label: tsv files 
+expression_data_clean <- write_tsv(expression_data,
+                               "data/02_expr_clean.tsv",
+                               append = FALSE,
+                               col_names = TRUE)
+target_data_clean <- write_tsv(target_data,
+                                    "data/02_target_clean.tsv",
+                                    append = FALSE,
+                                    col_names = TRUE)
+
+```
+

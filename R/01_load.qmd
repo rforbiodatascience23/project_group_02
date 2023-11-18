@@ -1,0 +1,72 @@
+---
+title: "01_load"
+format: html
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+## Part 01: load
+
+The first part of the project workflow is to load the raw data into the project workflow and import the required packages.
+
+#### Import the required packages
+
+```{r}
+
+#| label: load packages
+#| message: false
+#| echo: false
+
+library("tidyverse")
+library("readxl")
+
+```
+
+#### Load the data
+
+The data, used for this project, is downloaded from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5580991/. More specifically; supplementary table 1 and 3.
+
+Data table 1 contains information on co-expression modules. Each column is a module, or group, of co-expressed genes. Each cell underneath the column header contains the symbol of a gene that is part of this respective module. A total of 20 modules of co-expressed genes is defined. Data table 3 consists of data on predicted regulators. Each row is a regulator molecule, and of each molecule, characteristics such as the expression level and molecule type are described. A total of 849 regulator molecules are described.
+
+When loading the data, we are also replacing blank fields with "NA".
+
+```{r}
+
+#| label: load data
+
+coexpression_raw <- read_excel("data/_raw/pone.0183928.s001.xlsx",
+                               na = c(" ",
+                                      "NA"))
+regulators_before_raw <- read_excel("data/_raw/pone.0183928.s003.xlsx",
+                                    na = c(" ",
+                                           "NA"))
+regulators_after_raw <- read_excel("data/_raw/pone.0183928.s003.xlsx",
+                                   2,
+                                   na = c(" ",
+                                          "NA"))
+
+```
+
+#### Convert the data files to the correct format
+
+In order to enable data analysis, the original .xlsx files are converted to .tsv and saved in the data folder in the project.
+
+```{r}
+
+#| label: load data
+#| echo: false
+
+coexpression_load <- write_tsv(coexpression_raw,
+                               "data/01_coexpression_load.tsv",
+                               append = FALSE,
+                               col_names = TRUE)
+regulators_before_load <- write_tsv(regulators_before_raw,
+                                    "data/01_regulators_before_load.tsv",
+                                    append = FALSE,
+                                    col_names = TRUE)
+regulators_after_load <- write_tsv(regulators_after_raw,
+                                   "data/01_regulators_after_load.tsv",
+                                   append = FALSE,
+                                   col_names = TRUE)
+
+```

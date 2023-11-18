@@ -1,0 +1,58 @@
+---
+title: "05_analysis_1"
+format: html
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+## Part 05: analysis 1
+
+The first analysis is that of the genetic expression levels. From the .tsv file xxxxxx, significantly up- and down-regulated genes are depicted below.
+
+#### Install the required packages
+
+```{r}
+
+#| label: load packages
+#| message: false
+#| echo: false
+
+library("tidyverse")
+library("ggrepel")
+
+```
+
+#### Generate a vulcano plot of the gene expression
+
+To depict which genes are up- and down-regulated, a volcano plot is made. The differences in colors indicate the genes present before and after DMARD treatment.
+
+```{r}
+
+#| label: volcano plot
+#| echo: false
+
+# Import 03_dat_aug.tsv file |>
+  ggplot(aes(x = # expr. log ratio,
+             y = # p.value,
+             colour = # before vs after treatment,
+             label = # up regulated ?? )) +
+  geom_point(size = 1,
+             alpha = 0.5) +
+  #geom_text_repel(size = 4,
+                  #max.overlaps = 20) + These two lines might not be necessary
+  geom_hline(yintercept = 0) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(hjust = 1),
+    plot.subtitle = element_text(hjust = 1),
+    legend.position = "none") +
+  labs(
+    x = "log ratio of gene expression",
+    y = "p.value of expression",
+    title = "Genetic regulation, related with rheumatoid arthritis (RA)",
+    subtitle = "Genes highlighted in turquoise, depict those expressed after treatment",
+    caption = "Data from DOI: 10.1371/journal.pone.0183928")
+
+```
+
+
