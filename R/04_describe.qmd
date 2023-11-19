@@ -93,3 +93,9 @@ Each regulator molecule regulates a certain number of genes. The code below gene
 # table4_observations <- nrow()
 
 ```
+
+## Plot with number of molecule types 
+```{r}
+
+```
+
