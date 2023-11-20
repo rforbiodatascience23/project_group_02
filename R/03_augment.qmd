@@ -20,11 +20,13 @@ library("tidyverse")
 Load in the clean data files 
 ```{r}
 
-coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv",
+#| label: load data
+
+coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv.gz",
                                show_col_types = FALSE)
-expr_aug <- read_tsv("../data/02_expr_clean.tsv",
+expr_aug <- read_tsv("../data/02_expr_clean.tsv.gz",
                      show_col_types = FALSE)
-target_aug <- read_tsv("../data/02_target_clean.tsv",
+target_aug <- read_tsv("../data/02_target_clean.tsv.gz",
                        show_col_types = FALSE)
 
 ```
@@ -48,6 +50,7 @@ Adding a varaible that reflects the level of change in regulation, the
 difference between before and after 
 ```{r}
 #| label: add change in regulation column 
+
 expr_aug <- expr_aug |>
   mutate(change_in_regulation = expr_log_ratio_after - expr_log_ratio_before)
 
@@ -56,8 +59,10 @@ expr_aug <- expr_aug |>
 #### Augmenting the dataframe reflecting the target molecules 
 
 Adding the number of target molecules before treatment per regulator
+
 ```{r}
 #| label: number of target molecules before treatment
+
 target_aug <- target_aug |> 
   rowwise() |> 
   mutate(n_before = sum(!is.na(c_across(contains("before"))))) |> 
@@ -67,8 +72,10 @@ target_aug <- target_aug |>
 ```
 
 Adding the number of target molecules after treatment per regulator
+
 ```{r}
 #| label: number of target molecules after treatment
+
 target_aug <- target_aug |> 
   rowwise() |> 
   mutate(n_after = sum(!is.na(c_across(contains("after"))))) |> 
@@ -77,16 +84,18 @@ target_aug <- target_aug |>
 
 ```
 
-Saving the augmented dataframes as tsv files
+#### Saving the augmented data frames as zipped tsv files
+
 ```{r}
+#| label: tsv files
 
 write_tsv(coexpression_aug,
-          "../data/03_coexpression_aug.tsv")
+          "../data/03_coexpression_aug.tsv.gz")
 
 write_tsv(expr_aug,
-          "../data/03_expr_aug.tsv")
+          "../data/03_expr_aug.tsv.gz")
 
 write_tsv(target_aug,
-          "../data/03_target_aug.tsv")
+          "../data/03_target_aug.tsv.gz")
 
 ```
