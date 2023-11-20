@@ -1,4 +1,6 @@
+# Load in the clean datafiles
 
+<<<<<<< HEAD
 #### Import libraries 
 
 ```{r}
@@ -8,6 +10,8 @@ library("tidyverse")
 ```
 
 # Load in the clean datafiles  
+=======
+>>>>>>> 486c782e50660b4ef0b0a37995dcaeb338cf10c1
 ```{r}
 coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv",
                                show_col_types = FALSE)
@@ -18,6 +22,7 @@ target_aug <- read_tsv("../data/02_target_clean.tsv",
 ```
 #### No changes to the dataframe containing the coexpression data
 
+<<<<<<< HEAD
 #### Augmenting the dataframe reflecting the gene expression levels
 
 Adding a varaible that indicates weather a regulator was up or downregulated,
@@ -31,6 +36,20 @@ expr_aug <- expr_aug |>
 
 Adding a varaible that reflects the level of change in regulation, the
 difference between before and after 
+=======
+# Augmenting the dataframe reflecting the gene expression levels
+
+```{r}
+#| label: add upgerulated/downregulated column 
+expr_clean |> 
+  mutate(Regulation = case_when("Expr Log Ratio (before)" < "Expr Log Ratio (after)" ~ "Upregulated",
+                                "Expr Log Ratio (before)" > "Expr Log Ratio (after)" ~ "Downregulated"))
+
+```
+
+# Augmenting the dataframe reflecting the target molecules
+
+>>>>>>> 486c782e50660b4ef0b0a37995dcaeb338cf10c1
 ```{r}
 expr_aug <- expr_aug |>
   mutate(change_in_regulation = expr_log_ratio_after - expr_log_ratio_before)
@@ -48,6 +67,7 @@ target_aug <- target_aug |>
            .after = "upstream_regulator")
 ```
 
+<<<<<<< HEAD
 Number of target molecules after treatment per regulator
 ```{r}
 target_aug <- target_aug |> 
@@ -58,6 +78,8 @@ target_aug <- target_aug |>
 ```
 
 Saving the augmented dataframes as tsv files
+=======
+>>>>>>> 486c782e50660b4ef0b0a37995dcaeb338cf10c1
 ```{r}
 write_tsv(coexpression_aug,
           "../data/03_coexpression_aug.tsv")
@@ -68,4 +90,3 @@ write_tsv(expr_aug,
 write_tsv(target_aug,
           "../data/03_target_aug.tsv")
 ```
-
