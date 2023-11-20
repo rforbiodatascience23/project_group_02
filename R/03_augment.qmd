@@ -7,8 +7,7 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 03: augment
 
-#### Import libraries 
-
+Import libraries 
 ```{r}
 
 #| label: load packages
@@ -18,8 +17,7 @@ library("tidyverse")
 
 ```
 
-#### Load in the clean data files 
-
+Load in the clean data files 
 ```{r}
 
 coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv",
@@ -37,7 +35,6 @@ target_aug <- read_tsv("../data/02_target_clean.tsv",
 
 Adding a variable that indicates weather a regulator was up- or down-regulated,
 before and after treatment 
-
 ```{r}
 
 #| label: add upgerulated/downregulated column 
@@ -50,19 +47,7 @@ expr_aug <- expr_aug |>
 Adding a varaible that reflects the level of change in regulation, the
 difference between before and after 
 ```{r}
-
-#| label: add upgerulated/downregulated column 
-
-expr_clean |> 
-  mutate(Regulation = case_when("Expr Log Ratio (before)" < "Expr Log Ratio (after)" ~ "Upregulated",
-                                "Expr Log Ratio (before)" > "Expr Log Ratio (after)" ~ "Downregulated"))
-
-```
-
-#### Augmenting the dataframe reflecting the target molecules
-
-```{r}
-
+#| label: add change in regulation column 
 expr_aug <- expr_aug |>
   mutate(change_in_regulation = expr_log_ratio_after - expr_log_ratio_before)
 
@@ -71,9 +56,8 @@ expr_aug <- expr_aug |>
 #### Augmenting the dataframe reflecting the target molecules 
 
 Adding the number of target molecules before treatment per regulator
-
 ```{r}
-
+#| label: number of target molecules before treatment
 target_aug <- target_aug |> 
   rowwise() |> 
   mutate(n_before = sum(!is.na(c_across(contains("before"))))) |> 
@@ -83,9 +67,8 @@ target_aug <- target_aug |>
 ```
 
 Adding the number of target molecules after treatment per regulator
-
 ```{r}
-
+#| label: number of target molecules after treatment
 target_aug <- target_aug |> 
   rowwise() |> 
   mutate(n_after = sum(!is.na(c_across(contains("after"))))) |> 
@@ -95,7 +78,6 @@ target_aug <- target_aug |>
 ```
 
 Saving the augmented dataframes as tsv files
-
 ```{r}
 
 write_tsv(coexpression_aug,
