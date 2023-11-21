@@ -4,31 +4,38 @@ format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
-Accessing relevant functions 
+
+
+## Part 02: clean
+
+#### Accessing relevant functions
+
 ```{r}
 source("99_proj_func.R")
 ```
 
-Import libraries 
+#### Import libraries
+
 ```{r}
 #| label: load packages
 #| message: false
 library("tidyverse")
 ```
 
-Read in the loaded datafiles  
+#### Read in the loaded data files
+
 ```{r}
 #| label: load in data
-coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv",
+
+coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
                                show_col_types = FALSE)
 
-regulators_before_clean <- read_tsv("../data/01_regulators_before_load.tsv",
+regulators_before_clean <- read_tsv("../data/01_regulators_before_load.tsv.gz",
                                     show_col_types = FALSE, skip = 1)
 
-regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv",
+regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
                                    show_col_types = FALSE, skip = 1)
 ```
-
 
 #### Cleaning of co-expression data
 
@@ -52,6 +59,7 @@ coexpression_clean <- coexpression_clean |>
 #### Cleaning the two dataframes describing upstream regulators before and after treatment
 
 Function that fixes renames headers and ensures all floats in the dataframe is intepreted as numeric values and selects relevant columns for further analysis
+
 ```{r}
 #| label: Fixing names and values
 regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
@@ -61,8 +69,8 @@ regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
 
 ```
 
-
 Function that filters p-values over 0.05 and expression level between -0.15 and 0.15
+
 ```{r}
 #| label: Select significant observations
 regulators_before_clean <- filter_significant_observations(regulators_before_clean,
@@ -74,14 +82,16 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
-Functions that collects and joins selected parts of two dataframe 
+Functions that collects and joins selected parts of two dataframe
+
 ```{r}
 #| label: Joining and splitting the two dataframes 
 target_data <- all_target_data(regulators_before_clean, regulators_after_clean)
 expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean)
 ```
 
-Function that splits many values in one cell into separate cells 
+Function that splits many values in one cell into separate cells
+
 ```{r}
 #| label: Seperating crowded cells
 #| message: false
@@ -91,16 +101,14 @@ target_data <- split_cells(target_data, target_molecules_in_dataset_after, "afte
 ```
 
 Saving the clean dataframes as tsv files
+
 ```{r}
 write_tsv(coexpression_clean,
-          "../data/02_coexpression_clean.tsv")
+          "../data/02_coexpression_clean.tsv.gz")
 
 write_tsv(expr_data,
-          "../data/02_expr_clean.tsv")
+          "../data/02_expr_clean.tsv.gz")
 
 write_tsv(target_data,
-          "../data/02_target_clean.tsv")
+          "../data/02_target_clean.tsv.gz")
 ```
-
-
-

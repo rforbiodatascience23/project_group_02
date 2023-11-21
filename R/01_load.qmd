@@ -57,15 +57,15 @@ In order to enable data analysis, the original .xlsx files are converted to .tsv
 #| echo: false
 
 coexpression_load <- write_tsv(coexpression_raw,
-                               "../data/01_coexpression_load.tsv",
+                               "../data/01_coexpression_load.tsv.gz",
                                append = FALSE,
                                col_names = TRUE)
 regulators_before_load <- write_tsv(regulators_before_raw,
-                                    "../data/01_regulators_before_load.tsv",
+                                    "../data/01_regulators_before_load.tsv.gz",
                                     append = FALSE,
                                     col_names = TRUE)
 regulators_after_load <- write_tsv(regulators_after_raw,
-                                   "../data/01_regulators_after_load.tsv",
+                                   "../data/01_regulators_after_load.tsv.gz",
                                    append = FALSE,
                                    col_names = TRUE)
 
