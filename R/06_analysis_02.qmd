@@ -32,7 +32,7 @@ target_aug |>
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 55,
                                    hjust = 1,
-                                   vjust = 1.5))+
+                                   vjust = 1.1))+
   scale_fill_manual(values = c("positive" = "green", "negative" = "red"))+
   labs(x = "Upstream regulator",
        y = "Change in target molecules")
