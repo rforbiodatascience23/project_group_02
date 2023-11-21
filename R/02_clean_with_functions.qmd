@@ -5,7 +5,6 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-
 ## Part 02: clean
 
 #### Accessing relevant functions
@@ -46,8 +45,8 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 #| label: Cleaning data table 1
 coexpression_clean <- coexpression_clean |>
   mutate(genenr = str_c("gene_",
-                        row_number()), 
-             .before = "Module 1") |>
+                        row_number()),
+         .before = "Module 1") |>
   pivot_longer(cols = -genenr,
                names_to = "modules",
                values_to = "gene") |>
@@ -56,9 +55,9 @@ coexpression_clean <- coexpression_clean |>
 
 ```
 
-#### Cleaning the two dataframes describing upstream regulators before and after treatment
+#### Cleaning the two data frames describing upstream regulators before and after treatment
 
-Function that fixes renames headers and ensures all floats in the dataframe is intepreted as numeric values and selects relevant columns for further analysis
+Function that fixes renames headers and ensures all floats in the data frame is interpreted as numeric values and selects relevant columns for further analysis
 
 ```{r}
 #| label: Fixing names and values
@@ -100,7 +99,7 @@ target_data <- split_cells(target_data, target_molecules_in_dataset_before, "bef
 target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
 ```
 
-Saving the clean dataframes as tsv files
+Saving the cleaned data frames as zipped tsv files
 
 ```{r}
 write_tsv(coexpression_clean,
