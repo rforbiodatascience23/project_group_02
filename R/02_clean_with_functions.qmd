@@ -17,7 +17,7 @@ source("99_proj_func.R")
 
 ```{r}
 #| label: load packages
-#| echo: false
+#| message: false
 library("tidyverse")
 ```
 
