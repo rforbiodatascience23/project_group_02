@@ -85,7 +85,6 @@ log_fold_removal_before
 
 ```
 
-
 ```{r}
 #| label: split of data (before)
 split_expression_before <- log_fold_removal_before |> 
@@ -94,7 +93,6 @@ split_expression_before <- log_fold_removal_before |>
 split_target_before <- log_fold_removal_before |> 
   select(c("Upstream Regulator","Target molecules in dataset (before)"))
 ```
-
 
 ##### After treatment
 
@@ -112,7 +110,6 @@ regulators_after_clean <- regulators_after_load |>
   set_names(as.character(c("Upstream Regulator", "Expr Log Ratio (after)", "Molecule Type (after)", "p-value of overlap (after)", "Target molecules in dataset (after)")))
 
 ```
-
 
 ```{r}
 #| label: removal of p-values above 0.05 (after)
@@ -138,9 +135,7 @@ split_target_after <- log_fold_removal_after |>
   select(c("Upstream Regulator","Target molecules in dataset (after)"))
 ```
 
-
-##### Joining of expression data 
-
+##### Joining of expression data
 
 ```{r}
 expression_data <- split_expression_before |> 
@@ -152,7 +147,6 @@ expression_data <- split_expression_before |>
 
 ```
 
-
 ##### Joining of target data
 
 ```{r}
@@ -163,7 +157,6 @@ target_data <- split_target_before |>
             relationship = "many-to-many")
 
 ```
-
 
 ```{r}
 #| label: Separating target molecule (before)
@@ -211,8 +204,8 @@ target_data  <- target_data |>
 
 ```
 
+##### Making tsv files
 
-##### Making tsv files 
 ```{r}
 #| label: tsv files 
 expression_data_clean <- write_tsv(expression_data,
@@ -225,4 +218,3 @@ target_data_clean <- write_tsv(target_data,
                                     col_names = TRUE)
 
 ```
-

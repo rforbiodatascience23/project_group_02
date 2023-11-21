@@ -107,6 +107,7 @@ expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean
 ```
 
 
+
 Adding the number of target molecules before and after treatment as a column 
 
 ```{r}
@@ -121,6 +122,7 @@ target_data <- target_data |>
 ```
 
 The following function splits many values in a single cell into separate cells with a single value in each. This is performed on the target data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
+
 
 ```{r}
 

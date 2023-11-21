@@ -7,9 +7,20 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 05: analysis 1
 
-The first analysis is that of the genetic expression levels. From the .tsv file xxxxxx, significantly up- and down-regulated genes are depicted below.
+The first analysis is that of the genetic expression levels. From the .tsv file "03_expr_aug.tsv.gz", significantly up- and down-regulated genes are depicted below.
 
-#### Install the required packages
+#### Load the needed .tsv file
+
+```{r}
+#| label: load file
+
+gene_expr <- read_tsv("../data/03_expr_aug.tsv.gz",
+                      show_col_types = FALSE)
+
+```
+
+
+#### Load the required packages
 
 ```{r}
 
@@ -19,40 +30,79 @@ The first analysis is that of the genetic expression levels. From the .tsv file 
 
 library("tidyverse")
 library("ggrepel")
+library("patchwork")
 
 ```
 
 #### Generate a vulcano plot of the gene expression
 
-To depict which genes are up- and down-regulated, a volcano plot is made. The differences in colors indicate the genes present before and after DMARD treatment.
+To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are up- and down-regulated, in turquoise and pink respectively. It is important to note that this up- and down-regulation is with respect to the DMARD treatment, over the course of six months.
 
 ```{r}
 
-#| label: volcano plot
+#| label: volcano plot before
 #| echo: false
 
-# Import 03_dat_aug.tsv file |>
-  ggplot(aes(x = # expr. log ratio,
-             y = # p.value,
-             colour = # before vs after treatment,
-             label = # up regulated ?? )) +
+ plot_before <- gene_expr |>
+  ggplot(aes(x = expr_log_ratio_before,
+             y = p_value_of_overlap_before,
+             colour = regulation,
+             label = upstream_regulator)) +
+  #geom_vline(xintercept = 0) +
+  #geom_label() +
   geom_point(size = 1,
              alpha = 0.5) +
-  #geom_text_repel(size = 4,
-                  #max.overlaps = 20) + These two lines might not be necessary
+  geom_text_repel(size = 3,
+                  max.overlaps = 50) +
   geom_hline(yintercept = 0) +
   theme_minimal(base_size = 16) +
   theme(
-    plot.title = element_text(hjust = 1),
-    plot.subtitle = element_text(hjust = 1),
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
     legend.position = "none") +
   labs(
     x = "log ratio of gene expression",
     y = "p.value of expression",
-    title = "Genetic regulation, related with rheumatoid arthritis (RA)",
-    subtitle = "Genes highlighted in turquoise, depict those expressed after treatment",
+    title = "Genetic expression in RA patients",
+    subtitle = "Before DMARD treatment",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
 
+plot_before
+
 ```
+
+```{r}
+
+#| label: volcano plot after
+#| echo: false
+
+ plot_after <- gene_expr |>
+  ggplot(aes(x = expr_log_ratio_after,
+             y = p_value_of_overlap_after,
+             colour = regulation, 
+             label = upstream_regulator)) +
+  #geom_vline(xintercept = 0) +
+  #geom_label() +
+  geom_point(size = 1,
+             alpha = 0.5) +
+  geom_text_repel(size = 3,
+                  max.overlaps = 50) +
+  geom_hline(yintercept = 0) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "none") +
+  labs(
+    x = "log ratio of gene expression",
+    y = "p.value of expression",
+    title = "Genetic expression in RA patients",
+    subtitle = "After DMARD treatment",
+    caption = "Data from DOI: 10.1371/journal.pone.0183928")
+
+plot_after
+
+```
+
 
 
