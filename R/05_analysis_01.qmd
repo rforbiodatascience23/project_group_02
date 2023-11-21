@@ -70,6 +70,13 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
 
 plot_before
 
+ggsave(filename = "05_expr_plot_before.png",
+       plot = last_plot(),
+       device = "png",
+       path = "../results",
+       scale = 1,
+       limitsize = TRUE)
+
 ```
 
 ```{r}
@@ -104,6 +111,13 @@ plot_before
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
 
 plot_after
+
+ggsave(filename = "05_expr_plot_after.png",
+       plot = last_plot(),
+       device = "png",
+       path = "../results",
+       scale = 1,
+       limitsize = TRUE)
 
 ```
 

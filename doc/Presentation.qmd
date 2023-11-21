@@ -23,12 +23,11 @@ It is hypothesized that multiple biological pathways are impacted by DMARD, but 
 
 ## Study's findings {background-color="#806040"}
 
-From the 8000 analyzed genes, <300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
+From the 8000 analyzed genes, \<300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
 
 ## Research purpose {background-color="#806040"}
 
-Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment.
-Moreover, we wondered if these genes are relevant treatment targets, depending on their respective molecular mechanism.
+Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment. Moreover, we wondered if these genes are relevant treatment targets, depending on their respective molecular mechanism.
 
 # Materials and Methods {background-color="#806040"}
 
@@ -44,7 +43,7 @@ In order to perform our analysis, some data wrangling was required. In this proc
 
 ## Adding further required variables {background-color="#806040"}
 
-For our analysis, we wanted to distinguish between genetic up- and down-regulation. We did this by adding a factor, dividing the genes into the two distinctive groups. 
+For our analysis, we wanted to distinguish between genetic up- and down-regulation. We did this by adding a factor, dividing the genes into the two distinctive groups.
 
 # Results {background-color="#806040"}
 
@@ -54,7 +53,12 @@ To visualize the genes' up- and down-regulation, a volcano plot was made. This p
 
 ## Differentially expressed genes {background-color="#806040"}
 
-Volcano plot here :)
+::: {.r-stack}
+![]("../../results/05_expr_plot_before.png"){.fragment width="100" height="200"}
+
+![]("../../results/05_expr_plot_after.png"){.fragment width="100" height="200"}
+:::
+
 
 ## Target molecules {background-color="#806040"}
 
