@@ -30,7 +30,6 @@ gene_expr <- read_tsv("../data/03_expr_aug.tsv.gz",
 
 library("tidyverse")
 library("ggrepel")
-library("patchwork")
 
 ```
 
@@ -55,11 +54,11 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
   geom_text_repel(size = 3,
                   max.overlaps = 50) +
   geom_hline(yintercept = 0) +
-  theme_minimal(base_size = 16) +
+  theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none") +
+    legend.position = "bottom") +
   labs(
     x = "log ratio of gene expression",
     y = "p.value of expression",
@@ -79,7 +78,8 @@ plot_before
  plot_after <- gene_expr |>
   ggplot(aes(x = expr_log_ratio_after,
              y = p_value_of_overlap_after,
-             colour = regulation, 
+             #fill = regulation,
+             color = regulation,
              label = upstream_regulator)) +
   #geom_vline(xintercept = 0) +
   #geom_label() +
@@ -88,14 +88,17 @@ plot_before
   geom_text_repel(size = 3,
                   max.overlaps = 50) +
   geom_hline(yintercept = 0) +
-  theme_minimal(base_size = 16) +
+  theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
-    legend.position = "none") +
+    legend.position = "bottom") +
+  #scale_fill_manual(labels = c("upregulated", "downregulated"),
+                    #values = c("turquoise", "pink")) +
   labs(
     x = "log ratio of gene expression",
     y = "p.value of expression",
+    fill = "DMARD",
     title = "Genetic expression in RA patients",
     subtitle = "After DMARD treatment",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")

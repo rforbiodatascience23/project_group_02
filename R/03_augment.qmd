@@ -56,34 +56,14 @@ expr_aug <- expr_aug |>
 
 ```
 
-#### Augmenting the dataframe reflecting the target molecules 
-
-Adding the number of target molecules before treatment per regulator
-
 ```{r}
-#| label: number of target molecules before treatment
-
-target_aug <- target_aug |> 
-  rowwise() |> 
-  mutate(n_before = sum(!is.na(c_across(contains("before"))))) |> 
-  relocate("n_before",
-           .after = "upstream_regulator")
-
+target_data <- target_data |> 
+  mutate(change_in_n_molecules = n_after - n_before) |> 
+  relocate(change_in_n_molecules,
+           .after = n_after)
 ```
 
-Adding the number of target molecules after treatment per regulator
-
-```{r}
-#| label: number of target molecules after treatment
-
-target_aug <- target_aug |> 
-  rowwise() |> 
-  mutate(n_after = sum(!is.na(c_across(contains("after"))))) |> 
-  relocate("n_after",
-           .after = "n_before")
-
-```
-
+  
 #### Saving the augmented data frames as zipped tsv files
 
 ```{r}
@@ -99,3 +79,5 @@ write_tsv(target_aug,
           "../data/03_target_aug.tsv.gz")
 
 ```
+
+

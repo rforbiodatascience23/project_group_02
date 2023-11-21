@@ -94,6 +94,7 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
+
 The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from before and after treatment.
 
 ```{r}
@@ -105,7 +106,23 @@ expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean
 
 ```
 
+
+
+Adding the number of target molecules before and after treatment as a column 
+
+```{r}
+target_data <- target_data |>
+  mutate(n_before = str_count(target_molecules_in_dataset_before,
+                                pattern = ",") + 1,
+         n_after = str_count(target_molecules_in_dataset_after,
+                                pattern = ",") + 1) |> 
+  relocate(c(n_before, n_after),
+           .after = upstream_regulator)
+  
+```
+
 The following function splits many values in a single cell into separate cells with a single value in each. This is performed on the target data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
+
 
 ```{r}
 
@@ -117,6 +134,7 @@ target_data <- split_cells(target_data, target_molecules_in_dataset_before, "bef
 target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
 
 ```
+
 
 Lastly, the clean data frames are saved as zipped tsv files.
 
