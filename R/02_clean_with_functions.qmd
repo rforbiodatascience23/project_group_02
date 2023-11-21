@@ -12,7 +12,7 @@ source("99_proj_func.R")
 Import libraries 
 ```{r}
 #| label: load packages
-#| echo: false
+#| message: false
 library("tidyverse")
 ```
 
