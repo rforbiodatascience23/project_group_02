@@ -22,50 +22,86 @@ coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
 ```
 
 ```{r}
-data <- ggplot(aes(x = modules),
-               y = n, 
-               fill = `Upstream Regulator`)
+target_aug |> 
+  ggplot(aes(x = upstream_regulator,
+               y = change_in_n_molecules,
+             fill = case_when(change_in_n_molecules > 0 ~ "more",
+                              change_in_n_molecules < 0 ~  "less")))+
+  geom_col(color  = "black")+ 
+   theme_minimal(base_size = 10) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 55,
+                                   hjust = 1,
+                                   vjust = 1.1))+
+  scale_fill_manual(values = c("more" = "#117733",
+                               "less" = "#661100"))+
+  labs(x = "Upstream regulator",
+       y = "Change in target molecules",
+       title = "Target molecules after tDMARD treatment compared to before")
+```
+
+```{r}
+coexpression_aug 
 ```
 
 ### Header for Anne
 
 ```{r}
-
-coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
-                               show_col_types = FALSE)
-
-coexpression_clean <- coexpression_clean |>
-  pivot_longer(cols = everything(),
-               names_to = "modules",
-               values_to = "gene")
-
-
-tester <- target_data |>
-  slice(1) |>
-  select(contains("before")) |>
-  select(2:last_col()) |>
-  map_df( ~ coexpression_clean |> filter(gene == .x) |> select(c("modules",gene)))
-
+target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
+                       show_col_types = FALSE)
 ```
 
-### Header for Katja
+```{r}
+module_counter <- function(data, ID) {
+  data <- data |> 
+    filter(upstream_regulator == ID) |>
+    select(contains("molecule_before")) |>
+    map_df( ~ coexpression_clean |> 
+              filter(gene == .x) |>
+              select(c("modules",
+                       gene))) |>
+    count(modules, name = ID)
+  
+  return (data)
+}
+```
+
 
 ```{r}
+candidate_1 <- module_counter(target_aug, "TREM1")
+candidate_2 <- module_counter(target_aug, "LIPE")
+candidate_3 <- module_counter(target_aug, "JUND")
+```
 
-coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
-                               show_col_types = FALSE)
+```{r}
+module_analysis <- candidate_1 |> 
+  full_join(candidate_2,
+            by = 'modules') |> 
+  full_join(candidate_3,
+            by = 'modules') |> 
+  mutate_if(is.numeric,
+            replace_na,
+            0) |> 
+  pivot_longer(cols = -modules,
+               names_to = "candidate",
+               values_to = "counts") |> 
+  arrange(as.integer(str_extract(modules, "\\d+")))
+```
 
-coexpression_clean <- coexpression_clean |>
-  pivot_longer(cols = everything(),
-               names_to = "modules",
-               values_to = "gene")
 
-
-tester <- target_data |>
-  slice(1) |>
-  select(contains("before")) |>
-  select(2:last_col()) |>
-  map_df( ~ coexpression_clean |> filter(gene == .x) |> select(c("modules",gene)))
-
+```{r}
+module_analysis |>
+  ggplot(aes(x = modules, y = counts, fill = candidate)) +
+  geom_bar(stat = "identity",
+           color = "black",
+           alpha = 0.4,
+           position = position_dodge(preserve = "single")) +
+  geom_hline(yintercept = 0) + 
+  
+  theme(legend.position = "bottom",
+        panel.grid.major.x = element_blank(),
+        axis.text.x = element_text(angle = 20,
+                                   hjust = 1,
+                                   vjust = 1))
 ```
 
