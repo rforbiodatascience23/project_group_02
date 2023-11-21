@@ -27,22 +27,69 @@ data <- ggplot(aes(x = modules),
                fill = `Upstream Regulator`)
 ```
 
+```{r}
+coexpression_aug 
+```
+
 ### Header for Anne
 
 ```{r}
-
-
-target_data |>
-  filter(upstream_regulator == "TREM1") |>
-  select(contains("molecule_before")) |>
-  map_df( ~ coexpression_clean |> 
-            filter(gene == .x) |> 
-            select(c("modules",
-                     gene))) |>
-  count(modules, name = "TREM1")
-
-
-
+target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
+                       show_col_types = FALSE)
 ```
 
+```{r}
+module_counter <- function(data, ID) {
+  data <- data |> 
+    filter(upstream_regulator == ID) |>
+    select(contains("molecule_before")) |>
+    map_df( ~ coexpression_clean |> 
+              filter(gene == .x) |>
+              select(c("modules",
+                       gene))) |>
+    count(modules, name = ID)
+  
+  return (data)
+}
+```
+
+
+```{r}
+candidate_1 <- module_counter(target_aug, "TREM1")
+candidate_2 <- module_counter(target_aug, "LIPE")
+candidate_3 <- module_counter(target_aug, "JUND")
+```
+
+```{r}
+module_analysis <- candidate_1 |> 
+  full_join(candidate_2,
+            by = 'modules') |> 
+  full_join(candidate_3,
+            by = 'modules') |> 
+  mutate_if(is.numeric,
+            replace_na,
+            0) 
+```
+
+```{r}
+module_analysis <- module_analysis |> 
+  gather(key = "candidate", value = "count", "TREM1":"JUND") |>   
+  spread(key = modules, value = count) 
+```
+
+
+```{r}
+module_analysis  |>
+  ggplot(mapping = aes(x = modules)) +
+  
+  geom_bar(color = "black",
+           alpha = 0.4,
+           position = position_dodge(preserve = "single")) + 
+  
+  theme(legend.position = "bottom",
+        panel.background = element_rect(fill = 'white'), 
+        panel.grid.minor = element_line(colour="grey")) + 
+  
+   labs(y = 'n')
+```
 
