@@ -57,7 +57,7 @@ expr_aug <- expr_aug |>
 ```
 
 ```{r}
-target_data <- target_data |> 
+target_aug <- target_aug |> 
   mutate(change_in_n_molecules = n_after - n_before) |> 
   relocate(change_in_n_molecules,
            .after = n_after)
