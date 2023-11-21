@@ -31,41 +31,18 @@ data <- ggplot(aes(x = modules),
 
 ```{r}
 
-coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
-                               show_col_types = FALSE)
 
-coexpression_clean <- coexpression_clean |>
-  pivot_longer(cols = everything(),
-               names_to = "modules",
-               values_to = "gene")
+target_data |>
+  filter(upstream_regulator == "TREM1") |>
+  select(contains("molecule_before")) |>
+  map_df( ~ coexpression_clean |> 
+            filter(gene == .x) |> 
+            select(c("modules",
+                     gene))) |>
+  count(modules, name = "TREM1")
 
 
-tester <- target_data |>
-  slice(1) |>
-  select(contains("before")) |>
-  select(2:last_col()) |>
-  map_df( ~ coexpression_clean |> filter(gene == .x) |> select(c("modules",gene)))
 
 ```
 
-### Header for Katja
-
-```{r}
-
-coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
-                               show_col_types = FALSE)
-
-coexpression_clean <- coexpression_clean |>
-  pivot_longer(cols = everything(),
-               names_to = "modules",
-               values_to = "gene")
-
-
-tester <- target_data |>
-  slice(1) |>
-  select(contains("before")) |>
-  select(2:last_col()) |>
-  map_df( ~ coexpression_clean |> filter(gene == .x) |> select(c("modules",gene)))
-
-```
 
