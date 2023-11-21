@@ -1,0 +1,34 @@
+---
+title: "06_analysis_02.qmd"
+format: html
+editor: visual
+author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
+---
+
+## Part 06: analysis 2
+
+### Install the required packages
+
+```{r}
+#| label: load packages
+library("tidyverse")
+```
+
+### Plot of target molecules before and after
+
+```{r}
+coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
+                               show_col_types = FALSE)
+```
+
+```{r}
+data <- ggplot(aes(x = modules),
+               y = n, 
+               fill = `Upstream Regulator`)
+```
+
+### Header for Anne
+
+```{r}
+
+```
