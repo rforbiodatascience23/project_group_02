@@ -9,16 +9,27 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 #### Accessing relevant functions
 
+In order to perform the required cleaning steps on the acquired data frames, an in order to avoid repetition of the code, functions were created. These can be found in the file mentioned below.
+
 ```{r}
+
+#| label: use functions from file
+
 source("99_proj_func.R")
+
 ```
 
 #### Import libraries
 
+If performed in continuation after 01_load.qmd, this step can be skipped as the tidyverse package will already be loaded.
+
 ```{r}
+
 #| label: load packages
 #| message: false
+
 library("tidyverse")
+
 ```
 
 #### Read in the loaded data files
