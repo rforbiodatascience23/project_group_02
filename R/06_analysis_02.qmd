@@ -81,28 +81,27 @@ module_analysis <- candidate_1 |>
             by = 'modules') |> 
   mutate_if(is.numeric,
             replace_na,
-            0) 
-```
-
-```{r}
-module_analysis <- module_analysis |> 
-  gather(key = "candidate", value = "count", "TREM1":"JUND") |>   
-  spread(key = modules, value = count) 
+            0) |> 
+  pivot_longer(cols = -modules,
+               names_to = "candidate",
+               values_to = "counts") |> 
+  arrange(as.integer(str_extract(modules, "\\d+")))
 ```
 
 
 ```{r}
-module_analysis  |>
-  ggplot(mapping = aes(x = modules)) +
-  
-  geom_bar(color = "black",
+module_analysis |>
+  ggplot(aes(x = modules, y = counts, fill = candidate)) +
+  geom_bar(stat = "identity",
+           color = "black",
            alpha = 0.4,
-           position = position_dodge(preserve = "single")) + 
+           position = position_dodge(preserve = "single")) +
+  geom_hline(yintercept = 0) + 
   
   theme(legend.position = "bottom",
-        panel.background = element_rect(fill = 'white'), 
-        panel.grid.minor = element_line(colour="grey")) + 
-  
-   labs(y = 'n')
+        panel.grid.major.x = element_blank(),
+        axis.text.x = element_text(angle = 20,
+                                   hjust = 1,
+                                   vjust = 1))
 ```
 
