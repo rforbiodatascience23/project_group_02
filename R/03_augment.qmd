@@ -7,9 +7,11 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 03: augment
 
-Import libraries 
-```{r}
+The third part of the project is to augment the cleaned data.
 
+### Import required packages
+
+```{r}
 #| label: load packages
 #| echo: false
 
@@ -17,7 +19,8 @@ library("tidyverse")
 
 ```
 
-Load in the clean data files 
+The cleaned data files are loaded in.
+
 ```{r}
 
 #| label: load data
@@ -31,23 +34,25 @@ target_aug <- read_tsv("../data/02_target_clean.tsv.gz",
 
 ```
 
-#### No changes are made to the dataframe containing the coexpression data
+### Augment the dataframes
 
-#### Augmenting the dataframe reflecting the gene expression levels
+No new variables were added to the dataframe containing the coexpression data.
 
-Adding a variable that indicates weather a regulator was up- or down-regulated,
-before and after treatment 
+#### Augment the dataframe containing gene expression levels
+
+A variable indicating whether a regulator was up- or down-regulated both before and after treatment was added.
+
 ```{r}
 
-#| label: add upgerulated/downregulated column 
+#| label: add column showing up- or downregulation 
 
 expr_aug <- expr_aug |>
   mutate(regulation = case_when( expr_log_ratio_before < expr_log_ratio_after ~ "Upregulated",
                                  expr_log_ratio_before > expr_log_ratio_after ~ "Downregulated"))
 ```
 
-Adding a varaible that reflects the level of change in regulation, the
-difference between before and after 
+Furthermore, a variable that shows the level of change in gene expression for the regulators was added.
+
 ```{r}
 #| label: add change in regulation column 
 
@@ -56,6 +61,10 @@ expr_aug <- expr_aug |>
 
 ```
 
+#### Augment the dataframe containing the target molecules 
+
+A variable showing the difference in target molecules after treatment compared to before treatment for each regulator was added.
+
 ```{r}
 target_data <- target_data |> 
   mutate(change_in_n_molecules = n_after - n_before) |> 
@@ -63,8 +72,9 @@ target_data <- target_data |>
            .after = n_after)
 ```
 
-  
-#### Saving the augmented data frames as zipped tsv files
+#### Saving the augmented data frames in new files
+
+Lastly, the augmented dataframes were saved as zipped tsv files.
 
 ```{r}
 #| label: tsv files
@@ -79,5 +89,3 @@ write_tsv(target_aug,
           "../data/03_target_aug.tsv.gz")
 
 ```
-
-
