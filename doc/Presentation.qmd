@@ -54,9 +54,9 @@ To visualize the genes' up- and down-regulation, a volcano plot was made. This p
 ## Differentially expressed genes {background-color="#806040"}
 
 ::: {.r-stack}
-![]("../results/05_expr_plot_before.png"){.fragment width="100" height="200"}
+![]("../../results/05_expr_plot_before.png"){.fragment width="100" height="200"}
 
-![]("../results/05_expr_plot_after.png"){.fragment width="100" height="200"}
+![]("../../results/05_expr_plot_after.png"){.fragment width="100" height="200"}
 :::
 
 
