@@ -56,9 +56,14 @@ expr_aug <- expr_aug |>
 
 ```
 
-#### No changes are made to the dataframe containing the target data.
-It was done in the clean document .. elaborate here or maye in the clean document when it is done??
+```{r}
+target_data <- target_data |> 
+  mutate(change_in_n_molecules = n_after - n_before) |> 
+  relocate(change_in_n_molecules,
+           .after = n_after)
+```
 
+  
 #### Saving the augmented data frames as zipped tsv files
 
 ```{r}
@@ -74,3 +79,5 @@ write_tsv(target_aug,
           "../data/03_target_aug.tsv.gz")
 
 ```
+
+
