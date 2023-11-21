@@ -7,21 +7,27 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 06: analysis 2
 
-### Install the required packages 
+### Install the required packages
 
 ```{r}
 #| label: load packages
 library("tidyverse")
 ```
 
-### Plot of target molecules before and after 
+### Plot of target molecules before and after
 
 ```{r}
 coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
                                show_col_types = FALSE)
 ```
 
-### Header for Anne 
+```{r}
+data <- ggplot(aes(x = modules),
+               y = n, 
+               fill = `Upstream Regulator`)
+```
+
+### Header for Anne
 
 ```{r}
 
