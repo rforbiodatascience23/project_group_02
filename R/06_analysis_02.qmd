@@ -27,15 +27,17 @@ target_aug |>
                y = change_in_n_molecules,
              fill = case_when(change_in_n_molecules >= 0 ~ "positive",
                               change_in_n_molecules < 0 ~  "negative")))+
-  geom_col()+ 
+  geom_col(color  = "black")+ 
    theme_minimal(base_size = 10) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 55,
                                    hjust = 1,
                                    vjust = 1.1))+
-  scale_fill_manual(values = c("positive" = "green", "negative" = "red"))+
+  scale_fill_manual(values = c("positive" = "#117733",
+                               "negative" = "#661100"))+
   labs(x = "Upstream regulator",
-       y = "Change in target molecules")
+       y = "Change in target molecules",
+       title = "Target molecules before and after tDMARD treatment")
   
 ```
 
