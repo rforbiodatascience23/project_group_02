@@ -23,7 +23,7 @@ It is hypothesized that multiple biological pathways are impacted by DMARD, but 
 
 ## Study's findings {background-color="#806040"}
 
-From the 8000 analyzed genes, \<300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
+From the 8000 analyzed genes, less than 300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
 
 ## Research purpose {background-color="#806040"}
 
