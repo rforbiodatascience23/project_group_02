@@ -55,9 +55,14 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 
 #| label: Cleaning data table 1
 coexpression_clean <- coexpression_clean |>
-  pivot_longer(cols = everything(),
+  mutate(genenr = str_c("gene_",
+                        row_number()),
+         .before = "Module 1") |>
+  pivot_longer(cols = -genenr,
                names_to = "modules",
-               values_to = "gene") 
+               values_to = "gene") |>
+  pivot_wider(names_from = genenr,
+              values_from = gene)
 
 ```
 

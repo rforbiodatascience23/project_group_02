@@ -47,13 +47,17 @@ For our analysis, we wanted to distinguish between genetic up- and down-regulati
 
 # Results {background-color="#806040"}
 
-## Differential expressed genes {background-color="#806040"}
+## Differentially expressed genes {background-color="#806040"}
 
 To visualize the genes' up- and down-regulation, a volcano plot was made. This plot indicates the differences also between pre and post DMARD treatment by different colors.
 
-## Differential expressed genes {background-color="#806040"}
+## Differentially expressed genes {background-color="#806040"}
 
-<img src="../results/05_expr_plot_before.png" height="100" width="200"/>
+::: r-stack
+![](%22../../results/05_expr_plot_before.png%22){.fragment width="100" height="200"}
+
+![](%22../../results/05_expr_plot_after.png%22){.fragment width="100" height="200"}
+:::
 
 ## Target molecules {background-color="#806040"}
 
