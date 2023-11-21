@@ -2,8 +2,8 @@ fix_headers_and_values <- function(data, name) {
   data <- data |>
     mutate("Expr Log Ratio" = as.numeric(`Expr Log Ratio`),
            "p-value of overlap" = as.numeric(`p-value of overlap`)) |> 
-    rename_with(~str_c(.
-                       , name), 
+    rename_with(~str_c(.,
+                       name), 
                 starts_with(c("Expr",
                               "p-value",
                               "Target"))) |> 
