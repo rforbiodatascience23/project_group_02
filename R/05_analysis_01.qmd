@@ -36,7 +36,7 @@ library("patchwork")
 
 #### Generate a vulcano plot of the gene expression
 
-To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors indicate the genes that are up- and down-regulated, in turquoise and pink respectively. It is important to note that this up- and down-regulation is with respect to the DMARD treatment, over the course of six months.
+To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are up- and down-regulated, in turquoise and pink respectively. It is important to note that this up- and down-regulation is with respect to the DMARD treatment, over the course of six months.
 
 ```{r}
 
