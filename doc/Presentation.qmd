@@ -1,7 +1,5 @@
 ---
 title: "Analyzing the effects of DMARD treatment on genetic expression"
-title-slide-attributes: 
-  data-background-color: "#806040"
 format:
   revealjs:
     theme: "sky"
@@ -11,9 +9,9 @@ editor: visual
 author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s194530), Katja Jagd (s185395), Olivia Ronnenberg (s183359)"
 ---
 
-# Introduction {background-color="#806040"}
+# Introduction
 
-## Background Information {background-color="#806040"}
+## Background Information
 
 The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
 
@@ -21,68 +19,70 @@ For this purpose, synovial tissue biopsy samples were taken from 19 RA patients,
 
 It is hypothesized that multiple biological pathways are impacted by DMARD, but specifics of the pathways are unknown.
 
-## Study's findings {background-color="#806040"}
+## Study's findings
 
 From the 8000 analyzed genes, less than 300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
 
-## Research purpose {background-color="#806040"}
+## Research purpose
 
 Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment. Moreover, we wondered if these genes are relevant treatment targets, depending on their respective molecular mechanism.
 
-# Materials and Methods {background-color="#806040"}
+# Materials and Methods
 
-## Preparing the data {background-color="#806040"}
+## Preparing the data
 
 From the available data, we were interested in Supplementary tables 1 and 3, containing co-expression modules, and gene expression regulator molecules, respectively.
 
 The data in supplementary table 3 consisted of two separate parts, split into the genetic patient data before and after treatment.
 
-## Wrangling with the data {background-color="#806040"}
+## Wrangling with the data
 
 In order to perform our analysis, some data wrangling was required. In this process, we split, pivoted, joined, the data of interest. We furthermore removed redundant data.
 
-## Adding further required variables {background-color="#806040"}
+## Adding further required variables
 
 For our analysis, we wanted to distinguish between genetic up- and down-regulation. We did this by adding a factor, dividing the genes into the two distinctive groups.
 
-# Results {background-color="#806040"}
+# Results
 
-## Differential expressed genes {background-color="#806040"}
+## Differential expressed genes
 
 To visualize the genes' up- and down-regulation, a volcano plot was made. This plot indicates the differences also between pre and post DMARD treatment by different colors.
 
-## Differential expressed genes before treatment {background-color="#806040"}
+## Differential expressed genes before treatment
 
 ![](images/05_expr_plot_before.png){fig-align="center"}
 
-## Differential expressed genes after treatment {background-color="#806040"}
+## Differential expressed genes after treatment
 
-![](../results/05_expr_plot_after.png){fig-align="center"}
+![](images/05_expr_plot_after.png){fig-align="center"}
 
-## Target molecules {background-color="#806040"}
+## Target molecules
 
 X genes are found to be significantly up- and down-regulated by DMARD treatment. Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. The number of target molecules, impacted by each of the significant genes, is analyzed hereafter.
 
-## Number of corresponding target molecules to the identified genes {background-color="#806040"}
+## Number of corresponding target molecules to the identified genes
 
 Box plot here :)
 
-## Molecular mechanisms related to the most influential genes {background-color="#806040"}
+## Molecular mechanisms related to the most influential genes
 
 From the previous plots, the genes X seems most signifant, as it's expression significantly changes as a result of DMARD treatment and it influences X target molecules.
 
 To better understand it's functionality, we analyzed which molecular mechanisms the gene is involved in. This is shown in the following plot or table.
 
-## Molecular mechanisms related to the most influential genes {background-color="#806040"}
+## Molecular mechanisms related to the most influential genes
 
 Box plot or table here of the co-expression modules :)
 
-# Discussion {background-color="#806040"}
+# Discussion
 
-## Findings from the study {background-color="#806040"}
+## Findings from the study
 
 The study by Walsh et.al. found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
 
 This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
 
-## Our findings {background-color="#806040"}
+## Our findings
+
+Our conclusion :)
