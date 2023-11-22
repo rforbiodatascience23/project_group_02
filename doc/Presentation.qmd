@@ -53,12 +53,11 @@ To visualize the genes' up- and down-regulation, a volcano plot was made. This p
 
 ## Differential expressed genes before treatment {background-color="#806040"}
 
-![plot_before](../results/05_expr_plot_before.png){fig-align="center"}
+![](images/05_expr_plot_before.png){fig-align="center"}
 
 ## Differential expressed genes after treatment {background-color="#806040"}
 
-::: {.column width = "60%"}
-![plot_after](../results/05_expr_plot_after.png){fig-align="center"}
+![](../results/05_expr_plot_after.png){fig-align="center"}
 
 ## Target molecules {background-color="#806040"}
 
