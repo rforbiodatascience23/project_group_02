@@ -71,14 +71,13 @@ The regulator molecules in the data table are categorized by molecule type. The 
 
 ```
 
-Each regulator molecule regulates a certain number of genes. The code below generates a box plot, showing the distribution of the number of genes per regulator molecule. 
+Each regulator molecule regulates a certain number of genes. The code below generates a box plot, showing the distribution of the number of genes per regulator molecule.
 
 ```{r}
 
 #| label: box plot of genes per regulator
 
 ```
-
 
 ### Dimensions of table III
 
