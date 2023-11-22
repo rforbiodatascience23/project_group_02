@@ -61,14 +61,18 @@ expr_aug <- expr_aug |>
 
 ```
 
-#### Augment the dataframe containing the target molecules 
+#### Augment the dataframe containing the target molecules
 
-A variable showing the difference in target molecules after treatment compared to before treatment for each regulator was added.
+A variable called change_in_n\_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
 ```{r}
 target_aug <- target_aug |> 
-  mutate(change_in_n_molecules = n_after - n_before) |> 
-  relocate(change_in_n_molecules,
+  mutate(change_in_n_molecules = n_after - n_before,
+         change_class = case_when(change_in_n_molecules > 0 ~ "increase",
+                              change_in_n_molecules < 0 ~  "decrease",
+                              change_in_n_molecules == 0 ~ "unchaged")) |> 
+  relocate(change_in_n_molecules, 
+           change_class,
            .after = n_after)
 ```
 
