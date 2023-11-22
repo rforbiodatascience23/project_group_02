@@ -39,7 +39,8 @@ target_aug |>
     panel.grid.major.x = element_blank()) +
   labs(x = "Upstream regulator",
        y = "Change in target molecules",
-       title = "Change in target molecules after tDMARD treatment compared to before")
+       title = "Change in target molecules after tDMARD treatment compared to before",
+       fill = "Change")
 ```
 
 ```{r}

@@ -68,9 +68,9 @@ A variable called change_in_n\_molecules showing the difference in target molecu
 ```{r}
 target_aug <- target_aug |> 
   mutate(change_in_n_molecules = n_after - n_before,
-         change_class = case_when(change_in_n_molecules > 0 ~ "increase",
-                              change_in_n_molecules < 0 ~  "decrease",
-                              change_in_n_molecules == 0 ~ "unchaged")) |> 
+         change_class = case_when(change_in_n_molecules > 0 ~ "Increase",
+                              change_in_n_molecules < 0 ~  "Decrease",
+                              change_in_n_molecules == 0 ~ "Unchaged")) |> 
   relocate(change_in_n_molecules, 
            change_class,
            .after = n_after)
