@@ -22,7 +22,6 @@ source("99_proj_func.R")
 If performed in continuation after 01_load.qmd, this step can be skipped as the tidyverse package will already be loaded.
 
 ```{r}
-
 #| label: load packages
 #| message: false
 
