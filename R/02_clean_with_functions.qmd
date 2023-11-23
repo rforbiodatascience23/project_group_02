@@ -71,6 +71,15 @@ regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
 
 ```
 
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+```{r}
+expr_data_before_unfiltered <- regulators_before_clean |> 
+  select(-contains("target"), -contains("molecule"))
+
+expr_data_after_unfiltered <- regulators_after_clean |> 
+  select(-contains("target"), -contains("molecule"))
+```
+
 The following code utilizes a function which filters significant p-values (over 0.05) and expression level between -0.15 and 0.15.
 
 ```{r}
@@ -131,3 +140,13 @@ write_tsv(expr_data,
 write_tsv(target_data,
           "../data/02_target_clean.tsv.gz")
 ```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+```{r}
+write_tsv(expr_data_before_unfiltered,
+          "../data/02_expr_data_before_unfiltered_clean.tsv.gz")
+
+write_tsv(expr_data_after_unfiltered,
+          "../data/02_expr_data_after_unfiltered_clean.tsv.gz")
+```
+
