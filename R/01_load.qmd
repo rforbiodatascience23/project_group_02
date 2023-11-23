@@ -31,8 +31,8 @@ Data table 1 contains information on co-expression modules. Each column is a gro
 When loading the data, we are also replacing blank fields with "NA".
 
 ```{r}
-
 #| label: load data
+#| message: false
 
 coexpression_raw <- read_excel("../data/_raw/pone.0183928.s001.xlsx",
                                na = c(" ",
@@ -54,19 +54,19 @@ In order to enable data analysis, the original .xlsx files are converted to .tsv
 ```{r}
 
 #| label: load data
-#| echo: false
+write_tsv(coexpression_raw,
+           "../data/01_coexpression_load.tsv.gz",
+           append = FALSE,
+           col_names = TRUE)
 
-coexpression_load <- write_tsv(coexpression_raw,
-                               "../data/01_coexpression_load.tsv.gz",
-                               append = FALSE,
-                               col_names = TRUE)
-regulators_before_load <- write_tsv(regulators_before_raw,
-                                    "../data/01_regulators_before_load.tsv.gz",
-                                    append = FALSE,
-                                    col_names = TRUE)
-regulators_after_load <- write_tsv(regulators_after_raw,
-                                   "../data/01_regulators_after_load.tsv.gz",
-                                   append = FALSE,
-                                   col_names = TRUE)
+write_tsv(regulators_before_raw,
+          "../data/01_regulators_before_load.tsv.gz",
+          append = FALSE,
+          col_names = TRUE)
+
+write_tsv(regulators_after_raw,
+          "../data/01_regulators_after_load.tsv.gz",
+          append = FALSE,
+          col_names = TRUE)
 
 ```
