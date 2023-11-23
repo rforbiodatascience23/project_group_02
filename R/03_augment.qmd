@@ -33,6 +33,51 @@ target_aug <- read_tsv("../data/02_target_clean.tsv.gz",
 
 ```
 
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+expr_data_before_unfiltered_aug <- read_tsv("../data/02_expr_data_before_unfiltered_clean.tsv.gz",
+                               show_col_types = FALSE)
+
+expr_data_after_unfiltered_aug <- read_tsv("../data/02_expr_data_after_unfiltered_clean.tsv.gz",
+                               show_col_types = FALSE)
+```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+expr_data_before_unfiltered_aug <- expr_data_before_unfiltered_aug |>
+  mutate(is_significant = case_when(p_value_of_overlap_before <= 0.05 &
+                                    expr_log_ratio_before > 1.5  ~ "yes",
+                                    p_value_of_overlap_before <= 0.05 &
+                                    expr_log_ratio_before < -1.5  ~ "yes")) |> 
+  mutate(is_significant = coalesce(is_significant, "no")) 
+```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+```{r}
+expr_data_after_unfiltered_aug <- expr_data_after_unfiltered_aug |>
+  mutate(is_significant = case_when(p_value_of_overlap_after <= 0.05 &
+                                    expr_log_ratio_after > 1.5  ~ "yes",
+                                    p_value_of_overlap_after <= 0.05 &
+                                    expr_log_ratio_after < -1.5  ~ "yes")) |> 
+  mutate(is_significant = coalesce(is_significant, "no")) 
+```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+ expr_data_before_unfiltered_aug <- expr_data_before_unfiltered_aug |>
+  mutate(log10_p_value_before = -log10(p_value_of_overlap_before))
+```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+ expr_data_after_unfiltered_aug <- expr_data_after_unfiltered_aug |>
+  mutate(log10_p_value_after = -log10(p_value_of_overlap_after))
+```
+
 ### Augment the dataframes
 
 No new variables were added to the dataframe containing the coexpression data.
@@ -53,10 +98,10 @@ expr_aug <- expr_aug |>
 Furthermore, a variable that shows the level of change in gene expression for the regulators was added.
 
 ```{r}
-#| label: add change in regulation column 
+#| label: add change in expr column 
 
 expr_aug <- expr_aug |>
-  mutate(change_in_regulation = expr_log_ratio_after - expr_log_ratio_before)
+  mutate(change_in_expr = expr_log_ratio_after - expr_log_ratio_before)
 
 ```
 
@@ -103,3 +148,15 @@ write_tsv(target_aug,
           "../data/03_target_aug.tsv.gz")
 
 ```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+
+write_tsv(expr_data_before_unfiltered_aug,
+          "../data/03_expr_data_before_unfiltered_aug.tsv.gz")
+
+write_tsv(expr_data_after_unfiltered_aug,
+          "../data/03_expr_data_after_unfiltered_aug.tsv.gz")
+```
+
