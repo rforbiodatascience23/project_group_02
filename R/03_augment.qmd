@@ -62,7 +62,7 @@ expr_aug <- expr_aug |>
 
 #### Augment the dataframe containing the target molecules
 
-A variable called change_in_n\_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
+A variable called change_in_n_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
 ```{r}
 target_aug <- target_aug |> 

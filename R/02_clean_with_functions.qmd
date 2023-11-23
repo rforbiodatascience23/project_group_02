@@ -45,7 +45,7 @@ regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
 
 ### Cleaning of co-expression data
 
-As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied by having each gene "assigned" to the relevant module one by one. This is done by pivoting the dataframe into a long format. 
+As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied by having each gene "assigned" to the relevant module one by one. This is done by pivoting the dataframe into a long format.
 
 ```{r}
 #| label: Cleaning data table 1
