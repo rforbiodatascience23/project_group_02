@@ -2,6 +2,7 @@
 title: "Analyzing the effects of DMARD treatment on genetic expression"
 format:
   revealjs:
+    embed-resources: true
     theme: "sky"
     transition: slide
     background-transition: fade
