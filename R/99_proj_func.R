@@ -68,3 +68,16 @@ split_cells <- function(data, crowded_column, suffix) {
              ",")
   return (data)
 }
+
+module_counter <- function(data, ID) {
+  data <- data |> 
+    filter(upstream_regulator == ID) |>
+    select(contains("molecule_before")) |>
+    map_df( ~ coexpression_clean |> 
+              filter(gene == .x) |>
+              select(c("modules",
+                       gene))) |>
+    count(modules, name = ID)
+  
+  return (data)
+}

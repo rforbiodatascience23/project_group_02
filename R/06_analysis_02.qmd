@@ -7,7 +7,16 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 06: analysis 2
 
-### Install the required packages
+
+### Accessing relevant functions
+
+```{r}
+#| label: use functions from file
+
+source("99_proj_func.R")
+```
+
+### Import required packages
 
 ```{r}
 #| label: load packages
@@ -43,9 +52,6 @@ target_aug |>
        fill = "Change")
 ```
 
-```{r}
-coexpression_aug 
-```
 
 ### Header for Anne
 
@@ -53,22 +59,6 @@ coexpression_aug
 target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
                        show_col_types = FALSE)
 ```
-
-```{r}
-module_counter <- function(data, ID) {
-  data <- data |> 
-    filter(upstream_regulator == ID) |>
-    select(contains("molecule_before")) |>
-    map_df( ~ coexpression_clean |> 
-              filter(gene == .x) |>
-              select(c("modules",
-                       gene))) |>
-    count(modules, name = ID)
-  
-  return (data)
-}
-```
-
 
 ```{r}
 candidate_1 <- module_counter(target_aug, "TREM1")
@@ -92,9 +82,10 @@ module_analysis <- candidate_1 |>
 ```
 
 
+
 ```{r}
 module_analysis |>
-  ggplot(aes(x = modules, y = counts, fill = candidate)) +
+  ggplot(aes(x = fct_inorder(modules), y = counts, fill = candidate)) +
   geom_bar(stat = "identity",
            color = "black",
            alpha = 0.4,
