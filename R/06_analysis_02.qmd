@@ -20,6 +20,8 @@ source("99_proj_func.R")
 
 ```{r}
 #| label: load packages
+#| message: false
+
 library("tidyverse")
 ```
 
@@ -32,8 +34,8 @@ coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
 
 ```{r}
 target_aug |> 
-  ggplot(aes(x = upstream_regulator,
-               y = change_in_n_molecules,
+  ggplot(aes(y = upstream_regulator,
+               x = change_in_n_molecules,
              fill = change_class)) +
   geom_col(color  = "black") + 
    theme_minimal(base_size = 10) +
@@ -46,9 +48,9 @@ target_aug |>
   theme(plot.margin = unit(
     c(1, 0.5, 0.5, 1), "cm"),
     panel.grid.major.x = element_blank()) +
-  labs(x = "Upstream regulator",
-       y = "Change in target molecules",
-       title = "Change in target molecules after tDMARD treatment compared to before",
+  labs(y = "Upstream regulator",
+       x = "Change in number of target molecules",
+       title = "Change in the number of target molecules before and after DMARD treatment",
        fill = "Change")
 ```
 

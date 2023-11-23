@@ -13,7 +13,7 @@ The third part of the project is to augment the cleaned data.
 
 ```{r}
 #| label: load packages
-#| echo: false
+#| message: false
 
 library("tidyverse")
 
@@ -22,7 +22,6 @@ library("tidyverse")
 The cleaned data files are loaded in.
 
 ```{r}
-
 #| label: load data
 
 coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv.gz",
