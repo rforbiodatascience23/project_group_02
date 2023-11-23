@@ -25,12 +25,21 @@ source("99_proj_func.R")
 library("tidyverse")
 ```
 
-### Plot of target molecules before and after
+The augmented data files are loaded in.
 
 ```{r}
+
 coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
                                show_col_types = FALSE)
+
+target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
+                       show_col_types = FALSE)
 ```
+
+
+### Number of target molecules before and after treatment 
+
+The upstream regulators each have an influence on ceveral target moelcules. To investigate whether this infleunce was affected by the treatment a plot indicating the change inthe number of target molecules before and after treatment was created.  
 
 ```{r}
 target_aug |> 
@@ -54,13 +63,11 @@ target_aug |>
        fill = "Change")
 ```
 
+The plot clearly shows that the nubmer of target molecules the upstream regulators infleuce does change after treatment. There is both cases of increasing, decreasing and unchanged number of target molecules. This highlight the shift in the behavior of the upstream regulators after treatment which is relevant information when assessing the treatment and its possible benefits and sideeffects.  
 
-### Header for Anne
+### Biological context of the target molecules  
 
-```{r}
-target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
-                       show_col_types = FALSE)
-```
+Now that we 
 
 ```{r}
 candidate_1 <- module_counter(target_aug, "TREM1")
@@ -82,7 +89,6 @@ module_analysis <- candidate_1 |>
                values_to = "counts") |> 
   arrange(as.integer(str_extract(modules, "\\d+")))
 ```
-
 
 
 ```{r}
