@@ -7,7 +7,6 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 06: analysis 2
 
-
 ### Accessing relevant functions
 
 ```{r}
@@ -43,37 +42,41 @@ The upstream regulators each have an influence on ceveral target moelcules. To i
 
 ```{r}
 target_aug |> 
-  ggplot(aes(y = upstream_regulator,
-               x = change_in_n_molecules,
+  ggplot(aes(y = fct_inorder(upstream_regulator),
+             x = change_in_n_molecules,
              fill = change_class)) +
-  geom_col(color  = "black") + 
-   theme_minimal(base_size = 10) +
-  theme(legend.position = "bottom",
-        axis.text.x = element_text(angle = 55,
-                                   hjust = 1,
-                                   vjust = 1.1)) +
-   scale_fill_manual(values = c("#661100","#117733","black")) +
-  geom_hline(yintercept = 0) +
-  theme(plot.margin = unit(
-    c(1, 0.5, 0.5, 1), "cm"),
-    panel.grid.major.x = element_blank()) +
+  geom_col(color  = "black", 
+           alpha = 0.5) +
+  scale_fill_manual(values = c("Decrease" = "#F8766D",
+                             "Increase" = "#00BFC4")) +
+  theme(panel.grid.major.y = element_blank(),
+        axis.text.y=element_text(size=7),
+        legend.title=element_blank(),
+        plot.title = element_text(hjust = 0.5)) +
   labs(y = "Upstream regulator",
        x = "Change in number of target molecules",
-       title = "Change in the number of target molecules before and after DMARD treatment",
-       fill = "Change")
+       title = "Change in the number of target molecules \n before and after DMARD treatment") + 
+  scale_x_continuous(breaks = c(-15,-10, -5, 0, 5, 10, 15)) +
+  coord_fixed(ratio=4/3) + 
+  geom_vline(xintercept = 0)
 ```
 
 The plot clearly shows that the nubmer of target molecules the upstream regulators infleuce does change after treatment. There is both cases of increasing, decreasing and unchanged number of target molecules. This highlight the shift in the behavior of the upstream regulators after treatment which is relevant information when assessing the treatment and its possible benefits and sideeffects.  
 
 ### Biological context of the target molecules  
 
-Now that we 
+The analysis of the expression data revealed the following regulators interesting  ......
+That together with the above analysis of the target molecules makes the regulators ..., ..., ... interesting to look at as potential drug targets. As mentioned the modules in the co-expression dataset represent possible biological pathways. Therefore a furhter analysis was performed that looked into which modules the target molecules of the candidates regulators belonged to. 
+
+By using the function "module_counter()" on each candidate it was possible to connect the information from the co-expression modules with the target molecules of the regulators. The function counts how many target molecules belongs to each module.
 
 ```{r}
 candidate_1 <- module_counter(target_aug, "TREM1")
 candidate_2 <- module_counter(target_aug, "LIPE")
 candidate_3 <- module_counter(target_aug, "JUND")
 ```
+
+The results from all of the candidates was merged into a small dataframe "module_analysis". 
 
 ```{r}
 module_analysis <- candidate_1 |> 
@@ -90,6 +93,7 @@ module_analysis <- candidate_1 |>
   arrange(as.integer(str_extract(modules, "\\d+")))
 ```
 
+The result of the module analysis is visualised in the bar-plot below.
 
 ```{r}
 module_analysis |>
@@ -97,13 +101,28 @@ module_analysis |>
   geom_bar(stat = "identity",
            color = "black",
            alpha = 0.4,
-           position = position_dodge(preserve = "single")) +
+           position = position_dodge(preserve = "single"),
+           ) +
   geom_hline(yintercept = 0) + 
-  
-  theme(legend.position = "bottom",
-        panel.grid.major.x = element_blank(),
+  theme(panel.grid.major.x = element_blank(),
         axis.text.x = element_text(angle = 20,
                                    hjust = 1,
-                                   vjust = 1))
+                                   vjust = 1),
+        legend.title=element_blank(),
+        plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Biological pathways",
+       y = "Number of target molecules",
+       title = "Involment of upstream regulator in \n biological pathways before treatment ") +
+  scale_fill_manual(values = c( "#F39B7FB2",
+                                "#E64B35B2",
+                                "#7E6148B2")) 
+               
+                    
 ```
+
+From the plot we can get an idea of which regulator influences specific biological pathways. 
+Candidate 1 seems to ...
+Candidate 2 seems to ...
+Candidate 3 seems to ...
+It might not be prefered to have a change in to many pathways..... 
 

@@ -60,7 +60,17 @@ expr_aug <- expr_aug |>
 
 ```
 
-#### Augment the dataframe containing the target molecules
+Changing all names of upstream regulators that has several names, e.g. "KLRC4-KLRK1/KLRK1" becomes "KLRK1"
+
+```{r}
+expr_aug <- expr_aug |> 
+  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
+
+target_aug <- target_aug |> 
+  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
+```
+
+### Augment the dataframe containing the target molecules
 
 A variable called change_in_n_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
@@ -72,10 +82,11 @@ target_aug <- target_aug |>
                               change_in_n_molecules == 0 ~ "Unchaged")) |> 
   relocate(change_in_n_molecules, 
            change_class,
-           .after = n_after)
+           .after = n_after) |> 
+  arrange(desc(upstream_regulator)) 
 ```
 
-#### Saving the augmented data frames in new files
+### Saving the augmented data frames in new files
 
 Lastly, the augmented dataframes were saved as zipped tsv files.
 
