@@ -7,19 +7,17 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 02: clean
 
-#### Accessing relevant functions
+### Accessing relevant functions
 
 In order to perform the required cleaning steps on the acquired data frames, an in order to avoid repetition of the code, functions were created. These can be found in the file mentioned below.
 
 ```{r}
-
 #| label: use functions from file
 
 source("99_proj_func.R")
-
 ```
 
-#### Import libraries
+### Import the required packages
 
 If performed in continuation after 01_load.qmd, this step can be skipped as the tidyverse package will already be loaded.
 
@@ -29,10 +27,9 @@ If performed in continuation after 01_load.qmd, this step can be skipped as the 
 #| message: false
 
 library("tidyverse")
-
 ```
 
-#### Read in the loaded data files
+### Read in the loaded data files
 
 ```{r}
 #| label: load in data
@@ -47,26 +44,20 @@ regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
                                    show_col_types = FALSE, skip = 1)
 ```
 
-#### Cleaning of co-expression data
+### Cleaning of co-expression data
 
 As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied. After tidying, each row represents a single module, listed in the most-left column, as observations. And the row to the right lists all genes within that given module. Each column represents a gene as a variable.
 
 ```{r}
-
 #| label: Cleaning data table 1
-coexpression_clean <- coexpression_clean |>
-  mutate(genenr = str_c("gene_",
-                        row_number()),
-         .before = "Module 1") |>
-  pivot_longer(cols = -genenr,
-               names_to = "modules",
-               values_to = "gene") |>
-  pivot_wider(names_from = genenr,
-              values_from = gene)
 
+coexpression_clean <- coexpression_clean |>
+  pivot_longer(cols = everything(),
+               names_to = "modules",
+               values_to = "gene") 
 ```
 
-#### Cleaning the two data frames describing upstream regulators before and after treatment
+### Cleaning the two data frames describing upstream regulators before and after treatment
 
 This is where the function file, loaded previously, will be used. Each code block represents the use of a single function, described above each respective code block.
 
@@ -94,7 +85,6 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
-
 The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from before and after treatment.
 
 ```{r}
@@ -106,9 +96,7 @@ expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean
 
 ```
 
-
-
-Adding the number of target molecules before and after treatment as a column 
+Adding the number of target molecules before and after treatment as a column
 
 ```{r}
 target_data <- target_data |>
@@ -123,18 +111,14 @@ target_data <- target_data |>
 
 The following function splits many values in a single cell into separate cells with a single value in each. This is performed on the target data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
 
-
 ```{r}
-
-#| label: Seperating crowded cells
-#| message: false
+#| label: splitting crowded values in one cell into several cells 
 #| warning: false
 
 target_data <- split_cells(target_data, target_molecules_in_dataset_before, "before")
 target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
 
 ```
-
 
 Lastly, the clean data frames are saved as zipped tsv files.
 
