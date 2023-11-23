@@ -28,7 +28,6 @@ gene_expr <- read_tsv("../data/03_expr_aug.tsv.gz",
 #| echo: false
 
 library("tidyverse")
-library("ggrepel")
 
 ```
 
