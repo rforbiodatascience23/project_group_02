@@ -17,7 +17,7 @@ library("tidyverse")
 
 ```
 
-## Description of the data tables 
+## Description of the data tables
 
 After cleaning and augmenting the data, 3 main dataframes will be present:
 
