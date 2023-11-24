@@ -53,7 +53,7 @@ As stated before, data table 1 contains data on 20 co-expression modules. In the
 coexpression_clean <- coexpression_clean |>
   pivot_longer(cols = everything(),
                names_to = "modules",
-               values_to = "gene") 
+               values_to = "target_molecule") 
 ```
 
 ### Cleaning the two data frames describing upstream regulators before and after treatment
