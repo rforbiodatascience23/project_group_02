@@ -18,7 +18,7 @@ library(quarto)
 quarto_render(input = "01_load.qmd")
 quarto_render(input = "02_clean.qmd")
 quarto_render(input = "03_augment.qmd")
-quarto_render(input = "04_describe_02.qmd")
+quarto_render(input = "04_describe.qmd")
 quarto_render(input = "05_analysis_01.qmd")
 quarto_render(input = "06_analysis_02.qmd")
 ```
