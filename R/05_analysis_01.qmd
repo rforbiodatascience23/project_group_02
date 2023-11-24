@@ -152,8 +152,8 @@ comparison_plot <- expr_intersect_analysis |>
     legend.position = "bottom") +
   guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
-    x = "change in gene expression",
-    y = "regulator molecule",
+    x = "Change in gene expression",
+    y = "Regulator molecule",
     color = "Gene regulation",
     title = "Changes in genetic expression due to treament",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
