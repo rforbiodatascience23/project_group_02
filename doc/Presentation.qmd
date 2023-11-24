@@ -48,15 +48,25 @@ For our analysis, we wanted to distinguish between genetic up- and down-regulati
 
 ## Differential expressed genes
 
-To visualize the genes' up- and down-regulation, a volcano plot was made. This plot indicates the differences also between pre and post DMARD treatment by different colors.
+To visualize the genetic up- and down-regulation, two volcano plots were made. These plots indicate the differences in genetic expression pre and post DMARD treatment, respectively.
 
 ## Differential expressed genes before treatment
+
+First, the plot below shows the genetic expression levels in RA patients, pre DMARD treatment. Significantly different genes, compared to healthy, are labeled.
 
 ![](images/05_expr_plot_before.png){fig-align="center"}
 
 ## Differential expressed genes after treatment
 
+Secondly, we show genetic expression levels in RA patients, post treatment.
+
 ![](images/05_expr_plot_after.png){fig-align="center"}
+
+## Differential expressed genes after treatment
+
+Lastly, we show a comparison plot to indicate genetic differences as a result of treatment.
+
+![](images/05_comparison_plot.png){fig-align="center"}
 
 ## Target molecules
 
