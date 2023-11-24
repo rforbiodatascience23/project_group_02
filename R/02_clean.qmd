@@ -21,9 +21,7 @@ source("99_proj_func.R")
 #### Import the required packages
 
 ```{r}
-
 #| label: load packages
-#| echo: false
 #| message: false
 
 library("tidyverse")
@@ -31,9 +29,25 @@ library("patchwork")
 
 ```
 
-#### Cleaning of co-expression data
+### Read in the loaded data files
+
+```{r}
+#| label: load in data
+
+coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
+                               show_col_types = FALSE)
+
+regulators_before_clean <- read_tsv("../data/01_regulators_before_load.tsv.gz",
+                                    show_col_types = FALSE, skip = 1)
+
+regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
+                                   show_col_types = FALSE, skip = 1)
+```
+
+### Cleaning of co-expression data
 
 As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied, so that each column represents a single module, and the row lists all genes within that given module.
+
 
 #### Cleaning of table 1
 
