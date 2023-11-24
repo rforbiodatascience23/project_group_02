@@ -138,6 +138,7 @@ boxplot_before <- expr_before_aug |>
                         fill = "#F8766D")+
   labs(y = "Expr log ratio",
        subtitle = "Before treatment")+
+  theme(plot.subtitle = element_text(hjust=0.5))+
   scale_y_continuous(limits = c(-5,5))+
   scale_x_continuous(limits = c(-1,1))
 
@@ -148,13 +149,20 @@ boxplot_after <- expr_after_aug |>
                         fill = "#00BFC4")+
   labs(y = "Expr log ratio",
        subtitle = "After treatment")+
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        plot.subtitle = element_text(hjust=0.5))+
   scale_y_continuous(limits = c(-5,5))+
   scale_x_continuous(limits = c(-1,1))
 
-grid.arrange(boxplot_before, boxplot_after, ncol=2, widths = c(1,1))
+comb_plot <- grid.arrange(boxplot_before, boxplot_after, ncol=2, widths = c(1,1))
+
+
 
 
 #boxplot_expr <- boxplot_before + boxplot_after
 #boxplot_expr + plot_annotation(
   #title = "Gene expression levels before and after treatment")
+
+
 ```
