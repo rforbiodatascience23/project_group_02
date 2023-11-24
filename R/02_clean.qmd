@@ -90,11 +90,11 @@ The following code utilizes a function which filters significant p-values (over 
 ```{r}
 #| label: Select significant observations
 regulators_before_clean <- filter_significant_observations(regulators_before_clean,
-                                                           p_value_of_overlap_before,
+                                                           p_value_before,
                                                            expr_log_ratio_before)
 
 regulators_after_clean <- filter_significant_observations(regulators_after_clean,
-                                                           p_value_of_overlap_after,
+                                                           p_value_after,
                                                            expr_log_ratio_after)
 ```
 
