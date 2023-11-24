@@ -55,6 +55,7 @@ expr_data_before_unfiltered_aug <- expr_data_before_unfiltered_aug |>
 ```
 
 The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
 ```{r}
 expr_data_after_unfiltered_aug <- expr_data_after_unfiltered_aug |>
   mutate(is_significant = case_when(p_value_of_overlap_after <= 0.05 &
@@ -159,4 +160,3 @@ write_tsv(expr_data_before_unfiltered_aug,
 write_tsv(expr_data_after_unfiltered_aug,
           "../data/03_expr_data_after_unfiltered_aug.tsv.gz")
 ```
-
