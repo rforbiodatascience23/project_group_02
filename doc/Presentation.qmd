@@ -24,15 +24,15 @@ It is hypothesized that multiple biological pathways are impacted by DMARD, but 
 
 From the 8000 analyzed genes, less than 300 genes had a reversed gene expression as a result of DMARD therapy. These genes are related to the immune system, and largely expressed by lymphocytes.
 
-## Research purpose
+## Project purpose
 
-Many genes, target molecules, and cellular pathways were identified in this study. We were curious which of these genes are significantly differential expressed, when comparing the transcriptomic signature from before and after DMARD treatment. Moreover, we wondered if these genes are relevant treatment targets, depending on their respective molecular mechanism.
+Can we identify a molecular pathway that is influenced by DMARD treatment? And more specifically, can we identify relevant treatment targets, depending on their respective molecular pathway(s).
 
 # Materials and Methods
 
 ## Preparing the data
 
-From the available data, we were interested in Supplementary tables 1 and 3, containing co-expression modules, and gene expression regulator molecules, respectively.
+From the available data, we are interested in Supplementary tables 1 and 3, containing co-expression modules, and gene expression regulator molecules, respectively.
 
 The data in supplementary table 3 consisted of two separate parts, split into the genetic patient data before and after treatment.
 
