@@ -14,13 +14,13 @@ The first analysis is that of the genetic expression levels.
 ```{r}
 #| label: load files
 
-expr_before_analysis <- read_tsv("../data/03_expr_data_before_unfiltered_aug.tsv.gz",
+expr_before_analysis <- read_tsv("../data/03_expr_before_aug.tsv.gz",
                                             show_col_types = FALSE)
 
-expr_after_analysis <- read_tsv("../data/03_expr_data_after_unfiltered_aug.tsv.gz",
+expr_after_analysis <- read_tsv("../data/03_expr_after_aug.tsv.gz",
                                            show_col_types = FALSE)
 
-expr_intersect_analysis <- read_tsv("../data/03_expr_aug.tsv.gz",
+expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
                           show_col_types = FALSE)
 
 ```
@@ -133,9 +133,9 @@ ggsave(filename = "05_expr_plot_after.png",
 
 ```{r}
 
-#| label: load .tsv file
+#| label: comparison plot
 
-vulcano_plot <- expr_analysis |> 
+comparison_plot <- expr_analysis |> 
   ggplot(aes(x = change_in_expr,
              y = upstream_regulator,
              color = regulation)) +
@@ -153,9 +153,9 @@ vulcano_plot <- expr_analysis |>
     title = "Changes in genetic expression due to treament",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
 
-vulcano_plot
+comparison_plot
 
-ggsave(filename = "05_vulcano_plot.png",
+ggsave(filename = "05_comparison_plot.png",
        plot = last_plot(),
        device = "png",
        path = "../results",
