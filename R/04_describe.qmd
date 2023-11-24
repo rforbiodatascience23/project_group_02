@@ -32,6 +32,9 @@ expr_intersect_aug <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
 
 target_intersect_aug <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
                        show_col_types = FALSE)
+
+coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
+                       show_col_types = FALSE)
 ```
 
 
