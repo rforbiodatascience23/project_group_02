@@ -58,7 +58,7 @@ all_target_data <- function(data1, data2) {
   return (target_data)
 }
 
-# Functions that seperates many values in one cell into one value per cell
+# Functions that separates many values in one cell into one value per cell
 split_cells <- function(data, crowded_column, suffix) {
   max_n_molecules <- data |>
     mutate(n_molecules = str_count({{crowded_column}},
@@ -75,6 +75,20 @@ split_cells <- function(data, crowded_column, suffix) {
              ",")
   return (data)
 }
+
+# Function that creates a column with a class label for being significant or not
+# And adding -log10 p-values 
+significant_label <- function(data, p_column, expr_column, suffix) {
+  data <- data |> 
+    mutate(is_significant = case_when({{p_column}} <= 0.05 &
+                                        {{expr_column}} > 1.5  ~ "yes",
+                                      {{p_column}} <= 0.05 &
+                                        {{expr_column}} < -1.5  ~ "yes")) |> 
+    mutate(is_significant = coalesce(is_significant, "no")) |> 
+    mutate("-log10_p_value" = -log10({{p_column}}))
+  return (data)
+}
+
 
 # Function that counts how many times a candidate regulator has target molecules
 # in the different modules
