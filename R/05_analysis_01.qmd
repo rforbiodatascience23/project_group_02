@@ -52,7 +52,7 @@ expr_before_analysis <- expr_before_analysis |>
 
 plot_before <- expr_before_analysis |>
   ggplot(aes(x = expr_log_ratio_before,
-             y = log10_p_value_before,
+             y = `-log10_p_value`,
              colour = is_significant,
             label = lbl)) + 
   geom_text_repel(size = 3,
@@ -80,7 +80,7 @@ plot_before
 ggsave(filename = "05_expr_plot_before.png",
        plot = last_plot(),
        device = "png",
-       path = "../results",
+       path = "../results", 
        scale = 1,
        limitsize = TRUE)
 
@@ -96,7 +96,7 @@ expr_after_analysis <- expr_after_analysis |>
 
 plot_after <- expr_after_analysis |>
   ggplot(aes(x = expr_log_ratio_after,
-             y = log10_p_value_after,
+             y = `-log10_p_value`,
              colour = is_significant,
             label = lbl)) + 
   geom_text_repel(size = 3,
