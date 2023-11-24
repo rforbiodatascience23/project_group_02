@@ -36,29 +36,31 @@ From the available data, we are interested in Supplementary tables 1 and 3, cont
 
 The data in supplementary table 3 consisted of two separate parts, split into the genetic patient data before and after treatment.
 
-## Wrangling with the data
+## Wrangling the data
 
-In order to perform our analysis, some data wrangling was required. In this process, we split, pivoted, joined, the data of interest. We furthermore removed redundant data.
+In order to perform our analysis, some data wrangling is required. In this process, we split, pivoted, joined, the data of interest. We furthermore removed redundant data.
 
 ## Adding further required variables
 
-For our analysis, we wanted to distinguish between genetic up- and down-regulation. We did this by adding a factor, dividing the genes into the two distinctive groups.
+For our initial data frame, we want to distinguish between the regulator molecules, which are significantly expressed and which are not.
+
+For our analysis of significant regulator molecules, we want to distinguish between genetic up- and down-regulation. We did this by adding a factor variable, dividing the genes into the two distinctive groups.
 
 # Results
 
 ## Differential expressed genes
 
-To visualize the genetic up- and down-regulation, two volcano plots were made. These plots indicate the differences in genetic expression pre and post DMARD treatment, respectively.
+To visualize the genetic up- and down-regulation, two volcano plots were made. These plots indicate the differences in genetic expression before and after DMARD treatment, respectively.
 
 ## Differential expressed genes before treatment
 
-First, the plot below shows the genetic expression levels in RA patients, pre DMARD treatment.
+First, the plot below shows the genetic expression levels in RA patients, before DMARD treatment.
 
 ![](images/05_expr_plot_before-02.png){fig-align="center"}
 
 ## Differential expressed genes after treatment
 
-Secondly, we show genetic expression levels in RA patients, post treatment.
+Secondly, we show genetic expression levels in RA patients, after DMARD treatment.
 
 ![](images/05_expr_plot_after-01.png){fig-align="center"}
 
@@ -67,6 +69,8 @@ Secondly, we show genetic expression levels in RA patients, post treatment.
 Lastly, we show a comparison plot to indicate genetic differences as a result of treatment.
 
 ![](images/05_comparison_plot.png){fig-align="center"}
+
+## Other plot slide
 
 ## Target molecules
 
