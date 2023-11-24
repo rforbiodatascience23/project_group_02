@@ -94,6 +94,8 @@ Whether or not these genes have a sufficient impact on RA prognosis, depends on 
 
 ## Molecular mechanisms related to the most influential genes
 
+A module is a cluster of related genes, either with related function, common transcriptional regulation, or selectively co-expressed in certain cell types.
+
 ![](images/06_modules_plot.png){fig-align="center"}
 
 ## Molecular mechanisms related to the most influential genes
@@ -104,10 +106,16 @@ From this plot, TGFB1 can be a potential drug target.
 
 ## Findings from the study
 
-The study by Walsh et.al. found 292 genes down regulated due to treatment, and 23 up regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
+The study by Walsh et.al. found 292 genes down-regulated due to treatment, and 23 up-regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
 
 This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
+
+The genetic regulation is based on RA patients, compared to healthy control samples.
 
 ## Our findings
 
 We identified TGFB1 as a potential drug target.
+
+This finding is based on RA patients before and after DMARD treatment.
+
+TGFB1, and its corresponding "module 2" molecules, are potential drug targets for further investigation.
