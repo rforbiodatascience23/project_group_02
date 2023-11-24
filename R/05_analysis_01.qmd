@@ -7,18 +7,21 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 05: analysis 1
 
-The first analysis is that of the genetic expression levels. From the .tsv file "03_expr_aug.tsv.gz", significantly up- and down-regulated genes are depicted below.
+The first analysis is that of the genetic expression levels.
 
 #### Load the needed .tsv files
 
 ```{r}
 #| label: load files
 
-expr_data_before_unfiltered_aug <- read_tsv("../data/03_expr_data_before_unfiltered_aug.tsv.gz",
-                               show_col_types = FALSE)
+expr_before_analysis <- read_tsv("../data/03_expr_data_before_unfiltered_aug.tsv.gz",
+                                            show_col_types = FALSE)
 
-expr_data_after_unfiltered_aug <- read_tsv("../data/03_expr_data_after_unfiltered_aug.tsv.gz",
-                               show_col_types = FALSE)
+expr_after_analysis <- read_tsv("../data/03_expr_data_after_unfiltered_aug.tsv.gz",
+                                           show_col_types = FALSE)
+
+expr_intersect_analysis <- read_tsv("../data/03_expr_aug.tsv.gz",
+                          show_col_types = FALSE)
 
 ```
 
@@ -45,11 +48,11 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
 #| echo: false
 
 
-expr_data_before_unfiltered_aug <- expr_data_before_unfiltered_aug |>
+expr_before_analysis <- expr_before_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
                          is_significant == "no" ~ ""))
 
-plot_before <- expr_data_before_unfiltered_aug |>
+plot_before <- expr_before_analysis |>
   ggplot(aes(x = expr_log_ratio_before,
              y = log10_p_value_before,
              colour = is_significant,
@@ -89,11 +92,11 @@ ggsave(filename = "05_expr_plot_before.png",
 #| label: volcano plot after
 #| echo: false
 
-expr_data_after_unfiltered_aug <- expr_data_after_unfiltered_aug |>
+expr_after_analysis <- expr_after_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
                          is_significant == "no" ~ ""))
 
-plot_after <- expr_data_after_unfiltered_aug |>
+plot_after <- expr_after_analysis |>
   ggplot(aes(x = expr_log_ratio_after,
              y = log10_p_value_after,
              colour = is_significant,
@@ -131,9 +134,6 @@ ggsave(filename = "05_expr_plot_after.png",
 ```{r}
 
 #| label: load .tsv file
-
-expr_analysis <- read_tsv("../data/03_expr_aug.tsv.gz",
-                      show_col_types = FALSE)
 
 vulcano_plot <- expr_analysis |> 
   ggplot(aes(x = change_in_expr,
