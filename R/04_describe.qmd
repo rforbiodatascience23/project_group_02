@@ -103,7 +103,6 @@ ncol(target_intersect_aug)
 nrow(target_intersect_aug)
 ```
 
-## Barplots
 
 ### Piechart of molecule types
 
@@ -125,30 +124,7 @@ ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
   scale_color_colorblind()
 ```
 
-### Barplot of target molecules for each upstream regulators after treatment
-
-```{r}
-ggplot(
-  # Setting data
-  data = target_intersect_aug,
-  # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_target_after)
-  )+ 
-  # Making a barplot
-  geom_col()+
-  # Setting titles
-  labs(
-    title = "Target molecules after treatment",
-    subtitle = "The number of target molecules for each upstream regulator present in the dataset after treatment",
-    x = "Upstream regulator",
-    y = "Target molecule count"
-  )+
-  # colorblind friendly colors
-  scale_color_colorblind()
-```
-
-
-### Boxplot 
+### Boxplot of gene expression levels before and after treatment
 ```{r}
 #| label: boxplot of expression levels 
 #| warning: false 
