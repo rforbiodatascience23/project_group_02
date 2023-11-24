@@ -1,3 +1,4 @@
+# Function that changes header names, and selects relevant columns 
 fix_headers_and_values <- function(data, suffix) {
   data <- data |>
     mutate("Expr Log Ratio" = as.numeric(`Expr Log Ratio`),
@@ -15,6 +16,7 @@ fix_headers_and_values <- function(data, suffix) {
   return (data)
 }
 
+# Function that only keeps significant observations 
 filter_significant_observations <- function(data, p_column, expr_column) {
   data <- data |>
     filter({{p_column}} <= 0.05) |> 
@@ -22,6 +24,8 @@ filter_significant_observations <- function(data, p_column, expr_column) {
   return (data)
 }
 
+# Function that takes the columns relevant for the expression data of two
+# data frames and joins them
 all_expression_data <- function(data1, data2) {
   data1 <- data1 |>
     select(-contains("target")) 
@@ -38,6 +42,8 @@ all_expression_data <- function(data1, data2) {
   return (expr_data)
 }
 
+# Function that takes the columns relevant for the target molecule data 
+# of two data frames and joins them
 all_target_data <- function(data1, data2) {
   data1 <- data1 |>
     select(starts_with("upstream") | starts_with("target")) 
@@ -52,6 +58,7 @@ all_target_data <- function(data1, data2) {
   return (target_data)
 }
 
+# Functions that seperates many values in one cell into one value per cell
 split_cells <- function(data, crowded_column, suffix) {
   max_n_molecules <- data |>
     mutate(n_molecules = str_count({{crowded_column}},
@@ -69,6 +76,8 @@ split_cells <- function(data, crowded_column, suffix) {
   return (data)
 }
 
+# Function that counts how many times a candidate regulator has target molecules
+# in the different modules
 module_counter <- function(data, ID) {
   data <- data |> 
     filter(upstream_regulator == ID) |>
