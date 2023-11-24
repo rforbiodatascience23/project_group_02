@@ -100,7 +100,7 @@ module_counter <- function(data, ID) {
     filter(upstream_regulator == ID) |>
     select(contains("molecule_before")) |>
     map_df( ~ coexpression_clean |> 
-              filter(gene == .x) |>
+              filter(target_molecule == .x) |>
               select(c("modules",
                        gene))) |>
     count(modules, name = ID)
