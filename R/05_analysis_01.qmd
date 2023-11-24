@@ -7,7 +7,18 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 The first analysis is that of the genetic expression levels of the upstream regulators, and how these are influenced by DMARD treatment.
 
-#### Load the needed .tsv.gz files
+### Load the required packages
+
+```{r}
+#| label: load packages
+#| message: false
+
+library("tidyverse")
+library("ggrepel")
+
+```
+
+### Load the needed .tsv.gz files
 
 ```{r}
 #| label: load files
@@ -23,25 +34,11 @@ expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
 
 ```
 
-#### Load the required packages
-
-```{r}
-
-#| label: load packages
-#| message: false
-#| echo: false
-
-library("tidyverse")
-library("ggrepel")
-
-```
-
-#### Generate volcano plots of the gene expression
+### Generate volcano plots of the gene expression
 
 To depict which upstream regulator genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance.
 
 ```{r}
-
 #| label: volcano plot before
 
 expr_before_analysis <- expr_before_analysis |>

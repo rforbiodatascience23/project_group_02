@@ -99,7 +99,7 @@ module_counter <- function(data, ID) {
   data <- data |> 
     filter(upstream_regulator == ID) |>
     select(contains("molecule_before")) |>
-    map_df( ~ coexpression_clean |> 
+    map_df( ~ coexpression_analysis |> 
               filter(target_molecule == .x) |>
               select(c("modules",
                        target_molecule))) |>
