@@ -114,11 +114,11 @@ Adding the number of target molecules before and after treatment as a column. Th
 
 ```{r}
 target_intersect_clean <- target_intersect_clean |>
-  mutate(n_before = str_count(target_molecules_in_dataset_before,
+  mutate(n_target_before = str_count(target_molecules_in_dataset_before,
                                 pattern = ",") + 1,
-         n_after = str_count(target_molecules_in_dataset_after,
+         n_target_after = str_count(target_molecules_in_dataset_after,
                                 pattern = ",") + 1) |> 
-  relocate(c(n_before, n_after),
+  relocate(c(n_target_before, n_target_after),
            .after = upstream_regulator)
   
 ```
