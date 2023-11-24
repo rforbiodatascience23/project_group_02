@@ -48,15 +48,9 @@ This can be analyzed with the code below.
 #| label: data dimensions
 #| echo: false
 
-
-table1_dimensions <- dim(coexpression_aug)
-table1_variables <- ncol(coexpression_aug)
-table1_observations <- nrow(coexpression_aug)
-
-table1_dimensions
-table1_variables
-table1_observations
-
+dim(coexpression_aug)
+ncol(coexpression_aug)
+nrow(coexpression_aug)
 ```
 
 ### Dimensions of table expr_before_aug
@@ -66,14 +60,9 @@ table1_observations
 #| label: data dimensions
 #| echo: false
 
-
-table2_dimensions <- dim(expr_before_aug)
-table2_variables <- ncol(expr_before_aug)
-table2_observations <- nrow(expr_before_aug)
-
-table2_dimensions
-table2_variables
-table2_observations
+dim(expr_before_aug)
+ncol(expr_before_aug)
+nrow(expr_before_aug)
 ```
 
 ### Dimensions of table expr_after_aug
@@ -83,14 +72,9 @@ table2_observations
 #| label: data dimensions
 #| echo: false
 
-
-table3_dimensions <- dim(expr_after_aug)
-table3_variables <- ncol(expr_after_aug)
-table3_observations <- nrow(expr_after_aug)
-
-table3_dimensions
-table3_variables
-table3_observations
+dim(expr_after_aug)
+ncol(expr_after_aug)
+nrow(expr_after_aug)
 ```
 
 ### Dimensions of table expr_intersect_aug
@@ -101,13 +85,9 @@ table3_observations
 #| echo: false
 
 
-table4_dimensions <- dim(expr_intersect_aug)
-table4_variables <- ncol(expr_intersect_aug)
-table4_observations <- nrow(expr_intersect_aug)
-
-table4_dimensions
-table4_variables
-table4_observations
+dim(expr_intersect_aug)
+ncol(expr_intersect_aug)
+nrow(expr_intersect_aug)
 ```
 
 ### Dimensions of table target_intersect_aug
@@ -117,14 +97,9 @@ table4_observations
 #| label: data dimensions
 #| echo: false
 
-
-table5_dimensions <- dim(target_intersect_aug)
-table5_variables <- ncol(target_intersect_aug)
-table5_observations <- nrow(target_intersect_aug)
-
-table5_dimensions
-table5_variables
-table5_observations
+dim(target_intersect_aug)
+ncol(target_intersect_aug)
+nrow(target_intersect_aug)
 ```
 
 
