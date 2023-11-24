@@ -40,7 +40,7 @@ library("ggrepel")
 
 #### Generate volcano plots of the gene expression
 
-To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance. 
+To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance.
 
 ```{r}
 
@@ -139,7 +139,7 @@ The following code generates a plot that depicts the influence of DMARD treatmen
 #| label: comparison plot
 #| echo: false
 
-comparison_plot <- expr_analysis |> 
+comparison_plot <- expr_intersect_analysis |> 
   ggplot(aes(x = change_in_expr,
              y = upstream_regulator,
              color = regulation)) +
@@ -168,5 +168,3 @@ ggsave(filename = "05_comparison_plot.png",
        limitsize = TRUE)
 
 ```
-
-
