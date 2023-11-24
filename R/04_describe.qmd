@@ -148,3 +148,10 @@ ggplot(
   # colorblind friendly colors
   scale_color_colorblind()
 ```
+
+
+### Boxplot 
+```{r}
+
+```
+
