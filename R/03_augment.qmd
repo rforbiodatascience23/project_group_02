@@ -47,26 +47,20 @@ expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
 
 ```
 
-### Augment the dataframes
+### Augment the data frames
 
-#### Augment the dataframe containing all observations before and after treatment
+#### Augment the data frame containing all observations before and after treatment
 
-The function used below created a column that indicates weather a datapoing is significant or not.
-Furthermore, a -log10 transformation of the p-values is added. 
+The function used below created a column that indicates weather a datapoing is significant or not. Furthermore, a -log10 transformation of the p-values is added.
 
 ```{r}
 expr_before_aug <- significant_label(expr_before_aug, p_value_before, expr_log_ratio_before)
 expr_after_aug <- significant_label(expr_after_aug, p_value_after, expr_log_ratio_after) 
 ```
 
-```{r}
-expr_before_aug
-```
+No new variables were added to the data frame containing the co-expression data.
 
-No new variables were added to the dataframe containing the coexpression data.
-
-#### Augment the dataframe containing gene expression levels
-
+#### Augment the data frame containing gene expression levels
 
 A variable that shows the level of change in gene expression for the regulators was added.
 
