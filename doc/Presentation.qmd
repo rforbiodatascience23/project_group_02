@@ -54,13 +54,13 @@ To visualize the genetic up- and down-regulation, two volcano plots were made. T
 
 First, the plot below shows the genetic expression levels in RA patients, pre DMARD treatment. Significantly different genes, compared to healthy, are labeled.
 
-![](images/05_expr_plot_before.png){fig-align="center"}
+![](images/05_expr_plot_before-02.png){fig-align="center"}
 
 ## Differential expressed genes after treatment
 
 Secondly, we show genetic expression levels in RA patients, post treatment.
 
-![](images/05_expr_plot_after.png){fig-align="center"}
+![](images/05_expr_plot_after-01.png){fig-align="center"}
 
 ## Differential expressed genes after treatment
 
@@ -78,7 +78,7 @@ Box plot here :)
 
 ## Molecular mechanisms related to the most influential genes
 
-From the previous plots, the genes X seems most signifant, as it's expression significantly changes as a result of DMARD treatment and it influences X target molecules.
+From the previous plots, the genes X seems most significant, as it's expression significantly changes as a result of DMARD treatment and it influences X target molecules.
 
 To better understand it's functionality, we analyzed which molecular mechanisms the gene is involved in. This is shown in the following plot or table.
 
