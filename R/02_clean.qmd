@@ -95,4 +95,26 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
+The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from before and after treatment.
 
+```{r}
+
+#| label: Joining and splitting the two dataframes 
+
+target_data <- all_target_data(regulators_before_clean, regulators_after_clean)
+expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean)
+
+```
+
+Adding the number of target molecules before and after treatment as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily intepreted at the number of commas + 1. This way we do not have to iterate over several columns to count the number of values associated with similar variables.
+
+```{r}
+target_data <- target_data |>
+  mutate(n_before = str_count(target_molecules_in_dataset_before,
+                                pattern = ",") + 1,
+         n_after = str_count(target_molecules_in_dataset_after,
+                                pattern = ",") + 1) |> 
+  relocate(c(n_before, n_after),
+           .after = upstream_regulator)
+  
+```
