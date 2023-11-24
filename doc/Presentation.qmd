@@ -56,13 +56,15 @@ For our analysis of significant regulator molecules, we want to distinguish betw
 
 After cleaning, wrangling, and augmenting, our data consisted of five tables
 
-| Data table | Document title   | Purpose                                             |
-|----------|--------------|-------------------------------------|
-| 1          | expr_before      | Expression profile before treatment.                |
-| 2          | expr_after       | Expression profile after treatment.                 |
-| 3          | expr_intersect   | In common regulators, before and after treatment.   |
-| 4          | target_intersect | Target molecules, affected by regulator expression. |
-| 5          | coexpression     | Overview of related molecular pathways.             |
+1.  "expr_before": Expression profile before treatment.
+
+2.  "expr_after": Expression profile after treatment.
+
+3.  "expr_intersect": In common regulators, before and after treatment.
+
+4.  "target_intersect": Target molecules, affected by regulator expression.
+
+5.  "coexpression": Overview of related molecular pathways.
 
 ## Differential expressed genes
 
