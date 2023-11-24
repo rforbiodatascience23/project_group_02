@@ -105,27 +105,24 @@ nrow(target_intersect_aug)
 
 ## Barplots
 
-### Barplot of target molecules for each upstream regulators before treatment
+### Piechart of molecule types
 
 ```{r}
-ggplot(
-  # Setting data
-  data = target_intersect_aug,
-  # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_target_before)
-  )+ 
-  # Making a barplot
-  geom_col()+
-  # Setting titles
+# Create a ggplot object with geom_bar
+ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
+  #geom_col(color="black") +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = after_stat(count)), 
+            stat = "count", 
+            position = position_stack(vjust = 0.5)) +
   labs(
-    title = "Target molecules before treatment",
-    subtitle = "The number of target molecules for each upstream regulator present in the dataset before treatment",
-    x = "Upstream regulator",
-    y = "Target molecule count"
-  )+
-  # colorblind friendly colors
+    title = "Molecule types of upstream regulators ",
+    fill = "Molecule type",
+    x = NULL,
+    y = NULL
+  ) +
   scale_color_colorblind()
-
 ```
 
 ### Barplot of target molecules for each upstream regulators after treatment
