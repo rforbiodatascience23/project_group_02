@@ -98,10 +98,9 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
-The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from before and after treatment.
+The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from both before and after treatment and their names are therefore labelled "intersect".
 
 ```{r}
-
 #| label: Joining and splitting the two dataframes 
 
 target_intersect_clean <- all_target_data(regulators_before_clean, 
