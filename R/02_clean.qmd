@@ -1,11 +1,9 @@
 ---
-title: "02_clean.qmd"
+title: "Part 02: Cleaning"
 format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
-
-## Part 02: Cleaning
 
 ### Accessing relevant functions
 

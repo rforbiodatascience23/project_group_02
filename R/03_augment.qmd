@@ -1,11 +1,9 @@
 ---
-title: "03_augment.qmd"
+title: "Part 03: augment"
 format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
-
-## Part 03: augment
 
 The third part of the project is to augment the cleaned data.
 
