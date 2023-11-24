@@ -57,28 +57,18 @@ coexpression_clean <- coexpression_clean |>
                values_to = "gene") 
 ```
 
+### Cleaning the two data frames describing upstream regulators before and after treatment
 
-#### Cleaning of table 1
+This is where the function file, loaded previously, will be used. Each code block represents the use of a single function, described above each respective code block.
 
-#### Cleaning of table 3
+The following code block utulizes a function that fixes renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
 
-##### Before treatment
+```{r}
+#| label: Fixing names and values
+regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
+                                              " before") 
+regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
+                                              " after") 
 
-The headers of the regulators data are corrected and the column called "Mechanistic Network" is excluded from the data, since it is not relevant for further analysis.
-
-
-
-##### After treatment
-
-As with the data regulators from before treatment the headers are corrected and the column called "Mehcanistic Network" is removed.
-
-
-##### Joining of expression data
-
-
-
-##### Joining of target data
-
-
-##### Making tsv files
+```
 
