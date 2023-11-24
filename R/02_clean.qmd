@@ -71,7 +71,7 @@ regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
                                                  " after") 
 ```
 
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+The following code chunk creates new dataframes containing expression data before and after treatment. These separate dataframes are necessary for performing an analysis of how the expression data is different before and after treatment.
 
 ```{r}
 #| label: Extracting expression data
