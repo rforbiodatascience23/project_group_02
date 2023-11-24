@@ -129,4 +129,26 @@ target_data <- split_cells(target_data, target_molecules_in_dataset_before, "bef
 target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
 
 ```
+Lastly, the clean data frames are saved as zipped tsv files.
+
+```{r}
+write_tsv(coexpression_clean,
+          "../data/02_coexpression_clean.tsv.gz")
+
+write_tsv(expr_data,
+          "../data/02_expr_clean.tsv.gz")
+
+write_tsv(target_data,
+          "../data/02_target_clean.tsv.gz")
+```
+
+The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+
+```{r}
+write_tsv(expr_data_before_unfiltered,
+          "../data/02_expr_data_before_unfiltered_clean.tsv.gz")
+
+write_tsv(expr_data_after_unfiltered,
+          "../data/02_expr_data_after_unfiltered_clean.tsv.gz")
+```
 
