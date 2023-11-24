@@ -111,7 +111,7 @@ ggplot(
   # Setting data
   data = target_intersect_aug,
   # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_before)
+  aes(x = upstream_regulator, y = n_target_before)
   )+ 
   # Making a barplot
   geom_col()+
@@ -134,7 +134,7 @@ ggplot(
   # Setting data
   data = target_intersect_aug,
   # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_after)
+  aes(x = upstream_regulator, y = n_target_after)
   )+ 
   # Making a barplot
   geom_col()+
