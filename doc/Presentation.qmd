@@ -70,7 +70,13 @@ Lastly, we show a comparison plot to indicate genetic differences as a result of
 
 ![](images/05_comparison_plot.png){fig-align="center"}
 
-## Other plot slide
+## Target molecules
+
+The upstream regulators each influence several target molecules. To analyze which regulators had the most severe impact on molecular pathways, we plot the number of target molecules, affected by each regulator.
+
+## Target molecules
+
+![](images/06_targets_plot.png){fig-align="center"}
 
 ## Target molecules
 
