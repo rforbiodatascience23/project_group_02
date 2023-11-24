@@ -28,10 +28,10 @@ The augmented data files are loaded in.
 
 ```{r}
 
-coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
+coexpression_analysis <- read_tsv("../data/03_coexpression_aug.tsv.gz",
                                show_col_types = FALSE)
 
-target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
+target_intersect_analysis <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
                        show_col_types = FALSE)
 ```
 
@@ -40,9 +40,9 @@ target_aug <- read_tsv("../data/03_target_aug.tsv.gz",
 The upstream regulators each influence several target molecules. To investigate whether this influence was affected by the treatment, a plot was created to indicate the change of the number of target molecules before and after treatment.
 
 ```{r}
-targets_plot <- target_aug |> 
+targets_plot <- target_intersect_analysis |> 
   ggplot(aes(y = upstream_regulator,
-             x = change_in_n_molecules,
+             x = mol_change,
              fill = change_class)) +
   geom_col(color  = "grey", 
            alpha = 0.5) +
@@ -85,9 +85,9 @@ As mentioned, the modules in the co-expression data set represent possible biolo
 By using the function "module_counter()" on each candidate it was possible to connect the information from the co-expression modules with the target molecules of the regulators. The function counts how many target molecules belongs to each module.
 
 ```{r}
-candidate_1 <- module_counter(target_aug, "S100A9")
-candidate_2 <- module_counter(target_aug, "TGFB1")
-candidate_3 <- module_counter(target_aug, "TLR2")
+candidate_1 <- module_counter(target_intersect_analysis, "S100A9")
+candidate_2 <- module_counter(target_intersect_analysis, "TGFB1")
+candidate_3 <- module_counter(target_intersect_analysis, "TLR2")
 ```
 
 The results from all of the candidates was merged into a small data set called "module_analysis".
