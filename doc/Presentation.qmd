@@ -26,7 +26,11 @@ From the 8000 analyzed genes, less than 300 genes had a reversed gene expression
 
 ## Project purpose
 
-Can we identify a molecular pathway that is influenced by DMARD treatment? And more specifically, can we identify relevant treatment targets, depending on their respective molecular pathway(s).
+The study focused on the difference in gene expression between healthy and RA patients after DMARD treatment.
+
+But what about the differences in RA patients before and after DMARD treatment?
+
+Can we identify genes or molecular pathways that are influenced? And more specifically, can we identify relevant treatment targets, depending on their respective molecular pathway(s).
 
 # Materials and Methods
 
