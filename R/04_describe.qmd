@@ -20,6 +20,24 @@ library("gridExtra")
 
 ```
 
+```{r}
+expr_before_aug <- read_tsv("../data/03_expr_before_aug.tsv.gz",
+                                            show_col_types = FALSE)
+
+expr_after_aug <- read_tsv("../data/03_expr_after_aug.tsv.gz",
+                                           show_col_types = FALSE)
+
+expr_intersect_aug <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
+                          show_col_types = FALSE)
+
+target_intersect_aug <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
+                       show_col_types = FALSE)
+
+coexpression_aug <- read_tsv("../data/03_coexpression_aug.tsv.gz",
+                       show_col_types = FALSE)
+```
+
+
 ## Description of the data tables
 
 After cleaning and augmenting the data, five dataframes will be present:
