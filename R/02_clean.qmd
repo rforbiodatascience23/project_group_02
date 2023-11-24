@@ -129,6 +129,9 @@ target_data <- split_cells(target_data, target_molecules_in_dataset_before, "bef
 target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
 
 ```
+
+### Saving the cleaned data frames as tsv files
+
 Lastly, the clean data frames are saved as zipped tsv files.
 
 ```{r}
