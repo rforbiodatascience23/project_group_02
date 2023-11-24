@@ -16,6 +16,7 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 library("tidyverse")
 library("ggthemes")
 library("patchwork")
+library("gridExtra")
 
 ```
 
@@ -46,7 +47,7 @@ This can be analyzed with the code below.
 ### Dimensions of table coexpression_aug
 
 ```{r}
-#| label: data dimensions
+#| label: data dimensions 
 #| echo: false
 
 dim(coexpression_aug)
@@ -84,7 +85,6 @@ nrow(expr_after_aug)
 
 #| label: data dimensions
 #| echo: false
-
 
 dim(expr_intersect_aug)
 ncol(expr_intersect_aug)
@@ -133,20 +133,28 @@ ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
 #| warning: false 
 
 boxplot_before <- expr_before_aug |> 
-  ggplot(aes(y = expr_log_ratio_before,
-             fill = "#F8766D")) +
-           geom_boxplot(show.legend = FALSE)+
+  ggplot(aes(y = expr_log_ratio_before)) +
+           geom_boxplot(show.legend = FALSE,
+                        fill = "#F8766D")+
   labs(y = "Expr log ratio",
-       subtitle = "Before treatment")
+       subtitle = "Before treatment")+
+  scale_y_continuous(limits = c(-5,5))+
+  scale_x_continuous(limits = c(-1,1))
 
 boxplot_after <- expr_after_aug |> 
-  ggplot(aes(y = expr_log_ratio_after,
-             fill = "#00BFC4")) +
-           geom_boxplot(show.legend = FALSE)+
+  ggplot(aes(y = expr_log_ratio_after
+             )) +
+           geom_boxplot(show.legend = FALSE,
+                        fill = "#00BFC4")+
   labs(y = "Expr log ratio",
-       subtitle = "After treatment")
+       subtitle = "After treatment")+
+  scale_y_continuous(limits = c(-5,5))+
+  scale_x_continuous(limits = c(-1,1))
 
-boxplot_expr <- boxplot_before + boxplot_after
-boxplot_expr + plot_annotation(
-  title = "Gene expression levels before and after treatment")
+grid.arrange(boxplot_before, boxplot_after, ncol=2, widths = c(1,1))
+
+
+#boxplot_expr <- boxplot_before + boxplot_after
+#boxplot_expr + plot_annotation(
+  #title = "Gene expression levels before and after treatment")
 ```
