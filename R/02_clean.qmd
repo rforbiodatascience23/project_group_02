@@ -5,11 +5,11 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-## Part 02: clean
+## Part 02: Cleaning
 
 ### Accessing relevant functions
 
-In order to perform the required cleaning steps on the acquired data frames, an in order to avoid repetition of the code, functions were created. These can be found in the file mentioned below.
+In order to perform the required cleaning steps on the acquired data frames, and in order to avoid repetition of the code, functions were created. These functions are retrieved from the file below.
 
 ```{r}
 #| label: use functions from file
@@ -24,7 +24,6 @@ source("99_proj_func.R")
 #| message: false
 
 library("tidyverse")
-
 ```
 
 ### Read in the loaded data files
@@ -36,10 +35,12 @@ coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
                                show_col_types = FALSE)
 
 regulators_before_clean <- read_tsv("../data/01_regulators_before_load.tsv.gz",
-                                    show_col_types = FALSE, skip = 1)
+                                    show_col_types = FALSE, 
+                                    skip = 1)
 
 regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
-                                   show_col_types = FALSE, skip = 1)
+                                   show_col_types = FALSE, 
+                                   skip = 1)
 ```
 
 ### Cleaning of co-expression data
@@ -59,25 +60,29 @@ coexpression_clean <- coexpression_clean |>
 
 This is where the function file, loaded previously, will be used. Each code block represents the use of a single function, described above each respective code block.
 
-The following code block utulizes a function that fixes renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
+The following code chunk utilizes a function that fixes and renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
 
 ```{r}
 #| label: Fixing names and values
-regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
-                                              " before") 
-regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
-                                              " after") 
 
+regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
+                                                  " before") 
+regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
+                                                 " after") 
 ```
 
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+The following code chunk creates new dataframes containing expression data before and after treatment. These separate dataframes are necessary for performing an analysis of how the expression data is different before and after treatment.
 
 ```{r}
+#| label: Extracting expression data
+
 expr_before_clean <- regulators_before_clean |> 
-  select(-contains("target"), -contains("molecule"))
+  select(-contains("target"), 
+         -contains("molecule"))
 
 expr_after_clean <- regulators_after_clean |> 
-  select(-contains("target"), -contains("molecule"))
+  select(-contains("target"), 
+         -contains("molecule"))
 ```
 
 The following code utilizes a function which filters significant p-values (over 0.05) and expression level between -0.15 and 0.15.
@@ -93,18 +98,19 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
-The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from before and after treatment.
+The functions below collect, and join, selected parts of two data frames (before and after treatment). This enables two new data frames to be created: one with target molecule data, and one with expression data. Each of these data frames contain data from both before and after treatment and their names are therefore labelled "intersect".
 
 ```{r}
-
 #| label: Joining and splitting the two dataframes 
 
-target_intersect_clean <- all_target_data(regulators_before_clean, regulators_after_clean)
-expr_intersect_clean <- all_expression_data(regulators_before_clean, regulators_after_clean)
+target_intersect_clean <- all_target_data(regulators_before_clean, 
+                                          regulators_after_clean)
+expr_intersect_clean <- all_expression_data(regulators_before_clean, 
+                                            regulators_after_clean)
 
 ```
 
-Adding the number of target molecules before and after treatment as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily intepreted at the number of commas + 1. This way we do not have to iterate over several columns to count the number of values associated with similar variables.
+Adding the number of target molecules before and after treatment as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily interpreted at the number of commas + 1. This way we do not have to iterate over several columns to count the number of values associated with similar variables.
 
 ```{r}
 target_intersect_clean <- target_intersect_clean |>
@@ -117,14 +123,18 @@ target_intersect_clean <- target_intersect_clean |>
   
 ```
 
-The following function splits many values in a single cell into separate cells with a single value in each. This is performed on the target data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
+The code chunk utilizes a function that splits many values in a single cell into separate cells with a single value in each. This is performed on the target_intersect data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
 
 ```{r}
 #| label: splitting crowded values in one cell into several cells 
 #| warning: false
 
-target_intersect_clean <- split_cells(target_intersect_clean, target_molecules_in_dataset_before, "before")
-target_intersect_clean <- split_cells(target_intersect_clean, target_molecules_in_dataset_after, "after")
+target_intersect_clean <- split_cells(target_intersect_clean, 
+                                      target_molecules_in_dataset_before, 
+                                      "before")
+target_intersect_clean <- split_cells(target_intersect_clean, 
+                                      target_molecules_in_dataset_after, 
+                                      "after")
 
 ```
 

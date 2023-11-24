@@ -7,7 +7,7 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 05: analysis 1
 
-The first analysis is that of the genetic expression levels, and how these are influenced by DMARD treatment.
+The first analysis is that of the genetic expression levels of the upstream regulators, and how these are influenced by DMARD treatment.
 
 #### Load the needed .tsv.gz files
 
@@ -40,12 +40,11 @@ library("ggrepel")
 
 #### Generate volcano plots of the gene expression
 
-To depict which genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance. 
+To depict which upstream regulator genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance.
 
 ```{r}
 
 #| label: volcano plot before
-#| echo: false
 
 expr_before_analysis <- expr_before_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -67,9 +66,10 @@ plot_before <- expr_before_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
-    x = "log ratio of gene expression",
-    y = "-log10 p.value of expression",
+    x = "Log ratio of gene expression",
+    y = "-Log10 p.value of expression",
     color = "Effect of treatment",
     title = "Genetic expression in RA patients",
     subtitle = "Before DMARD treatment",
@@ -89,7 +89,6 @@ ggsave(filename = "05_expr_plot_before.png",
 ```{r}
 
 #| label: volcano plot after
-#| echo: false
 
 expr_after_analysis <- expr_after_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -111,9 +110,10 @@ plot_after <- expr_after_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
-    x = "log ratio of gene expression",
-    y = "-log 10  of expression",
+    x = "Log ratio of gene expression",
+    y = "-Log 10  of expression",
     color = "Effect of treatment",
     title = "Genetic expression in RA patients",
     subtitle = "After DMARD treatment",
@@ -139,7 +139,7 @@ The following code generates a plot that depicts the influence of DMARD treatmen
 #| label: comparison plot
 #| echo: false
 
-comparison_plot <- expr_analysis |> 
+comparison_plot <- expr_intersect_analysis |> 
   ggplot(aes(x = change_in_expr,
              y = upstream_regulator,
              color = regulation)) +
@@ -147,12 +147,14 @@ comparison_plot <- expr_analysis |>
   geom_hline(yintercept = 0, linetype = "dotted", color = "black") +
   theme_minimal(base_size = 12) +
   theme(
+    axis.text.y=element_text(size=6),
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
-    x = "change in gene expression",
-    y = "regulator molecule",
+    x = "Change in gene expression",
+    y = "Regulator molecule",
     color = "Gene regulation",
     title = "Changes in genetic expression due to treament",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
@@ -167,5 +169,3 @@ ggsave(filename = "05_comparison_plot.png",
        limitsize = TRUE)
 
 ```
-
-
