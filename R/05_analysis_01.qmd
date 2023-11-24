@@ -1,11 +1,9 @@
 ---
-title: "05_analysis_1"
+title: "Part 05: analysis 1"
 format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
-
-## Part 05: analysis 1
 
 The first analysis is that of the genetic expression levels of the upstream regulators, and how these are influenced by DMARD treatment.
 
