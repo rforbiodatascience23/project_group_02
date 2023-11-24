@@ -9,13 +9,16 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 The first analysis is that of the genetic expression levels. From the .tsv file "03_expr_aug.tsv.gz", significantly up- and down-regulated genes are depicted below.
 
-#### Load the needed .tsv file
+#### Load the needed .tsv files
 
 ```{r}
-#| label: load file
+#| label: load files
 
-gene_expr <- read_tsv("../data/03_expr_aug.tsv.gz",
-                      show_col_types = FALSE)
+expr_data_before_unfiltered_aug <- read_tsv("../data/03_expr_data_before_unfiltered_aug.tsv.gz",
+                               show_col_types = FALSE)
+
+expr_data_after_unfiltered_aug <- read_tsv("../data/03_expr_data_after_unfiltered_aug.tsv.gz",
+                               show_col_types = FALSE)
 
 ```
 
@@ -41,19 +44,22 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
 #| label: volcano plot before
 #| echo: false
 
- plot_before <- gene_expr |>
+
+expr_data_before_unfiltered_aug <- expr_data_before_unfiltered_aug |>
+  mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
+                         is_significant == "no" ~ ""))
+
+plot_before <- expr_data_before_unfiltered_aug |>
   ggplot(aes(x = expr_log_ratio_before,
-             y = p_value_of_overlap_before,
-             colour = regulation,
-             label = upstream_regulator)) +
-  geom_vline(xintercept = 0,
-             linetype = "dashed",
-             alpha = 0.3) +
-  geom_point(size = 1,
-             alpha = 0.5) +
+             y = log10_p_value_before,
+             colour = is_significant,
+            label = lbl)) + 
   geom_text_repel(size = 3,
-                  max.overlaps = 50) +
-  geom_hline(yintercept = 0) +
+                  max.overlaps = 25) + 
+  geom_point() +
+  xlim(-5, 5) + 
+  geom_hline(yintercept = -log10(0.05), linetype = "dotted", color = "black") + 
+  geom_vline(xintercept = c(-1.5, 1.5), linetype = "dotted", color = "black") +
   theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(hjust = 0.5),
@@ -61,7 +67,7 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
     legend.position = "bottom") +
   labs(
     x = "log ratio of gene expression",
-    y = "p.value of expression",
+    y = "-log10 p.value of expression",
     color = "Effect of treatment",
     title = "Genetic expression in RA patients",
     subtitle = "Before DMARD treatment",
@@ -83,19 +89,21 @@ ggsave(filename = "05_expr_plot_before.png",
 #| label: volcano plot after
 #| echo: false
 
- plot_after <- gene_expr |>
+expr_data_after_unfiltered_aug <- expr_data_after_unfiltered_aug |>
+  mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
+                         is_significant == "no" ~ ""))
+
+plot_after <- expr_data_after_unfiltered_aug |>
   ggplot(aes(x = expr_log_ratio_after,
-             y = p_value_of_overlap_after,
-             color = regulation,
-             label = upstream_regulator)) +
-  geom_vline(xintercept = 0,
-             linetype = "dashed",
-             alpha = 0.3) +
-  geom_point(size = 1,
-             alpha = 0.5) +
+             y = log10_p_value_after,
+             colour = is_significant,
+            label = lbl)) + 
   geom_text_repel(size = 3,
-                  max.overlaps = 50) +
-  geom_hline(yintercept = 0) +
+                  max.overlaps = 25) + 
+  geom_point() +
+  xlim(-5, 5) + 
+  geom_hline(yintercept = -log10(0.05), linetype = "dotted", color = "black") + 
+  geom_vline(xintercept = c(-1.5, 1.5), linetype = "dotted", color = "black") +
   theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(hjust = 0.5),
@@ -103,7 +111,7 @@ ggsave(filename = "05_expr_plot_before.png",
     legend.position = "bottom") +
   labs(
     x = "log ratio of gene expression",
-    y = "p.value of expression",
+    y = "-log 10  of expression",
     color = "Effect of treatment",
     title = "Genetic expression in RA patients",
     subtitle = "After DMARD treatment",
@@ -119,3 +127,41 @@ ggsave(filename = "05_expr_plot_after.png",
        limitsize = TRUE)
 
 ```
+
+```{r}
+
+#| label: load .tsv file
+
+expr_analysis <- read_tsv("../data/03_expr_aug.tsv.gz",
+                      show_col_types = FALSE)
+
+vulcano_plot <- expr_analysis |> 
+  ggplot(aes(x = change_in_expr,
+             y = upstream_regulator,
+             color = regulation)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dotted", color = "black") +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom") +
+  labs(
+    x = "change in gene expression",
+    y = "regulator molecule",
+    color = "Gene regulation",
+    title = "Changes in genetic expression due to treament",
+    caption = "Data from DOI: 10.1371/journal.pone.0183928")
+
+vulcano_plot
+
+ggsave(filename = "05_vulcano_plot.png",
+       plot = last_plot(),
+       device = "png",
+       path = "../results",
+       scale = 1,
+       limitsize = TRUE)
+
+```
+
+
