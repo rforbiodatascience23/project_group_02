@@ -105,7 +105,7 @@ A variable called change_in_n_molecules showing the difference in target molecul
 
 ```{r}
 target_intersect_aug <- target_intersect_aug |> 
-  mutate(mol_change = n__target_after - n_target_before,
+  mutate(mol_change = n_target_after - n_target_before,
          change_class = case_when(mol_change > 0 ~ "Increase",
                               mol_change < 0 ~  "Decrease",
                               mol_change == 0 ~ "Unchaged")) |> 
