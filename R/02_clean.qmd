@@ -17,7 +17,6 @@ In order to perform the required cleaning steps on the acquired data frames, an 
 source("99_proj_func.R")
 ```
 
-
 ### Import the required packages
 
 ```{r}
@@ -150,5 +149,3 @@ write_tsv(expr_after_clean,
           "../data/02_expr_after_clean.tsv.gz")
 
 ```
-
-
