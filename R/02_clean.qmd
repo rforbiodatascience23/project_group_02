@@ -18,7 +18,7 @@ source("99_proj_func.R")
 ```
 
 
-#### Import the required packages
+### Import the required packages
 
 ```{r}
 #| label: load packages
@@ -26,7 +26,6 @@ source("99_proj_func.R")
 
 library("tidyverse")
 library("patchwork")
-
 ```
 
 ### Read in the loaded data files
