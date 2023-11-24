@@ -80,21 +80,17 @@ The upstream regulators each influence several target molecules. To analyze whic
 
 ## Target molecules
 
-X genes are found to be significantly up- and down-regulated by DMARD treatment. Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. The number of target molecules, impacted by each of the significant genes, is analyzed hereafter.
+The regulators S100A9, TGFB1, and TLR2, are found to undergo significant expression changes due to DMARD treatment.
 
-## Number of corresponding target molecules to the identified genes
-
-Box plot here :)
+Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. Therefore, we analyzed which molecular mechanisms the gene is involved in.
 
 ## Molecular mechanisms related to the most influential genes
 
-From the previous plots, the genes X seems most significant, as it's expression significantly changes as a result of DMARD treatment and it influences X target molecules.
-
-To better understand it's functionality, we analyzed which molecular mechanisms the gene is involved in. This is shown in the following plot or table.
+![](images/06_modules_plot.png){fig-align="center"}
 
 ## Molecular mechanisms related to the most influential genes
 
-Box plot or table here of the co-expression modules :)
+From this plot, TGFB1 can be a potential drug target.
 
 # Discussion
 
@@ -106,4 +102,4 @@ This can be explained due to the fact that RA is an auto-immune disease. Less di
 
 ## Our findings
 
-Our conclusion :)
+We identified TGFB1 as a potential drug target.
