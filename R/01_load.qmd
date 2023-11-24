@@ -52,7 +52,7 @@ regulators_after_raw <- read_excel("../data/_raw/pone.0183928.s003.xlsx",
 In order to enable data analysis, the original .xlsx files are converted to .tsv and saved in the data folder in the project.
 
 ```{r}
-#| label: load data
+#| label: save data
 
 write_tsv(coexpression_raw,
            "../data/01_coexpression_load.tsv.gz",
