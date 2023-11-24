@@ -102,7 +102,7 @@ module_counter <- function(data, ID) {
     map_df( ~ coexpression_clean |> 
               filter(target_molecule == .x) |>
               select(c("modules",
-                       gene))) |>
+                       target_molecule))) |>
     count(modules, name = ID)
   
   return (data)
