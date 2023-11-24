@@ -104,7 +104,11 @@ expr_data <- all_expression_data(regulators_before_clean, regulators_after_clean
 
 ```
 
-Adding the number of target molecules before and after treatment as a column
+Adding the number of target molecules before and after treatment as a column. 
+This augmentation to the target_data is performed before a tidy dataframe has been
+obtained. This is done as the count of several values in a cell is easily intepreted
+at the number of commas + 1. This way we do not have to iterate over several columns 
+to count the number of values associated with similar variables. 
 
 ```{r}
 target_data <- target_data |>
