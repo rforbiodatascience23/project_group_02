@@ -1,4 +1,14 @@
-# project_group_02
+## project_group_02
+
+### Background information
+
+This project analyzes genetic expression data. Specifically, from a study on the influence of disease modifying anti-rheumatic drugs (DMARD) treatment in rheumatoid arthritis (RA) patients. 
+The paper found certain genetic regulator molecules to be of interest, for example due to their drastic change in expression under DMARD treatment.
+The paper focuses on genetic expression in 19 RA patients, compared to a comparable number of healthy control samples.
+
+### Project aim
+
+As an additional research question, this project investigates the difference in regulators and target molecules in RA patients before and after treatment. To further analyze the effects of DMARD drugs and potentially discover further drug targets.
 
 ## Data
 
