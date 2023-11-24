@@ -9,6 +9,12 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 The third part of the project is to augment the cleaned data.
 
+```{r}
+#| label: use functions from file
+
+source("99_proj_func.R")
+```
+
 ### Import required packages
 
 ```{r}
@@ -26,60 +32,32 @@ The cleaned data files are loaded in.
 
 coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv.gz",
                                show_col_types = FALSE)
+
 expr_intersect_aug <- read_tsv("../data/02_expr_intersect_clean.tsv.gz",
                      show_col_types = FALSE)
+
 target_intersect_aug <- read_tsv("../data/02_target_intersect_clean.tsv.gz",
                        show_col_types = FALSE)
 
-```
-
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
 expr_before_aug <- read_tsv("../data/02_expr_before_clean.tsv.gz",
                                show_col_types = FALSE)
 
 expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
                                show_col_types = FALSE)
-```
 
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
-expr_before_aug <- expr_before_aug |>
-  mutate(is_significant = case_when(p_value_of_overlap_before <= 0.05 &
-                                    expr_log_ratio_before > 1.5  ~ "yes",
-                                    p_value_of_overlap_before <= 0.05 &
-                                    expr_log_ratio_before < -1.5  ~ "yes")) |> 
-  mutate(is_significant = coalesce(is_significant, "no")) 
-```
-
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
-expr_after_aug <- expr_after_aug |>
-  mutate(is_significant = case_when(p_value_of_overlap_after <= 0.05 &
-                                    expr_log_ratio_after > 1.5  ~ "yes",
-                                    p_value_of_overlap_after <= 0.05 &
-                                    expr_log_ratio_after < -1.5  ~ "yes")) |> 
-  mutate(is_significant = coalesce(is_significant, "no")) 
-```
-
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
- expr_before_aug <- expr_before_aug |>
-  mutate(log10_p_value_before = -log10(p_value_of_overlap_before))
-```
-
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
- expr_after_aug <- expr_after_aug |>
-  mutate(log10_p_value_after = -log10(p_value_of_overlap_after))
 ```
 
 ### Augment the dataframes
+
+#### Augment the dataframe containing all observations before and after treatment
+
+The function used below created a column that indicates weather a datapoing is significant or not.
+Furthermore, a -log10 transformation of the p-values is added. 
+
+```{r}
+expr_before_aug <- significant_label(expr_before_aug, p_value_of_overlap_before, expr_log_ratio_before)
+expr_after_aug <- significant_label(expr_after_aug, p_value_of_overlap_after, expr_log_ratio_after) 
+```
 
 No new variables were added to the dataframe containing the coexpression data.
 
@@ -116,7 +94,7 @@ target_intesect_aug <- target_intersect_aug |>
   mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
 ```
 
-### Augment the dataframe containing the target molecules
+#### Augment the dataframe containing the target molecules
 
 A variable called change_in_n_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
