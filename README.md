@@ -4,8 +4,7 @@
 
 ### Background information
 
-This project analyzes genetic expression data. Specifically, from a study on the influence of disease modifying anti-rheumatic drugs (DMARD) treatment in rheumatoid arthritis (RA) patients. 
-The paper found certain genetic regulator molecules to be of interest, for example due to their drastic change in expression under DMARD treatment.
+This project analyzes genetic expression data. Specifically, from a study on the influence of disease modifying anti-rheumatic drugs (DMARD) treatment in rheumatoid arthritis (RA) patients. The paper found certain genetic regulator molecules to be of interest, for example due to their drastic change in expression under DMARD treatment.
 
 The paper focuses on genetic expression in 19 RA patients, compared to a comparable number of healthy control samples.
 
@@ -15,19 +14,17 @@ As an additional research question, this project investigates the difference in 
 
 ## The data
 
-For this analysis, data from the study _Triple DMARD treatment in early rheumatoid arthritis modulates synovial T cell activation and plasmablast/plasma cell differentiation pathways_ by Walsh et.al. is used. It is gene expression data, obtained from synovial tissue biopsy samples from rheumatoid arthritis patients.
+For this analysis, data from the study *Triple DMARD treatment in early rheumatoid arthritis modulates synovial T cell activation and plasmablast/plasma cell differentiation pathways* by Walsh et.al. is used. It is gene expression data, obtained from synovial tissue biopsy samples from rheumatoid arthritis patients.
 
 ### How to download the data used for this analysis
 
-The data can be found by clicking this link: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5580991/.
-Or via this DOI: 10.1371/journal.pone.0183928.
+The data can be found by clicking this link: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5580991/>. Or via this DOI: 10.1371/journal.pone.0183928.
 
 Navigate to **"Associated Data"** and then **"Supplementary Materials"** to find the Supplementary data tables. Data table **1 (pone.0183928.s001.xlsx)** and **3 (pone.0183928.s003.xlsx)** are used for this analysis.
 
 ### How to add the data to the correct location
 
-After downloading these two .xlsx files, add them to a folder **/data/_raw** within your directory where you have downloaded this repository.
-***Please note that it is important that your .Rproj file is in the same location as the /data folder.***
+After downloading these two .xlsx files, add them to a folder \*\*/data/\_raw\*\* within your directory where you have downloaded this repository. ***Please note that it is important that your .Rproj file is in the same location as the /data folder.***
 
 ## How to run the analysis
 
