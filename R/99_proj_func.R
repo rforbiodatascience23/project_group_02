@@ -3,10 +3,11 @@ fix_headers_and_values <- function(data, suffix) {
   data <- data |>
     mutate("Expr Log Ratio" = as.numeric(`Expr Log Ratio`),
            "p-value of overlap" = as.numeric(`p-value of overlap`)) |> 
+    rename("p_value"= `p-value of overlap`) |> 
     rename_with(~str_c(.,
                        suffix), 
                 starts_with(c("Expr",
-                              "p-value",
+                              "p_value",
                               "Target"))) |> 
     rename_all(~ str_replace_all(., "[^a-zA-Z]", "_")) |>
     rename_all(str_to_lower) |> 
@@ -37,8 +38,8 @@ all_expression_data <- function(data1, data2) {
                       "molecule_type")) |> 
     relocate("expr_log_ratio_after",
              .after = "expr_log_ratio_before") |> 
-    relocate("p_value_of_overlap_after",
-             .after = "p_value_of_overlap_before")
+    relocate("p_value_after",
+             .after = "p_value_before")
   return (expr_data)
 }
 
@@ -85,7 +86,9 @@ significant_label <- function(data, p_column, expr_column, suffix) {
                                       {{p_column}} <= 0.05 &
                                         {{expr_column}} < -1.5  ~ "yes")) |> 
     mutate(is_significant = coalesce(is_significant, "no")) |> 
-    mutate("-log10_p_value" = -log10({{p_column}}))
+    mutate("-log10_p_value" = -log10({{p_column}})) |> 
+    relocate(`-log10_p_value`, 
+             .before = is_significant) 
   return (data)
 }
 

@@ -55,8 +55,12 @@ The function used below created a column that indicates weather a datapoing is s
 Furthermore, a -log10 transformation of the p-values is added. 
 
 ```{r}
-expr_before_aug <- significant_label(expr_before_aug, p_value_of_overlap_before, expr_log_ratio_before)
-expr_after_aug <- significant_label(expr_after_aug, p_value_of_overlap_after, expr_log_ratio_after) 
+expr_before_aug <- significant_label(expr_before_aug, p_value_before, expr_log_ratio_before)
+expr_after_aug <- significant_label(expr_after_aug, p_value_after, expr_log_ratio_after) 
+```
+
+```{r}
+expr_before_aug
 ```
 
 No new variables were added to the dataframe containing the coexpression data.
