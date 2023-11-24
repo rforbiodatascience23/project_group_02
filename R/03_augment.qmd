@@ -148,15 +148,10 @@ write_tsv(expr_intersect_aug,
 write_tsv(target_intersect_aug,
           "../data/03_target_intersect_aug.tsv.gz")
 
-```
-
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
-
-```{r}
-
 write_tsv(expr_before_aug,
           "../data/03_expr_before_aug.tsv.gz")
 
 write_tsv(expr_after_aug,
           "../data/03_expr_after_aug.tsv.gz")
 ```
+
