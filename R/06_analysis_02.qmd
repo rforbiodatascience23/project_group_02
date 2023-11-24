@@ -80,17 +80,17 @@ The plot indicates that the number of target molecules, influenced by each upstr
 
 The analysis of the expression data, together with the target molecule analysis above, revealed the following interesting regulators: S100A9, TGFB1, and TLR2. These regulators could be potential drug targets.
 
-As mentioned the modules in the co-expression dataset represent possible biological pathways. Therefore a further analysis was performed to look into which modules the target molecules of the candidates regulators belonged to.
+As mentioned, the modules in the co-expression data set represent possible biological pathways. Therefore a further analysis was performed to look into which modules the target molecules of the candidates regulators belonged to.
 
 By using the function "module_counter()" on each candidate it was possible to connect the information from the co-expression modules with the target molecules of the regulators. The function counts how many target molecules belongs to each module.
 
 ```{r}
-candidate_1 <- module_counter(target_aug, "TREM1")
-candidate_2 <- module_counter(target_aug, "LIPE")
-candidate_3 <- module_counter(target_aug, "JUND")
+candidate_1 <- module_counter(target_aug, "S100A9")
+candidate_2 <- module_counter(target_aug, "TGFB1")
+candidate_3 <- module_counter(target_aug, "TLR2")
 ```
 
-The results from all of the candidates was merged into a small dataframe called "module_analysis".
+The results from all of the candidates was merged into a small data set called "module_analysis".
 
 ```{r}
 module_analysis <- candidate_1 |> 
@@ -107,31 +107,42 @@ module_analysis <- candidate_1 |>
   arrange(as.integer(str_extract(modules, "\\d+")))
 ```
 
-The result of the module analysis is visualised in the bar-plot below.
+The result of the module analysis is visualized in the barplot below.
 
 ```{r}
-module_analysis |>
+modules_plot <- module_analysis |>
   ggplot(aes(x = fct_inorder(modules), y = counts, fill = candidate)) +
   geom_bar(stat = "identity",
-           color = "black",
-           alpha = 0.4,
+           color = "grey",
+           alpha = 0.5,
            position = position_dodge(preserve = "single"),
            ) +
   geom_hline(yintercept = 0) + 
+  theme_minimal(base_size = 12) +
   theme(panel.grid.major.x = element_blank(),
         axis.text.x = element_text(angle = 20,
                                    hjust = 1,
                                    vjust = 1),
         legend.title=element_blank(),
         plot.title = element_text(hjust = 0.5)) +
-  labs(x = "Biological pathways",
+  labs(x= "",
        y = "Number of target molecules",
-       title = "Involment of upstream regulator in \n biological pathways before treatment ") +
-  scale_fill_manual(values = c( "#F39B7FB2",
-                                "#E64B35B2",
-                                "#7E6148B2")) 
+       title = "Involment of upstream regulators in biological pathways (modules)",
+       subtitle = "Before treatment ") +
+  scale_fill_manual(values = c( "#F8766D",
+                                "#ded031",
+                                "#00BFC4")) 
+
+modules_plot
+
+ggsave(filename = "06_modules_plot.png",
+       plot = last_plot(),
+       device = "png",
+       path = "../results",
+       scale = 1,
+       limitsize = TRUE)
                
                     
 ```
 
-From the plot we can get an idea of which regulator influences specific biological pathways. Candidate 1 seems to ... Candidate 2 seems to ... Candidate 3 seems to ... It might not be prefered to have a change in to many pathways.....
+The plot indicates which regulator influences specific biological pathways. This information, together with the target molecules identification, implies that TGFB1, and possibly other molecules of the module 2 pathway, could be potential drug targets for RA treatment.
