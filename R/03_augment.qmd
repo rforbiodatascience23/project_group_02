@@ -49,7 +49,7 @@ expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
 
 ### Augment the dataframes
 
-### Augment the dataframe containing all observations before and after treatment
+#### Augment the dataframe containing all observations before and after treatment
 
 The function used below created a column that indicates weather a datapoing is significant or not.
 Furthermore, a -log10 transformation of the p-values is added. 
@@ -58,8 +58,6 @@ Furthermore, a -log10 transformation of the p-values is added.
 expr_before_aug <- significant_label(expr_before_aug, p_value_of_overlap_before, expr_log_ratio_before)
 expr_after_aug <- significant_label(expr_after_aug, p_value_of_overlap_after, expr_log_ratio_after) 
 ```
-
-### Augment the dataframes
 
 No new variables were added to the dataframe containing the coexpression data.
 
@@ -96,7 +94,7 @@ target_intesect_aug <- target_intersect_aug |>
   mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
 ```
 
-### Augment the dataframe containing the target molecules
+#### Augment the dataframe containing the target molecules
 
 A variable called change_in_n_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
