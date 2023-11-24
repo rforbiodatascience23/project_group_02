@@ -112,16 +112,19 @@ ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
   #geom_col(color="black") +
   geom_bar(width = 1) +
   coord_polar(theta = "y") +
-  geom_text(aes(label = after_stat(count)), 
+  geom_label(aes(x = 1.35,label = after_stat(count)), 
             stat = "count", 
-            position = position_stack(vjust = 0.5)) +
+            color = "white",
+            position = position_stack(vjust = 0.5),
+            show.legend = FALSE) +
   labs(
     title = "Molecule types of upstream regulators ",
     fill = "Molecule type",
     x = NULL,
     y = NULL
   ) +
-  scale_color_colorblind()
+  scale_color_colorblind() + 
+  theme_void()
 ```
 
 ### Boxplot of gene expression levels before and after treatment
