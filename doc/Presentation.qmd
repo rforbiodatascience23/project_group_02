@@ -52,6 +52,10 @@ For our analysis of significant regulator molecules, we want to distinguish betw
 
 # Results
 
+## Dimensions of the data
+
+After cleaning, wrangling, and augmenting, our data consisted of XXXX tables
+
 ## Differential expressed genes
 
 To visualize the genetic up- and down-regulation, two volcano plots were made. These plots indicate the differences in genetic expression before and after DMARD treatment, respectively.
