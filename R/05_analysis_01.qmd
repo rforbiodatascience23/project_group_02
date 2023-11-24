@@ -69,8 +69,8 @@ plot_before <- expr_before_analysis |>
   guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "Log ratio of gene expression",
-    y = "-Log10 p.value of expression",
-    color = "Effect of treatment",
+    y = "-log10(p)",
+    color = "Significant",
     title = "Genetic expression in RA patients",
     subtitle = "Before DMARD treatment",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
@@ -113,8 +113,8 @@ plot_after <- expr_after_analysis |>
   guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "Log ratio of gene expression",
-    y = "-Log 10  of expression",
-    color = "Effect of treatment",
+    y = "-log10(p)",
+    color = "Significant",
     title = "Genetic expression in RA patients",
     subtitle = "After DMARD treatment",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")

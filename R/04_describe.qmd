@@ -15,6 +15,7 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 library("tidyverse")
 library("ggthemes")
+library("patchwork")
 
 ```
 
@@ -102,49 +103,51 @@ ncol(target_intersect_aug)
 nrow(target_intersect_aug)
 ```
 
-## Barplots
 
-### Barplot of target molecules for each upstream regulators before treatment
-
-```{r}
-ggplot(
-  # Setting data
-  data = target_intersect_aug,
-  # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_target_before)
-  )+ 
-  # Making a barplot
-  geom_col()+
-  # Setting titles
-  labs(
-    title = "Target molecules before treatment",
-    subtitle = "The number of target molecules for each upstream regulator present in the dataset before treatment",
-    x = "Upstream regulator",
-    y = "Target molecule count"
-  )+
-  # colorblind friendly colors
-  scale_color_colorblind()
-
-```
-
-### Barplot of target molecules for each upstream regulators after treatment
+### Piechart of molecule types
 
 ```{r}
-ggplot(
-  # Setting data
-  data = target_intersect_aug,
-  # Sorting it after highest frequency
-  aes(x = upstream_regulator, y = n_target_after)
-  )+ 
-  # Making a barplot
-  geom_col()+
-  # Setting titles
+# Create a ggplot object with geom_bar
+ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
+  #geom_col(color="black") +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y") +
+  geom_label(aes(x = 1.35,label = after_stat(count)), 
+            stat = "count", 
+            color = "white",
+            position = position_stack(vjust = 0.5),
+            show.legend = FALSE) +
   labs(
-    title = "Target molecules after treatment",
-    subtitle = "The number of target molecules for each upstream regulator present in the dataset after treatment",
-    x = "Upstream regulator",
-    y = "Target molecule count"
-  )+
-  # colorblind friendly colors
-  scale_color_colorblind()
+    title = "Molecule types of upstream regulators ",
+    fill = "Molecule type",
+    x = NULL,
+    y = NULL
+  ) +
+  scale_color_colorblind() + 
+  theme_void()
 ```
+
+### Boxplot of gene expression levels before and after treatment
+```{r}
+#| label: boxplot of expression levels 
+#| warning: false 
+
+boxplot_before <- expr_before_aug |> 
+  ggplot(aes(y = expr_log_ratio_before,
+             fill = "#F8766D")) +
+           geom_boxplot(show.legend = FALSE)+
+  labs(y = "Expr log ratio",
+       subtitle = "Before treatment")
+
+boxplot_after <- expr_after_aug |> 
+  ggplot(aes(y = expr_log_ratio_after,
+             fill = "#00BFC4")) +
+           geom_boxplot(show.legend = FALSE)+
+  labs(y = "Expr log ratio",
+       subtitle = "After treatment")
+
+boxplot_expr <- boxplot_before + boxplot_after
+boxplot_expr + plot_annotation(
+  title = "Gene expression levels before and after treatment")
+```
+

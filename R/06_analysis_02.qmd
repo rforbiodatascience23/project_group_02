@@ -27,6 +27,7 @@ library("tidyverse")
 The augmented data files are loaded in.
 
 ```{r}
+#| label: load augmented data files
 
 coexpression_analysis <- read_tsv("../data/03_coexpression_aug.tsv.gz",
                                show_col_types = FALSE)
@@ -40,6 +41,8 @@ target_intersect_analysis <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
 The upstream regulators each influence several target molecules. To investigate whether this influence was affected by the treatment, a plot was created to indicate the change of the number of target molecules before and after treatment.
 
 ```{r}
+#| label: generate target molecules plot
+
 targets_plot <- target_intersect_analysis |> 
   ggplot(aes(y = upstream_regulator,
              x = mol_change,
@@ -85,6 +88,8 @@ As mentioned, the modules in the co-expression data set represent possible biolo
 By using the function "module_counter()" on each candidate it was possible to connect the information from the co-expression modules with the target molecules of the regulators. The function counts how many target molecules belongs to each module.
 
 ```{r}
+#| label: define the selected molecule candidates
+
 candidate_1 <- module_counter(target_intersect_analysis, "S100A9")
 candidate_2 <- module_counter(target_intersect_analysis, "TGFB1")
 candidate_3 <- module_counter(target_intersect_analysis, "TLR2")
@@ -93,6 +98,8 @@ candidate_3 <- module_counter(target_intersect_analysis, "TLR2")
 The results from all of the candidates was merged into a small data set called "module_analysis".
 
 ```{r}
+#| label: create data set for the module analysis
+
 module_analysis <- candidate_1 |> 
   full_join(candidate_2,
             by = 'modules') |> 
@@ -107,9 +114,11 @@ module_analysis <- candidate_1 |>
   arrange(as.integer(str_extract(modules, "\\d+")))
 ```
 
-The result of the module analysis is visualized in the barplot below.
+The result of the module analysis is visualized in the bar plot below.
 
 ```{r}
+#| label: generate module analysis plot
+
 modules_plot <- module_analysis |>
   ggplot(aes(x = fct_inorder(modules), y = counts, fill = candidate)) +
   geom_bar(stat = "identity",
