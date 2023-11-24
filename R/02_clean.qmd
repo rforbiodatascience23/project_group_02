@@ -118,3 +118,15 @@ target_data <- target_data |>
            .after = upstream_regulator)
   
 ```
+
+The following function splits many values in a single cell into separate cells with a single value in each. This is performed on the target data frame, where several target molecules were listed in a single cell. This function spreads those values over multiple columns.
+
+```{r}
+#| label: splitting crowded values in one cell into several cells 
+#| warning: false
+
+target_data <- split_cells(target_data, target_molecules_in_dataset_before, "before")
+target_data <- split_cells(target_data, target_molecules_in_dataset_after, "after")
+
+```
+
