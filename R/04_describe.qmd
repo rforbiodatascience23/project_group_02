@@ -89,6 +89,55 @@ Each regulator molecule regulates a certain number of genes. The code below gene
 
 # table3_dimensions <- dim()
 # table3_variables <- ncol()
-# table4_observations <- nrow()
+# table3_observations <- nrow()
 
 ```
+
+
+### Barplots
+
+```{r}
+# barplot for target molecules before treatment
+
+ggplot(
+  # Setting data
+  data = XXX,
+  # Sorting it after highest frequency
+  aes(x = fct_infreq(target_molecules))
+  )+
+  # Making a barplot
+  geom_bar()+
+  # Setting titles
+  labs(
+    title = "Target molecules before treatment",
+    subtitle = "The number of times a target molecule is present in the dataset before treatment",
+    x = "Target molecule",
+    y = "Count"
+  )+
+  # colorblind friendly colors
+  scale_color_colorblind()
+
+```
+
+```{r}
+# barplot for target molecules after treatment
+
+ggplot(
+  # Setting data
+  data = XXX,
+  # Sorting it after highest frequency
+  aes(x = fct_infreq(target_molecules_after))
+  )+
+  # Making a barplot
+  geom_bar()+
+  # Setting titles
+  labs(
+    title = "Target molecules after treatment",
+    subtitle = "The number of times a target molecule is present in the dataset after treatment",
+    x = "Target molecule",
+    y = "Count"
+  )+
+  # colorblind friendly colors
+  scale_color_colorblind()
+```
+
