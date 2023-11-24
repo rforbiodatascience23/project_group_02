@@ -82,8 +82,8 @@ A variable indicating whether a regulator was up- or down-regulated both before 
 #| label: add column showing up- or downregulation 
 
 expr_intersect_aug <- expr_intersect_aug |>
-  mutate(regulation = case_when( expr_log_ratio_before < expr_log_ratio_after ~ "Upregulated",
-                                 expr_log_ratio_before > expr_log_ratio_after ~ "Downregulated")) |> 
+  mutate(regulation = case_when(change_in_expr > 0 ~ "Upregulated",
+                                change_in_expr < 0 ~ "Downregulated")) |> 
   relocate("regulation",
            .after = "change_in_expr") 
   
