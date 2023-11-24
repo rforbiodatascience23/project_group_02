@@ -140,7 +140,7 @@ ggplot(
   geom_col()+
   # Setting titles
   labs(
-    title = "Target moleculesbefore treatment",
+    title = "Target molecules after treatment",
     subtitle = "The number of target molecules for each upstream regulator present in the dataset after treatment",
     x = "Upstream regulator",
     y = "Target molecule count"
