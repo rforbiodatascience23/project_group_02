@@ -16,7 +16,7 @@ author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s1
 
 The study looked into genome-wide transcriptional effects in RA (rheumatoid arthritis) patients who are taking several disease-modifying drugs (DMARDs).
 
-For this purpose, synovial tissue biopsy samples were taken from 19 RA patients, before and after six months of DMARD treatment.
+For this purpose, synovial tissue biopsy samples were taken from nineteen RA patients, before and after six months of DMARD treatment.
 
 It is hypothesized that multiple biological pathways are impacted by DMARD, but specifics of the pathways are unknown.
 
@@ -52,7 +52,7 @@ To visualize the genetic up- and down-regulation, two volcano plots were made. T
 
 ## Differential expressed genes before treatment
 
-First, the plot below shows the genetic expression levels in RA patients, pre DMARD treatment. Significantly different genes, compared to healthy, are labeled.
+First, the plot below shows the genetic expression levels in RA patients, pre DMARD treatment.
 
 ![](images/05_expr_plot_before-02.png){fig-align="center"}
 
