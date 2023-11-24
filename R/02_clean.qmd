@@ -7,6 +7,17 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 ## Part 02: clean
 
+### Accessing relevant functions
+
+In order to perform the required cleaning steps on the acquired data frames, an in order to avoid repetition of the code, functions were created. These can be found in the file mentioned below.
+
+```{r}
+#| label: use functions from file
+
+source("99_proj_func.R")
+```
+
+
 #### Import the required packages
 
 ```{r}
