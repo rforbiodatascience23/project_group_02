@@ -14,6 +14,7 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 #| message: false
 
 library("tidyverse")
+library("ggthemes")
 
 ```
 
@@ -37,7 +38,7 @@ Table X: X observations, and X variables. Table XX: X observations, and X variab
 
 This can be analyzed with the code below.
 
-### Dimensions of table I
+### Dimensions of table coexpression_aug
 
 ```{r}
 
@@ -45,9 +46,13 @@ This can be analyzed with the code below.
 #| echo: false
 
 
-# table1_dimensions <- dim()
-# table1_variables <- ncol()
-# table1_observations <- nrow()
+table1_dimensions <- dim(coexpression_aug)
+table1_variables <- ncol(coexpression_aug)
+table1_observations <- nrow(coexpression_aug)
+
+table1_dimensions
+table1_variables
+table1_observations
 
 ```
 
@@ -69,9 +74,9 @@ The regulator molecules in the data table are categorized by molecule type. The 
 #| echo: false
 
 
-# table2_dimensions <- dim()
-# table2_variables <- ncol()
-# table3_observations <- nrow()
+table2_dimensions <- dim(expr_)
+table2_variables <- ncol()
+table3_observations <- nrow()
 
 ```
 
@@ -104,12 +109,12 @@ Each regulator molecule regulates a certain number of genes. The code below gene
 
 ggplot(
   # Setting data
-  data = XXX,
+  data = target_intersect_aug,
   # Sorting it after highest frequency
-  aes(x = fct_infreq(target_molecules))
-  )+
+  aes(x = upstream_regulator, y = n_before)
+  )+ 
   # Making a barplot
-  geom_bar()+
+  geom_col()+
   # Setting titles
   labs(
     title = "Target molecules before treatment",
@@ -127,16 +132,16 @@ ggplot(
 
 ggplot(
   # Setting data
-  data = XXX,
+  data = target_intersect_aug,
   # Sorting it after highest frequency
-  aes(x = fct_infreq(target_molecules_after))
-  )+
+  aes(x = upstream_regulator, y = n_after)
+  )+ 
   # Making a barplot
-  geom_bar()+
+  geom_col()+
   # Setting titles
   labs(
-    title = "Target molecules after treatment",
-    subtitle = "The number of times a target molecule is present in the dataset after treatment",
+    title = "Target molecules before treatment",
+    subtitle = "The number of times a target molecule is present in the dataset before treatment",
     x = "Target molecule",
     y = "Count"
   )+
