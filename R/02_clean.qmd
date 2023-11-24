@@ -5,11 +5,11 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-## Part 02: clean
+## Part 02: Cleaning
 
 ### Accessing relevant functions
 
-In order to perform the required cleaning steps on the acquired data frames, an in order to avoid repetition of the code, functions were created. These can be found in the file mentioned below.
+In order to perform the required cleaning steps on the acquired data frames, and in order to avoid repetition of the code, functions were created. These functions are retrieved from the file below.
 
 ```{r}
 #| label: use functions from file
@@ -24,7 +24,6 @@ source("99_proj_func.R")
 #| message: false
 
 library("tidyverse")
-
 ```
 
 ### Read in the loaded data files
@@ -36,10 +35,12 @@ coexpression_clean <- read_tsv("../data/01_coexpression_load.tsv.gz",
                                show_col_types = FALSE)
 
 regulators_before_clean <- read_tsv("../data/01_regulators_before_load.tsv.gz",
-                                    show_col_types = FALSE, skip = 1)
+                                    show_col_types = FALSE, 
+                                    skip = 1)
 
 regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
-                                   show_col_types = FALSE, skip = 1)
+                                   show_col_types = FALSE, 
+                                   skip = 1)
 ```
 
 ### Cleaning of co-expression data
@@ -59,25 +60,29 @@ coexpression_clean <- coexpression_clean |>
 
 This is where the function file, loaded previously, will be used. Each code block represents the use of a single function, described above each respective code block.
 
-The following code block utulizes a function that fixes renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
+The following code chunk utilizes a function that fixes and renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
 
 ```{r}
 #| label: Fixing names and values
-regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
-                                              " before") 
-regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
-                                              " after") 
 
+regulators_before_clean <- fix_headers_and_values(regulators_before_clean,
+                                                  " before") 
+regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
+                                                 " after") 
 ```
 
-The chuck below can be deleted if we dont want the volcano plots as discused friday 24th Nov.
+The following code chunk creates new dataframes containing expression data before and after treatment. These separate dataframes are necessary for performing an analysis of how the expression data is different before and after treatment.
 
 ```{r}
+#| label: Extracting expression data
+
 expr_before_clean <- regulators_before_clean |> 
-  select(-contains("target"), -contains("molecule"))
+  select(-contains("target"), 
+         -contains("molecule"))
 
 expr_after_clean <- regulators_after_clean |> 
-  select(-contains("target"), -contains("molecule"))
+  select(-contains("target"), 
+         -contains("molecule"))
 ```
 
 The following code utilizes a function which filters significant p-values (over 0.05) and expression level between -0.15 and 0.15.
