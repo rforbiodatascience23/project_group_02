@@ -45,7 +45,6 @@ To depict which genes are up- and down-regulated, two volcano plots are made. Th
 ```{r}
 
 #| label: volcano plot before
-#| echo: false
 
 expr_before_analysis <- expr_before_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -67,6 +66,7 @@ plot_before <- expr_before_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "log ratio of gene expression",
     y = "-log10 p.value of expression",
@@ -89,7 +89,6 @@ ggsave(filename = "05_expr_plot_before.png",
 ```{r}
 
 #| label: volcano plot after
-#| echo: false
 
 expr_after_analysis <- expr_after_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -111,6 +110,7 @@ plot_after <- expr_after_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "log ratio of gene expression",
     y = "-log 10  of expression",
@@ -150,6 +150,7 @@ comparison_plot <- expr_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
+  guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "change in gene expression",
     y = "regulator molecule",
