@@ -163,7 +163,7 @@ ggsave(filename = "04_pie_chart.png",
 
 ```
 
-## Boxplot of gene expression levels
+## Box plot of regulator expression levels
 
 The indicate the difference in the expression levels of regulator molecules before and after treatment, a box plot can be created with the code below.
 
@@ -178,6 +178,7 @@ boxplot_before <- expr_before_aug |>
                color = "#F8766D",
                alpha = 0.5) +
   labs(y = "Expression log ratio",
+       title = "Regulator expression levels before and after treatment",
        subtitle = "Before treatment") +
   theme_minimal(base_size = 12) +
   theme(plot.subtitle = element_text(hjust=0.5)) +
@@ -190,7 +191,7 @@ boxplot_after <- expr_after_aug |>
                fill = "#00BFC4",
                color = "#00BFC4",
                alpha = 0.5) +
-  labs(y = "Expression log ratio",
+  labs(y = "",
        subtitle = "After treatment") +
   theme_minimal(base_size = 12) +
   theme(axis.title.y = element_blank(),
@@ -199,9 +200,8 @@ boxplot_after <- expr_after_aug |>
   scale_y_continuous(limits = c(-5,5)) +
   scale_x_continuous(limits = c(-1,1))
 
-boxplot_expr <- boxplot_before + 
-  boxplot_after + 
-  plot_annotation(title = "Gene expression levels before and after treatment")
+boxplot_expr <- boxplot_before + boxplot_after +
+  plot_annotation(theme = theme(plot.background = NULL))
 
 boxplot_expr
 
@@ -210,6 +210,7 @@ ggsave(filename = "04_box_plot.png",
        device = "png",
        path = "../results",
        scale = 1,
-       limitsize = TRUE)
+       limitsize = TRUE,
+       bg = NULL)
 
 ```
