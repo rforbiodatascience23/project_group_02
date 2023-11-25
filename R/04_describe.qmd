@@ -203,8 +203,6 @@ boxplot_expr <- boxplot_before +
   boxplot_after + 
   plot_annotation(title = "Gene expression levels before and after treatment")
 
-# boxplot_expr <- boxplot_expr + plot_annotation(title = "Gene expression levels before and after treatment")
-
 boxplot_expr
 
 ggsave(filename = "04_box_plot.png",
