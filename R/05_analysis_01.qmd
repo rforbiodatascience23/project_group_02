@@ -49,7 +49,7 @@ plot_before <- expr_before_analysis |>
   ggplot(aes(x = expr_log_ratio_before,
              y = `-log10_p_value`,
              colour = is_significant,
-            label = lbl)) + 
+             label = lbl)) + 
   geom_text_repel(size = 3,
                   max.overlaps = 25) + 
   geom_point() +
