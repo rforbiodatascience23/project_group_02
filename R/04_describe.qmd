@@ -140,6 +140,8 @@ ggsave(filename = "04_pie_chart.png",
 
 ## Alternative to pie chart (can be deleted if we like the other one more)
 ```{r}
+#| label: Pie chart 2
+#| warning: false 
 
 # Calculating the count of target molecules for each molecule type
 molecule_counts <- expr_intersect_aug |>
