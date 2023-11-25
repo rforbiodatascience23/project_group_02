@@ -59,8 +59,7 @@ For each of the five data tables, the dimensions are listed below.
 4.  Table "target_intersect_aug": `r ncol(target_intersect_aug)` variables and `r nrow(target_intersect_aug)` observations.
 5.  Table "expr_intersect_aug": `r ncol(expr_intersect_aug)` variables and `r nrow(expr_intersect_aug)` observations.
 
-These can be analyzed with the code described.
-
+These can be analyzed using ncol() for variables and nrow() for observations. The dim() function can also be used to get both. 
 
 
 ## Pie chart of molecule types
