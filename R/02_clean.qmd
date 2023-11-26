@@ -5,6 +5,8 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
+The second part of the project is to clean the data and make it tidy.
+
 ### Accessing relevant functions
 
 In order to perform the required cleaning steps on the acquired data frames, and in order to avoid repetition of the code, functions were created. These functions are retrieved from the file below.
