@@ -24,7 +24,7 @@ The data, used for this project, is downloaded from https://www.ncbi.nlm.nih.gov
 
 Data table 1 contains information on co-expression modules. Each column is a group (called module) of co-expressed genes. Each cell underneath the column header contains the symbol of a gene that is part of this respective module. A total of 20 modules of co-expressed genes is defined. Data table 3 consists of data on predicted regulators. Each row is a regulator molecule, and of each molecule, characteristics such as the expression level and molecule type are described. A total of 849 regulator molecules are described.
 
-When loading the data, we are also replacing blank fields with "NA".
+When loading the data, blank fields are replaced with "NA".
 
 ```{r}
 #| label: load data
