@@ -49,7 +49,7 @@ expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
 
 #### Augment the data frame containing all observations before and after treatment
 
-The function used below created a column that indicates weather a datapoing is significant or not. Furthermore, a -log10 transformation of the p-values is added.
+The function used below creates a column that indicates whether a datapoint is significant or not. Furthermore, a -log10 transformation of the p-values is added.
 
 ```{r}
 expr_before_aug <- significant_label(expr_before_aug, p_value_before, expr_log_ratio_before)
@@ -60,7 +60,7 @@ No new variables were added to the data frame containing the co-expression data.
 
 #### Augment the data frame containing gene expression levels
 
-A variable that shows the level of change in gene expression for the regulators was added.
+A variable that shows the level of change in gene expression for the regulators is added.
 
 ```{r}
 #| label: add change in expr column 
@@ -72,7 +72,7 @@ expr_intersect_aug <- expr_intersect_aug |>
 
 ```
 
-A variable indicating whether a regulator was up- or down-regulated both before and after treatment was added.
+A variable indicating whether a regulator was up- or down-regulated both before and after treatment is added.
 
 ```{r}
 #| label: add column showing up- or downregulation 
@@ -97,7 +97,7 @@ target_intesect_aug <- target_intersect_aug |>
 
 #### Augment the dataframe containing the target molecules
 
-A variable called change_in_n_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
+A variable called change_in_n\_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.
 
 ```{r}
 target_intersect_aug <- target_intersect_aug |> 
