@@ -23,7 +23,7 @@ library("tidyverse")
 
 ```
 
-### Load in cleaned data files 
+### Load in cleaned data files
 
 ```{r}
 #| label: load data
