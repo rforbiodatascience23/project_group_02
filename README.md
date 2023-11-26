@@ -1,5 +1,15 @@
 # project_group_02
 
+## Project contributors
+
+| Contributor name                  | Student ID | GitHub username  |
+|-----------------------------------|------------|------------------|
+| Anna Keisha Mercy Kyei Boateng    | 175562     | KeishaBoateng97  |
+| Anne Kargaard Gjelstrup           | 194530     | Anne-KG          |
+| Marlies Jilles Francine Goedknegt | 220675     | MarliesJFrancine |
+| Katja Naasunnguaq Jagd            | 185395     | Katja-Jagd       |
+| Olivia Ronnenberg                 | 183359     | Oliv3460         |
+
 ## Introduction
 
 ### Background information
@@ -12,7 +22,7 @@ The paper focuses on genetic expression in 19 RA patients, compared to a compara
 
 As an additional research question, this project investigates the difference in regulators and target molecules in RA patients before and after treatment. To further analyze the effects of DMARD drugs and potentially discover further drug targets.
 
-## The data
+## Data accessibility
 
 For this analysis, data from the study *Triple DMARD treatment in early rheumatoid arthritis modulates synovial T cell activation and plasmablast/plasma cell differentiation pathways* by Walsh et.al. is used. It is gene expression data, obtained from synovial tissue biopsy samples from rheumatoid arthritis patients.
 
