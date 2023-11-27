@@ -7,3 +7,10 @@ data/_raw/
 doc/Presentation_files/
 doc/images/
 R/delete/
+R/01_load_files/
+R/02_clean_files/
+R/03_augment_files/
+R/04_describe_files/
+R/05_analysis_01_files/
+R/06_analysis_02_files/
+R/00_all_files/
