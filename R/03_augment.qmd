@@ -64,7 +64,7 @@ expr_after_aug <- significant_label(expr_after_aug,
                                     expr_log_ratio_after) 
 ```
 
-#### Augment data frame "expr_intersect" 
+#### Augment data frame "expr_intersect"
 
 A variable that shows the level of change in gene expression for the regulators is added.
 
