@@ -103,6 +103,7 @@ The data will be used for further analysis in "06_analysis_02".
 ```{r}
 #| label: Pie chart 
 #| warning: false 
+#| message: false
 
 pie_chart <- expr_intersect_aug |> 
   group_by(molecule_type) |>
@@ -121,7 +122,8 @@ pie_chart <- expr_intersect_aug |>
     x = NULL, 
     y = NULL,
     title = "Distribution of regulator molecule types ",
-    fill = "Molecule Type") +
+    fill = "Molecule Type",
+    caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   scale_color_colorblind() +
   theme_void() +
   theme(legend.key.size = unit(0.95, "lines"),
@@ -150,7 +152,8 @@ The data will be used for further analysis in "05_analysis_01".
 
 ```{r}
 #| label: box plot of expression levels 
-#| warning: false 
+#| warning: false
+#| message: false
 
 boxplot_before <- expr_before_aug |> 
   ggplot(aes(y = expr_log_ratio_before)) +
@@ -175,7 +178,8 @@ boxplot_after <- expr_after_aug |>
                color = "#009B9F",
                alpha = 0.7) +
   labs(y = "",
-       subtitle = "After treatment") +
+       subtitle = "After treatment",
+       caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   theme(plot.subtitle = element_text(hjust = 0.5),
         panel.background = element_rect(fill = "transparent"),
         plot.backgroun = element_rect(fill = "transparent"),

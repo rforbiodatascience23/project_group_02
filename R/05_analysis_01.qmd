@@ -64,7 +64,7 @@ plot_before <- expr_before_analysis |>
     legend.position = "bottom") +
   guides(colour = guide_legend(override.aes = list(size = 6))) +
   labs(
-    x = "Log ratio of gene expression",
+    x = "Expression log ratio",
     y = "-log10(p)",
     color = "Significant",
     title = "Genetic expression in RA patients",
@@ -108,7 +108,7 @@ plot_after <- expr_after_analysis |>
     legend.position = "bottom") +
   guides(colour = guide_legend(override.aes = list(size = 6))) +
   labs(
-    x = "Log ratio of gene expression",
+    x = "Expression log ratio",
     y = "-log10(p)",
     color = "Significant",
     title = "Genetic expression in RA patients",
