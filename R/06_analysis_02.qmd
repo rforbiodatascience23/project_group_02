@@ -30,10 +30,10 @@ source("99_proj_func.R")
 #| label: load augmented data files
 
 coexpression_analysis <- read_tsv("../data/03_coexpression_aug.tsv.gz",
-                               show_col_types = FALSE)
+                                  show_col_types = FALSE)
 
 target_intersect_analysis <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
-                       show_col_types = FALSE)
+                                      show_col_types = FALSE)
 ```
 
 ### Number of target molecules before and after treatment
