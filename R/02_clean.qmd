@@ -105,6 +105,7 @@ The last two data frames that is created involves only the upstream regulators t
 
 ```{r}
 #| label: Select significant observations
+
 regulators_before_clean <- filter_significant_observations(regulators_before_clean,
                                                            p_value_before,
                                                            expr_log_ratio_before)
@@ -129,11 +130,13 @@ expr_intersect_clean <- all_expression_data(regulators_before_clean,
 The number of target molecules before and after treatment is added as a column. This augmentation to the target_data is performed before a tidy data frame has been obtained. This is done as the count of several values in a cell is easily interpreted as the number of commas + 1. By augmenting at this point in the workflow, it is avoided to iterate over several columns to count the number of values associated with similar variables.
 
 ```{r}
+#| label: Counting target molecules
+
 target_intersect_clean <- target_intersect_clean |>
   mutate(n_target_before = str_count(target_molecules_in_dataset_before,
-                                pattern = ",") + 1,
+                                     pattern = ",") + 1,
          n_target_after = str_count(target_molecules_in_dataset_after,
-                                pattern = ",") + 1) |> 
+                                    pattern = ",") + 1) |> 
   relocate(c(n_target_before, n_target_after),
            .after = upstream_regulator)
   
@@ -156,9 +159,11 @@ target_intersect_clean <- split_cells(target_intersect_clean,
 
 ### Saving the cleaned data frames as tsv files
 
-Lastly, the clean data frames are saved as zipped tsv files.
+Lastly, the clean data frames are saved as zipped .tsv files.
 
 ```{r}
+#| label: save data
+
 write_tsv(coexpression_clean,
           "../data/02_coexpression_clean.tsv.gz")
 
