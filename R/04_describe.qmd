@@ -96,11 +96,14 @@ These can be analyzed using ncol() for variables and nrow() for observations. Th
 
 The upstream regulators are different types of molecules, e.g., cytokine, enzyme etc. To depict the distribution of different molecule types, a pie chart is shown below.
 
+The data used for creating the pie chart comes from "target_intersect" and "expr_intersect". It describes the distribution of the molecule types.
+
+The data will be used for further analysis in "06_analysis_02".
+
 ```{r}
-#| label: Pie chart 2
+#| label: Pie chart 
 #| warning: false 
 
-# Making the chart 
 pie_chart <- expr_intersect_aug |> 
   group_by(molecule_type) |>
   summarize(count = n()) |> 
@@ -127,7 +130,6 @@ pie_chart <- expr_intersect_aug |>
 
 pie_chart
 
-#Saving
 ggsave(filename = "04_pie_chart.png",
        plot = last_plot(),
        device = "png",
@@ -136,9 +138,11 @@ ggsave(filename = "04_pie_chart.png",
        limitsize = TRUE)
 ```
 
+It can be seen that the dominating molecule type is "transcription regulator" and "other". This gives an idea of what upstream regulators are most prominent in the treatment.
+
 ### Box plot of regulator expression levels
 
-The indicate the difference in the expression levels of regulator molecules before and after treatment, a box plot can be created with the code below.
+To indicate the difference in the expression levels of regulator molecules before and after treatment, a box plot is shown below.
 
 ```{r}
 #| label: box plot of expression levels 
@@ -153,7 +157,7 @@ boxplot_before <- expr_before_aug |>
   labs(y = "Expression log ratio",
        title = "Regulator expression levels before and after treatment",
        subtitle = "Before treatment") +
-  theme(plot.subtitle = element_text(hjust=0.5),
+  theme(plot.subtitle = element_text(hjust = 0.5),
         panel.background = element_rect(fill = "transparent"),
         plot.backgroun = element_rect(fill = "transparent"),
         panel.grid = element_line(color = "#D3D3D3", size = 0.2)) +
@@ -168,7 +172,7 @@ boxplot_after <- expr_after_aug |>
                alpha = 0.7) +
   labs(y = "",
        subtitle = "After treatment") +
-  theme(plot.subtitle = element_text(hjust=0.5),
+  theme(plot.subtitle = element_text(hjust = 0.5),
         panel.background = element_rect(fill = "transparent"),
         plot.backgroun = element_rect(fill = "transparent"),
         panel.grid = element_line(color = "#D3D3D3", size = 0.2)) +
