@@ -52,15 +52,15 @@ targets_plot <- target_intersect_analysis |>
   scale_fill_manual(values = c("Decrease" = "#F8766D",
                              "Increase" = "#00BFC4")) +
   theme_minimal(base_size = 12) +
-  theme(axis.text.y=element_text(size=7),
-        legend.title=element_blank(),
+  theme(axis.text.y = element_text(size = 7),
+        legend.title = element_blank(),
         plot.title = element_text(hjust = 0.5)) +
   labs(y = "Upstream regulator",
        x = "Change in number of target molecules",
        title = "Change in the number of target molecules",
        subtitle = "Comparing after treatment to before") + 
   scale_x_continuous(breaks = c(-15,-10, -5, 0, 5, 10, 15)) +
-  coord_fixed(ratio=4/3) + 
+  coord_fixed(ratio = 4/3) + 
   geom_vline(xintercept = 0,
              alpha = 0.5,
              color = "grey")
@@ -90,9 +90,12 @@ By using the function "module_counter()" on each candidate it was possible to co
 ```{r}
 #| label: define the selected molecule candidates
 
-candidate_1 <- module_counter(target_intersect_analysis, "S100A9")
-candidate_2 <- module_counter(target_intersect_analysis, "TGFB1")
-candidate_3 <- module_counter(target_intersect_analysis, "TLR2")
+candidate_1 <- module_counter(target_intersect_analysis, 
+                              "S100A9")
+candidate_2 <- module_counter(target_intersect_analysis, 
+                              "TGFB1")
+candidate_3 <- module_counter(target_intersect_analysis, 
+                              "TLR2")
 ```
 
 The results from all of the candidates was merged into a small data set called "module_analysis".
