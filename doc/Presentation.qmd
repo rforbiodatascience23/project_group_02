@@ -4,6 +4,7 @@ format:
   revealjs:
     embed-resources: true
     theme: "solarized"
+    slide-number: c/t
     transition: slide
     background-transition: fade
 editor: visual
@@ -40,7 +41,7 @@ The plots below shows the genetic expression levels in RA patients, before and a
 :::
 :::
 
-## Results: Differential expressed regulators after treatment
+## Results: Differential expressed regulators due to treatment
 
 A comparison plot to indicate genetic differences as a result of treatment.
 
