@@ -98,7 +98,7 @@ candidate_3 <- module_counter(target_intersect_analysis,
                               "TLR2")
 ```
 
-The results from all of the candidates was merged into a small data set called "module_analysis".
+The results from the three candidates was merged into a small data set called "module_analysis".
 
 ```{r}
 #| label: create data set for the module analysis
