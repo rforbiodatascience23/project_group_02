@@ -26,21 +26,25 @@ From the data in table 1 and 2, it can be seen that there is a difference in reg
 
 ![](images/04_box_plot-01.png){fig-align="center"}
 
-## Results: Differential expressed regulators before treatment
+## Results: Differential expressed regulators
 
-First, the plot below shows the genetic expression levels in RA patients, before DMARD treatment.
+The plots below shows the genetic expression levels in RA patients, before and after DMARD treatment.
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ![](images/05_expr_plot_before-03.png){fig-align="center"}
+:::
 
-## Results: Differential expressed regulators after treatment
-
-Secondly, we show genetic expression levels in RA patients, after DMARD treatment.
-
+::: {.column width="50%"}
 ![](images/05_expr_plot_after-02.png){fig-align="center"}
+:::
+
+::::
 
 ## Results: Differential expressed regulators after treatment
 
-Lastly, we show a comparison plot to indicate genetic differences as a result of treatment.
+A comparison plot to indicate genetic differences as a result of treatment.
 
 ![](images/05_comparison_plot-01.png){fig-align="center"}
 
@@ -60,22 +64,8 @@ A module is a cluster of related genes, either with related function, common tra
 
 ![](images/06_modules_plot-02.png){fig-align="center"}
 
-## Results: Molecular mechanisms
-
-From this plot, TGFB1 can be a potential drug target.
-
 ## Discussion
 
 The study by Walsh et.al. found 292 genes down-regulated due to treatment, and 23 up-regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
 
-This can be explained due to the fact that RA is an auto-immune disease. Less disease activity means less immune activity, and vice versa.
-
-The genetic regulation is based on RA patients, compared to healthy control samples.
-
-## Our findings
-
-We identified TGFB1 as a potential drug target.
-
-This finding is based on RA patients before and after DMARD treatment.
-
-TGFB1, and its corresponding "module 2" molecules, are potential drug targets for further investigation.
+We identified LIPE and S100A9 as a potential drug targets. These molecules, and their corresponding modules, are potential drug targets for further investigation.
