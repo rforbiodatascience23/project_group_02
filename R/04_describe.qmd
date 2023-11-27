@@ -103,6 +103,7 @@ The data will be used for further analysis in "06_analysis_02".
 ```{r}
 #| label: Pie chart 
 #| warning: false 
+#| message: false
 
 pie_chart <- expr_intersect_aug |> 
   group_by(molecule_type) |>
@@ -151,7 +152,8 @@ The data will be used for further analysis in "05_analysis_01".
 
 ```{r}
 #| label: box plot of expression levels 
-#| warning: false 
+#| warning: false
+#| message: false
 
 boxplot_before <- expr_before_aug |> 
   ggplot(aes(y = expr_log_ratio_before)) +
