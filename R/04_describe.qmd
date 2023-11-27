@@ -9,14 +9,16 @@ The fourth part of the project is to describe the augmented data.
 
 ### Import the required packages
 
+As previously "tidyverse" is required along with three other packages ("ggthemes", "patchwork", and "gridExtra") not part of the "tidyverse" package.
+
 ```{r}
 #| label: load packages
 #| message: false
 
 library("tidyverse")
-#library("ggthemes")
-#library("patchwork")
-#library("gridExtra")
+library("ggthemes")
+library("patchwork")
+library("gridExtra")
 
 ```
 
