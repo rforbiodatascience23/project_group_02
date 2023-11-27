@@ -7,16 +7,6 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 The second part of the project involves cleaning and making the data tidy.
 
-### Accessing relevant functions
-
-In order to perform the required cleaning steps of the acquired data frames without repeated code, function were created. These functions are retrieved from the file below.
-
-```{r}
-#| label: functions from file
-
-source("99_proj_func.R")
-```
-
 ### Import the required packages
 
 ```{r}
@@ -24,6 +14,16 @@ source("99_proj_func.R")
 #| message: false
 
 library("tidyverse")
+```
+
+### Accessing relevant functions
+
+In order to perform the required cleaning steps of the acquired data frames without repeated code, functions were created. These functions are retrieved from the file below.
+
+```{r}
+#| label: functions from file
+
+source("99_proj_func.R")
 ```
 
 ### Read in the loaded data files
@@ -45,7 +45,7 @@ regulators_after_clean <- read_tsv("../data/01_regulators_after_load.tsv.gz",
 
 ### Cleaning of co-expression data
 
-As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied by having each gene "assigned" to the relevant module one by one. This is done by pivoting the dataframe into a long format.
+As stated before, data table 1 contains data on 20 co-expression modules. In the code below, the table is tidied by having each gene "assigned" to the relevant module one by one. This is done by pivoting the data frame into a long format.
 
 ```{r}
 #| label: Cleaning data table 1
@@ -58,8 +58,7 @@ coexpression_clean <- coexpression_clean |>
 
 ### Cleaning the two data frames describing upstream regulators before and after treatment
 
-
-This is where the function file, loaded previously, will be used as the two dataframes contain the same variables. 
+This is where the function file, loaded previously, will be used as the two data frames contain the same variables.
 
 The function below fixes and renames headers, and ensures all floats in the data frame is interpreted as numeric values. It also selects relevant columns for further analysis.
 
@@ -72,17 +71,23 @@ regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
                                                  " after") 
 ```
 
-A bit of cleaning is done by shortning the names of upstream regulators that has several names. After reviewing the names of the upstream regulators, it pertains to "KLRC4-KLRK1/KLRK1" which is changed to "KLRK1". 
+A bit of cleaning is done by shortening the names of upstream regulators that has several names. After reviewing the names of the upstream regulators, it pertains to "KLRC4-KLRK1/KLRK1" which is changed to "KLRK1".
 
 ```{r}
+#| label: Name change
+
 regulators_before_clean <- regulators_before_clean |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, "KLRC4-KLRK1/KLRK1", "KLRK1")) 
+  mutate(upstream_regulator = str_replace(upstream_regulator, 
+                                          "KLRC4-KLRK1/KLRK1", 
+                                          "KLRK1")) 
 
 regulators_after_clean <- regulators_after_clean |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, "KLRC4-KLRK1/KLRK1", "KLRK1"))
+  mutate(upstream_regulator = str_replace(upstream_regulator, 
+                                          "KLRC4-KLRK1/KLRK1", 
+                                          "KLRK1"))
 ```
 
-The folowing section aims to split the two dataframes describing the upstream regulators into four. The first two contains only the expression data from before and after treatment. That is all the upstream regulators, both the ones the two original data frames have in commin but also the ones that is unique to each data frame. These two new dataframes will be refered to as "expr_before" and "expr_after". 
+The following section aims to split the two data frames describing the upstream regulators into four. The first two contains only the expression data from before and after treatment. That is all the upstream regulators, both the ones the two original data frames have in common but also the ones that is unique to each data frame. These two new data frames will be referred to as "expr_before" and "expr_after".
 
 ```{r}
 #| label: Extracting expression data
@@ -96,7 +101,7 @@ expr_after_clean <- regulators_after_clean |>
          -contains("molecule"))
 ```
 
-The last two data frames that is created involves only the upstream regulators that the two original dataframes had in common. From there the dataset is split in two, one describing the target molecuels and one describing the expression levels of the upstream regulators. The two new dataframes will be refered to as "target_intersect" and "expr_intersect". The "expr_intersect" data is further further filtered to only contain significant values with p-values (over 0.05) and expression level between -1.5 and 1.5.
+The last two data frames that is created involves only the upstream regulators that the two original data frames had in common. From there the data set is split in two, one describing the target molecules and one describing the expression levels of the upstream regulators. The two new data frames will be referred to as "target_intersect" and "expr_intersect". The "expr_intersect" data is further further filtered to only contain significant values with p-values (over 0.05) and expression level between -1.5 and 1.5.
 
 ```{r}
 #| label: Select significant observations
@@ -109,7 +114,7 @@ regulators_after_clean <- filter_significant_observations(regulators_after_clean
                                                            expr_log_ratio_after)
 ```
 
-The functions below collect, and join, selected parts of two data frames finally creating the last two dataframes. 
+The functions below collect, and join, selected parts of two data frames finally creating the last two data frames.
 
 ```{r}
 #| label: Joining and splitting the two dataframes 
@@ -121,7 +126,7 @@ expr_intersect_clean <- all_expression_data(regulators_before_clean,
 
 ```
 
-The number of target molecules before and after treatment is added as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily interpreted as the number of commas + 1. By augmenting at this point in the workflow, it is avoided to iterate over several columns to count the number of values associated with similar variables.
+The number of target molecules before and after treatment is added as a column. This augmentation to the target_data is performed before a tidy data frame has been obtained. This is done as the count of several values in a cell is easily interpreted as the number of commas + 1. By augmenting at this point in the workflow, it is avoided to iterate over several columns to count the number of values associated with similar variables.
 
 ```{r}
 target_intersect_clean <- target_intersect_clean |>
