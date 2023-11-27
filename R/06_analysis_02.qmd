@@ -144,7 +144,7 @@ modules_plot <- module_analysis |>
         plot.title = element_text(hjust = 0.5)) +
   labs(x = "",
        y = "Number of target molecules",
-       title = "Involment of upstream regulators in biological pathways (modules)",
+       title = "Involvement of upstream regulators in biological pathways (modules)",
        subtitle = "Before treatment ",
        caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   scale_fill_manual(values = c( "#F8766D",
