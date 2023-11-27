@@ -111,7 +111,8 @@ module_analysis <- candidate_1 |>
   pivot_longer(cols = -modules,
                names_to = "candidate",
                values_to = "counts") |> 
-  arrange(as.integer(str_extract(modules, "\\d+")))
+  arrange(as.integer(str_extract(modules, 
+                                 "\\d+")))
 ```
 
 The result of the module analysis is visualized in the bar plot below.
