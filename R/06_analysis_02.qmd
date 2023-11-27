@@ -57,7 +57,8 @@ targets_plot <- target_intersect_analysis |>
   labs(y = "Upstream regulator",
        x = "Change in number of target molecules",
        title = "Change in the number of target molecules",
-       subtitle = "Comparing after treatment to before") + 
+       subtitle = "Comparing after treatment to before",
+       caption = "Data from DOI: 10.1371/journal.pone.0183928") + 
   scale_x_continuous(breaks = c(-15,-10, -5, 0, 5, 10, 15)) +
   coord_fixed(ratio = 4/3) + 
   geom_vline(xintercept = 0,
@@ -142,7 +143,8 @@ modules_plot <- module_analysis |>
   labs(x = "",
        y = "Number of target molecules",
        title = "Involment of upstream regulators in biological pathways (modules)",
-       subtitle = "Before treatment ") +
+       subtitle = "Before treatment ",
+       caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   scale_fill_manual(values = c( "#F8766D",
                                 "#ded031",
                                 "#00BFC4")) 
