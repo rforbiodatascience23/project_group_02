@@ -110,7 +110,7 @@ expr_intersect_clean <- all_expression_data(regulators_before_clean,
 
 ```
 
-Adding the number of target molecules before and after treatment as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily interpreted as the number of commas + 1. By perfoming this, it is avoided to iterate over several columns to count the number of values associated with similar variables.
+Adding the number of target molecules before and after treatment as a column. This augmentation to the target_data is performed before a tidy dataframe has been obtained. This is done as the count of several values in a cell is easily interpreted as the number of commas + 1. By augmenting at this point in the workflow, it is avoided to iterate over several columns to count the number of values associated with similar variables.
 
 ```{r}
 target_intersect_clean <- target_intersect_clean |>
