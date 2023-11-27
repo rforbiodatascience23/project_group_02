@@ -106,12 +106,6 @@ The upstream regulators each influence several target molecules. To analyze whic
 
 ![](images/06_targets_plot-03.png){fig-align="center"}
 
-## Target molecules
-
-The regulators S100A9, TGFB1, and TLR2, are found to undergo significant expression changes due to DMARD treatment.
-
-Whether or not these genes have a sufficient impact on RA prognosis, depends on the molecular pathway they play a role in. Therefore, we analyzed which molecular mechanisms the gene is involved in.
-
 ## Molecular mechanisms related to the most influential genes
 
 A module is a cluster of related genes, either with related function, common transcriptional regulation, or selectively co-expressed in certain cell types.
