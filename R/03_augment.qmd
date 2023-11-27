@@ -43,7 +43,6 @@ expr_before_aug <- read_tsv("../data/02_expr_before_clean.tsv.gz",
 
 expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
                            show_col_types = FALSE)
-
 ```
 
 ### Augment the data frames
@@ -74,8 +73,7 @@ A variable that shows the level of change in gene expression for the regulators 
 expr_intersect_aug <- expr_intersect_aug |>
   mutate(change_in_expr = expr_log_ratio_after - expr_log_ratio_before) |> 
   relocate("change_in_expr",
-           .after = "expr_log_ratio_after")  
-
+           .after = "expr_log_ratio_after")
 ```
 
 A variable indicating whether a regulator was up- or down-regulated both before and after treatment is added.
@@ -87,8 +85,7 @@ expr_intersect_aug <- expr_intersect_aug |>
   mutate(regulation = case_when(change_in_expr > 0 ~ "Upregulated",
                                 change_in_expr < 0 ~ "Downregulated")) |> 
   relocate("regulation",
-           .after = "change_in_expr") 
-  
+           .after = "change_in_expr")
 ```
 
 #### Augment data frame "target_intersect"
@@ -96,11 +93,13 @@ expr_intersect_aug <- expr_intersect_aug |>
 A variable called "change_in_n_molecules" showing the difference in target molecules after treatment compared to before treatment was added for each regulator. Along with a classification variable called "change_class", which determines if the change in molecules leads to an increase, decrease, or no change of target molecules.
 
 ```{r}
+#| label: change classification
+
 target_intersect_aug <- target_intersect_aug |> 
   mutate(mol_change = n_target_after - n_target_before,
          change_class = case_when(mol_change > 0 ~ "Increase",
-                              mol_change < 0 ~  "Decrease",
-                              mol_change == 0 ~ "Unchaged")) |> 
+                                  mol_change < 0 ~  "Decrease",
+                                  mol_change == 0 ~ "Unchaged")) |> 
   relocate(mol_change, 
            change_class,
            .after = n_target_after) |> 
@@ -112,7 +111,7 @@ target_intersect_aug <- target_intersect_aug |>
 Lastly, the augmented data frames were saved as zipped tsv files.
 
 ```{r}
-#| label: tsv files
+#| label: save data
 
 write_tsv(coexpression_aug,
           "../data/03_coexpression_aug.tsv.gz")
