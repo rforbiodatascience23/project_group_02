@@ -67,4 +67,4 @@ A module is a cluster of related genes, either with related function, common tra
 
 The study by Walsh et.al. found 292 genes down-regulated due to treatment, and 23 up-regulated. The down regulated genes are related to the immune system, a.o. T-cell activating-genes.
 
-We identified LIPE and S100A9 as a potential drug targets. These molecules, and their corresponding modules, are potential drug targets for further investigation.
+We identified LIPE , OLR1, and S100A9 as a potential drug targets. These molecules, and their corresponding module, module 2, are potential drug targets for further investigation.
