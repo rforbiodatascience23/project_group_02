@@ -67,4 +67,15 @@ Which modules are the target molecules involved in?
 
 ## Discussion
 
+::: columns
+::: {.column width="50%"}
+![](images/flowchart_dis){fig-align="center"}
+:::
 
+::: {.column width="50%"}
+- Clearer purpose at the start
+- Exclude data
+- Iterate the process
+- Look into pathways
+:::
+:::
