@@ -108,7 +108,7 @@ target_intersect_aug <- target_intersect_aug |>
 
 ### Saving the augmented data frames in new files
 
-Lastly, the augmented data frames were saved as zipped tsv files.
+Lastly, the augmented data frames were saved as zipped .tsv files.
 
 ```{r}
 #| label: save data
