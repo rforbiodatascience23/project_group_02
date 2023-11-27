@@ -171,4 +171,4 @@ ggsave(filename = "05_comparison_plot.png",
 
 ```
 
-It can be seen from the plot that some upstream regulators are more affected by treatment than others. The following upstream regulators MLK2, OLR1, PER1, PTPRC, S100A8, S100A9, and TLR2, RNASE2, IGF2, LIPE,
+It can be seen from the plot that some upstream regulators are more affected by treatment than others. The following upstream regulators MLK2, OLR1, PER1, PTPRC, S100A8, S100A9, and TLR2, RNASE2, IGF2, LIPE
