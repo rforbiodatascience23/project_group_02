@@ -24,7 +24,7 @@ library("tidyverse")
 source("99_proj_func.R")
 ```
 
-### Load in datafiles
+### Load the needed .tsv.gz files
 
 ```{r}
 #| label: load augmented data files
