@@ -4,15 +4,7 @@ format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
-The sixth part of the project is the second analysis, where ...
-
-### Accessing relevant functions
-
-```{r}
-#| label: use functions from file
-
-source("99_proj_func.R")
-```
+The sixth part of the project is the second analysis, where the change in the number of target molecules before and after treatment is analyzed. Furthermore, a deeper analysis of three interesting regulators is performed.
 
 ### Import required packages
 
@@ -23,19 +15,27 @@ source("99_proj_func.R")
 library("tidyverse")
 ```
 
-### Load in datafiles 
+### Accessing relevant functions
+
+```{r}
+#| label: use functions from file
+
+source("99_proj_func.R")
+```
+
+### Load the needed .tsv.gz files
 
 ```{r}
 #| label: load augmented data files
 
 coexpression_analysis <- read_tsv("../data/03_coexpression_aug.tsv.gz",
-                               show_col_types = FALSE)
+                                  show_col_types = FALSE)
 
 target_intersect_analysis <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
-                       show_col_types = FALSE)
+                                      show_col_types = FALSE)
 ```
 
-### Number of target molecules before and after treatment
+### Generate bar plot of number of target molecules before and after treatment
 
 The upstream regulators each influence several target molecules. To investigate whether this influence was affected by the treatment, a plot was created to indicate the change of the number of target molecules before and after treatment.
 
@@ -51,15 +51,15 @@ targets_plot <- target_intersect_analysis |>
   scale_fill_manual(values = c("Decrease" = "#F8766D",
                              "Increase" = "#00BFC4")) +
   theme_minimal(base_size = 12) +
-  theme(axis.text.y=element_text(size=7),
-        legend.title=element_blank(),
+  theme(axis.text.y = element_text(size = 7),
+        legend.title = element_blank(),
         plot.title = element_text(hjust = 0.5)) +
   labs(y = "Upstream regulator",
        x = "Change in number of target molecules",
        title = "Change in the number of target molecules",
        subtitle = "Comparing after treatment to before") + 
   scale_x_continuous(breaks = c(-15,-10, -5, 0, 5, 10, 15)) +
-  coord_fixed(ratio=4/3) + 
+  coord_fixed(ratio = 4/3) + 
   geom_vline(xintercept = 0,
              alpha = 0.5,
              color = "grey")
@@ -80,7 +80,7 @@ The plot indicates that the number of target molecules, influenced by each upstr
 
 ### Biological context of the target molecules
 
-The analysis of the expression data, together with the target molecule analysis above, revealed the following interesting regulators: S100A9, TGFB1, and TLR2. These regulators could be potential drug targets.
+The analysis of the expression data, together with the target molecule analysis above, revealed the following interesting regulators: LIPE, OLR1, and S100A9. They all have a significant change in expression and in the number of target molecules. These regulators could be potential drug targets.
 
 As mentioned, the modules in the co-expression data set represent possible biological pathways. Therefore a further analysis was performed to look into which modules the target molecules of the candidates regulators belonged to.
 
@@ -89,12 +89,15 @@ By using the function "module_counter()" on each candidate it was possible to co
 ```{r}
 #| label: define the selected molecule candidates
 
-candidate_1 <- module_counter(target_intersect_analysis, "S100A9")
-candidate_2 <- module_counter(target_intersect_analysis, "TGFB1")
-candidate_3 <- module_counter(target_intersect_analysis, "TLR2")
+candidate_1 <- module_counter(target_intersect_analysis, 
+                              "LIPE")
+candidate_2 <- module_counter(target_intersect_analysis, 
+                              "OLR1")
+candidate_3 <- module_counter(target_intersect_analysis, 
+                              "S100A9")
 ```
 
-The results from all of the candidates was merged into a small data set called "module_analysis".
+The results from the three candidates was merged into a small data set called "module_analysis".
 
 ```{r}
 #| label: create data set for the module analysis
@@ -110,7 +113,8 @@ module_analysis <- candidate_1 |>
   pivot_longer(cols = -modules,
                names_to = "candidate",
                values_to = "counts") |> 
-  arrange(as.integer(str_extract(modules, "\\d+")))
+  arrange(as.integer(str_extract(modules, 
+                                 "\\d+")))
 ```
 
 The result of the module analysis is visualized in the bar plot below.
@@ -119,7 +123,9 @@ The result of the module analysis is visualized in the bar plot below.
 #| label: generate module analysis plot
 
 modules_plot <- module_analysis |>
-  ggplot(aes(x = fct_inorder(modules), y = counts, fill = candidate)) +
+  ggplot(aes(x = fct_inorder(modules), 
+             y = counts, 
+             fill = candidate)) +
   geom_bar(stat = "identity",
            color = "grey",
            alpha = 0.5,
@@ -133,7 +139,7 @@ modules_plot <- module_analysis |>
                                    vjust = 1),
         legend.title=element_blank(),
         plot.title = element_text(hjust = 0.5)) +
-  labs(x= "",
+  labs(x = "",
        y = "Number of target molecules",
        title = "Involment of upstream regulators in biological pathways (modules)",
        subtitle = "Before treatment ") +
@@ -153,4 +159,4 @@ ggsave(filename = "06_modules_plot.png",
                     
 ```
 
-The plot indicates which regulator influences specific biological pathways. This information, together with the target molecules identification, implies that TGFB1, and possibly other molecules of the module 2 pathway, could be potential drug targets for RA treatment.
+The plot shows how the three regulators influence specific biological pathways (modules). It is clear from the results that both LIPE and S100A9 have a significant number of target molecules in several modules. Particularly, module 2, 6, and 7 are influenced by these two upstream regulators. This could imply that targeting LIPE and S100A9 could have a significant effect in RA treatment.
