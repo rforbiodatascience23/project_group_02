@@ -138,11 +138,15 @@ ggsave(filename = "04_pie_chart.png",
        limitsize = TRUE)
 ```
 
-It can be seen that the dominating molecule type is "transcription regulator" and "other". This gives an idea of what upstream regulators are most prominent in the treatment.
+It can be seen that the dominating molecule type is "transcription regulator" and "other". This gives an idea of which upstream regulators are most prominent in the treatment.
 
 ### Box plot of regulator expression levels
 
-To indicate the difference in the expression levels of regulator molecules before and after treatment, a box plot is shown below.
+To depict the difference in the expression levels of upstream regulators before and after treatment, box plots are generated below.
+
+The data used for generating the box plots are "expr_before" and "expr_after". Both the unique and the common upstream regulators are included.
+
+The data will be used for further analysis in "05_analysis_01".
 
 ```{r}
 #| label: box plot of expression levels 
@@ -193,3 +197,5 @@ ggsave(filename = "04_box_plot.png",
        bg = "transparent")
 
 ```
+
+The spread along the y-axis describes the variety in expression, compared to healthy control samples. It can be seen in the box plot, that the variance is larger before treatment, indicating a large deviation from "healthy", compared to after treatment, where the variance is smaller, indicating a wanted response to treatment.
