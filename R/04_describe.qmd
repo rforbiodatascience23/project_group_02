@@ -45,7 +45,7 @@ After cleaning and augmenting the data, five data frames will be present:
 
 1.  A table containing the regulator molecules and their respective expression levels before treatment called "03_expr_before_aug".
 2.  A table containing the regulator molecules and their respective expression levels after treatment called "03_expr_after_aug".
-3.  A table containing twenty co-expression modules and the regulator molecules each contains, called "03_coexpression_aug".
+3.  A table containing twenty co-expression modules and the target molecules each contains, called "03_coexpression_aug".
 4.  A table containing the regulator molecules, shared between before and after treatment, along with their related target molecules, called "03_target_intersect_aug".
 5.  A table containing the regulator molecules, shared between before and after treatment along with their respective expression levels called "03_expr_intersect_aug".
 
