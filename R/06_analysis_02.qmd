@@ -159,4 +159,4 @@ ggsave(filename = "06_modules_plot.png",
                     
 ```
 
-The plot indicates which regulator influences specific biological pathways. This information, together with the target molecules identification, implies that TGFB1, and possibly other molecules of the module 2 pathway, could be potential drug targets for RA treatment.
+The plot shows how the three regulators influence specific biological pathways (modules). It is clear from the results that both LIPE and S100A9 have a significant number of target molecules in several modules. Particularly, module 2, 6, and 7 are influenced by these two upstream regulators. This could imply that targeting LIPE and S100A9 could have a significant effect in RA treatment.
