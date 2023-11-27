@@ -41,6 +41,7 @@ The upstream regulators each influence several target molecules. To investigate 
 
 ```{r}
 #| label: generate target molecules plot
+#| message: false
 
 targets_plot <- target_intersect_analysis |> 
   ggplot(aes(y = upstream_regulator,
@@ -122,6 +123,7 @@ The result of the module analysis is visualized in the bar plot below.
 
 ```{r}
 #| label: generate module analysis plot
+#| message: false
 
 modules_plot <- module_analysis |>
   ggplot(aes(x = fct_inorder(modules), 
