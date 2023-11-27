@@ -128,7 +128,7 @@ ggsave(filename = "05_expr_plot_after.png",
 
 The two scatter plots show that there are significantly differential expressed upstream regulators, both before and after treatment. The criteria for being significant was defined by a p-value \> -log10(0.05) and a log-ratio gene expression between -1.5 and 1.5, indicated by the dotted black lines.
 
-There are found both unique and common significant upstream regulators in both cases. An example of an upstream regulator both cases have in common could be TGFB1, found in the top left corner in both plots. In "06_analysis_02" this finding is further investigated.
+Both unique and common significant upstream regulators are found in both plots. One example of an upstream regulator that both plots have in common could be TGFB1, found in the top left corner in both plots. All the common upstream regulators will be further analysed to answer which upstream regulators are influenced by the treatment.
 
 #### Generate a comparison plot
 
