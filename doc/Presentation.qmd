@@ -73,9 +73,9 @@ Which modules are the target molecules involved in?
 :::
 
 ::: {.column width="50%"}
-- Clearer purpose at the start
-- Exclude data
-- Iterate the process
-- Look into pathways
+-   Clearer purpose at the start
+-   Exclude data
+-   Iterate the process
+-   Look into pathways
 :::
 :::
