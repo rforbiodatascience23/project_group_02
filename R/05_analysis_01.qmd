@@ -150,7 +150,7 @@ comparison_plot <- expr_intersect_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
-  guides(colour = guide_legend(override.aes = list(size= 6))) +
+  guides(colour = guide_legend(override.aes = list(size = 6))) +
   labs(
     x = "Change in gene expression",
     y = "Upstream Regulator",
