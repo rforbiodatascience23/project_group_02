@@ -121,7 +121,8 @@ pie_chart <- expr_intersect_aug |>
     x = NULL, 
     y = NULL,
     title = "Distribution of regulator molecule types ",
-    fill = "Molecule Type") +
+    fill = "Molecule Type",
+    caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   scale_color_colorblind() +
   theme_void() +
   theme(legend.key.size = unit(0.95, "lines"),
@@ -175,7 +176,8 @@ boxplot_after <- expr_after_aug |>
                color = "#009B9F",
                alpha = 0.7) +
   labs(y = "",
-       subtitle = "After treatment") +
+       subtitle = "After treatment",
+       caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   theme(plot.subtitle = element_text(hjust = 0.5),
         panel.background = element_rect(fill = "transparent"),
         plot.backgroun = element_rect(fill = "transparent"),
