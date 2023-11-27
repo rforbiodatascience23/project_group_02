@@ -14,9 +14,9 @@ The fourth part of the project is to describe the augmented data.
 #| message: false
 
 library("tidyverse")
-library("ggthemes")
-library("patchwork")
-library("gridExtra")
+#library("ggthemes")
+#library("patchwork")
+#library("gridExtra")
 
 ```
 
@@ -66,44 +66,6 @@ These can be analyzed using ncol() for variables and nrow() for observations. Th
 ### Pie chart of molecule types
 
 The regulator molecules consist of several different types, e.g., cytokine, enzyme etc. To depict the distribution of different molecule types, a pie chart can be created with the code described below.
-
-```{r}
-#| label: pie chart
-#| warning: false
-
-pie_chart <- ggplot(expr_intersect_aug, aes(x = "", fill = molecule_type)) +
-  geom_bar(width = 1) +
-  coord_polar(theta = "y") +
-  geom_label(aes(x = 1.35,label = after_stat(count)), 
-            stat = "count", 
-            color = "white",
-            position = position_stack(vjust = 0.5),
-            show.legend = FALSE) +
-  labs(
-    title = "Distribution of regulator molecule types ",
-    fill = "Molecule Type",
-    x = NULL,
-    y = NULL
-  ) +
-  scale_color_colorblind() + 
-  theme_void() +
-  theme(legend.key.size = unit(0.7, "lines"),
-        legend.spacing.y = unit(0.2, "lines")
-        )
-
-pie_chart
-
-
-ggsave(filename = "04_pie_chart.png",
-       plot = last_plot(),
-       device = "png",
-       path = "../results", 
-       scale = 1,
-       limitsize = TRUE)
-
-```
-
-### Alternative to pie chart (can be deleted if we like the other one more)
 
 ```{r}
 #| label: Pie chart 2
