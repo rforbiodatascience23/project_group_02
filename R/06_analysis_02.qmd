@@ -36,7 +36,7 @@ target_intersect_analysis <- read_tsv("../data/03_target_intersect_aug.tsv.gz",
                                       show_col_types = FALSE)
 ```
 
-### Number of target molecules before and after treatment
+### Generate bar plot of number of target molecules before and after treatment
 
 The upstream regulators each influence several target molecules. To investigate whether this influence was affected by the treatment, a plot was created to indicate the change of the number of target molecules before and after treatment.
 
