@@ -5,7 +5,7 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-The first part of the project workflow is to load the raw data into the project workflow and import the required packages.
+The first part of the project workflow involves loading in the data from the original source.
 
 ### Import the required packages
 
@@ -20,11 +20,13 @@ library("readxl")
 
 ### Load the data
 
-The data, used for this project, is downloaded from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5580991/. More specifically; supplementary table 1 and 3.
+The data, used for this project, is downloaded from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5580991/. More specifically; supplementary table 1 and 3. These tables contains information on genetic expression data from a study on the influence of disease modifying anti-rheumatic drugs (DMARD) treatment in rheumatoid arthritis (RA) patients. 
 
-Data table 1 contains information on co-expression modules. Each column is a group (called module) of co-expressed genes. Each cell underneath the column header contains the symbol of a gene that is part of this respective module. A total of 20 modules of co-expressed genes is defined. Data table 3 consists of data on predicted regulators. Each row is a regulator molecule, and of each molecule, characteristics such as the expression level and molecule type are described. A total of 849 regulator molecules are described.
+Data table 1 contains information on co-expression modules. Each column is a group (called module) of co-expressed genes. Each cell belonging to a column contains a gene that is part of this respective module. A total of 20 modules of co-expressed genes is defined. This data frame is therefore refered to as the "coexpression" data frame. The modules are hypothesised to represent biological pathways, but are not assigned to specific ones in the original work. Therefore, the names module 1-20 is retained in this project. The genes in this table relates to data table 3 as they are target molecules of upstream regulators described in the latter mentioned table. 
 
-When loading the data, we are also replacing blank fields with "NA".
+Data table 3 consists of data on several upstream regulators. Each row describes one upstream regulator molecule by characteristics such as the expression level, molecule type and target molecules as mentioned before. Data table 3 exists in two versions. One with data reflecting the RA patients before treatment and one after. The two dataframes are identical wrt. varaibles but not observations, that is the upstream regulators. There is some overlap in the observations but they also differ in which upstream molecules they describe. The data frame before treatment has a total of 849 upstream regulator whereas the dataframe after has 595 upstream regulators.   
+
+When loading the data, blank fields are replaced with "NA".
 
 ```{r}
 #| label: load data
@@ -47,7 +49,7 @@ regulators_after_raw <- read_excel("../data/_raw/pone.0183928.s003.xlsx",
 
 ### Convert the data files to the correct format
 
-In order to enable data analysis, the original .xlsx files are converted to .tsv and saved in the data folder in the project.
+In order to enable data analysis, the original .xlsx files are converted to zipped .tsv and saved in the data folder of the project.
 
 ```{r}
 #| label: save data

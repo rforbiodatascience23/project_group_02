@@ -5,7 +5,7 @@ editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
 ---
 
-The first analysis is that of the genetic expression levels of the upstream regulators, and how these are influenced by DMARD treatment.
+The fifth part of the project is the first analysis, where genetic expression levels of the upstream regulators are analyzed. Here it is also investigated how these are influenced by DMARD treatment.
 
 ### Load the required packages
 
@@ -34,12 +34,14 @@ expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
 
 ```
 
-### Generate volcano plots of the gene expression
+### Generate scatter plots of the gene expression
 
-To depict which upstream regulator genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance.
+
+To depict which upstream regulators are expressed significantly different from healthy control group, two scatter plots are made. One plot comparing patients before treatment and the other comparing patients after treatment to the control group. The significant genes are depicted in turquoise and insignificant in red. 
 
 ```{r}
-#| label: volcano plot before
+#| label: volcano plot before treatment 
+#| warning: false 
 
 expr_before_analysis <- expr_before_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -83,7 +85,8 @@ ggsave(filename = "05_expr_plot_before.png",
 
 ```{r}
 
-#| label: volcano plot after
+#| label: volcano plot after treatment 
+#| warning: false 
 
 expr_after_analysis <- expr_after_analysis |>
   mutate(lbl = case_when(is_significant == "yes" ~ upstream_regulator,
@@ -125,6 +128,7 @@ ggsave(filename = "05_expr_plot_after.png",
 
 ```
 
+
 #### Generate a comparison plot
 
 The following code generates a plot that depicts the influence of DMARD treatment on gene expression. It shows the genetic change in expression along the x-axis. Genes depicted further from the intercept at x = 0 indicate a larger influence from treatment.
@@ -132,7 +136,7 @@ The following code generates a plot that depicts the influence of DMARD treatmen
 ```{r}
 
 #| label: comparison plot
-#| echo: false
+#| warning: false
 
 comparison_plot <- expr_intersect_analysis |> 
   ggplot(aes(x = change_in_expr,

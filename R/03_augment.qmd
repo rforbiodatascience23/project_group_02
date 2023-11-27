@@ -1,5 +1,5 @@
 ---
-title: "Part 03: augment"
+title: "Part 03: Augment"
 format: html
 editor: visual
 author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194530, Katja Jagd: s185395, Olivia Ronnenberg: s183359"
@@ -23,7 +23,7 @@ library("tidyverse")
 
 ```
 
-The cleaned data files are loaded in.
+### Load in cleaned data files
 
 ```{r}
 #| label: load data
@@ -49,7 +49,7 @@ expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
 
 #### Augment the data frame containing all observations before and after treatment
 
-The function used below created a column that indicates weather a datapoing is significant or not. Furthermore, a -log10 transformation of the p-values is added.
+The function used below creates a column that indicates whether a datapoint is significant or not. Furthermore, a -log10 transformation of the p-values is added.
 
 ```{r}
 expr_before_aug <- significant_label(expr_before_aug, p_value_before, expr_log_ratio_before)
@@ -60,7 +60,7 @@ No new variables were added to the data frame containing the co-expression data.
 
 #### Augment the data frame containing gene expression levels
 
-A variable that shows the level of change in gene expression for the regulators was added.
+A variable that shows the level of change in gene expression for the regulators is added.
 
 ```{r}
 #| label: add change in expr column 
@@ -72,7 +72,7 @@ expr_intersect_aug <- expr_intersect_aug |>
 
 ```
 
-A variable indicating whether a regulator was up- or down-regulated both before and after treatment was added.
+A variable indicating whether a regulator was up- or down-regulated both before and after treatment is added.
 
 ```{r}
 #| label: add column showing up- or downregulation 
@@ -83,16 +83,6 @@ expr_intersect_aug <- expr_intersect_aug |>
   relocate("regulation",
            .after = "change_in_expr") 
   
-```
-
-Changing all names of upstream regulators that has several names, e.g. "KLRC4-KLRK1/KLRK1" becomes "KLRK1"
-
-```{r}
-expr_intersect_aug <- expr_intersect_aug |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", "")) 
-
-target_intesect_aug <- target_intersect_aug |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
 ```
 
 #### Augment the dataframe containing the target molecules

@@ -4,11 +4,11 @@
 
 | Contributor name                  | Student ID | GitHub username  |
 |-----------------------------------|------------|------------------|
-| Anna Keisha Mercy Kyei Boateng    | 175562     | KeishaBoateng97  |
-| Anne Kargaard Gjelstrup           | 194530     | Anne-KG          |
-| Marlies Jilles Francine Goedknegt | 220675     | MarliesJFrancine |
-| Katja Naasunnguaq Jagd            | 185395     | Katja-Jagd       |
-| Olivia Ronnenberg                 | 183359     | Oliv3460         |
+| Anna Keisha Mercy Kyei Boateng    | s175562    | KeishaBoateng97  |
+| Anne Kargaard Gjelstrup           | s194530    | Anne-KG          |
+| Marlies Jilles Francine Goedknegt | s220675    | MarliesJFrancine |
+| Katja Naasunnguaq Jagd            | s185395    | Katja-Jagd       |
+| Olivia Ronnenberg                 | s183359    | Oliv3460         |
 
 ## Introduction
 
