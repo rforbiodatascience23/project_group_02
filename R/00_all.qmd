@@ -32,16 +32,33 @@ quarto_render(input = "06_analysis_02.qmd")
 
 file.rename(from = "01_load.html",
             to = "../results/01_load.html")
+file.rename(from = "01_load_files/",
+            to = "../results/01_load_files/")
+
 file.rename(from = "02_clean.html",
             to = "../results/02_clean.html")
+file.rename(from = "02_clean_files/",
+            to = "../results/02_clean_files/")
+
 file.rename(from = "03_augment.html",
             to = "../results/03_augment.html")
+file.rename(from = "03_augment_files/",
+            to = "../results/03_augment_files/")
+
 file.rename(from = "04_describe.html",
             to = "../results/04_describe.html")
+file.rename(from = "04_describe_files/",
+            to = "../results/04_describe_files/")
+
 file.rename(from = "05_analysis_01.html",
             to = "../results/05_analysis_01.html")
+file.rename(from = "05_analysis_01_files/",
+            to = "../results/05_analysis_01_files/")
+
 file.rename(from = "06_analysis_02.html",
             to = "../results/06_analysis_02.html")
+file.rename(from = "06_analysis_02_files/",
+            to = "../results/06_analysis_02_files/")
 ```
 
 {{< include 01_load.qmd >}}
