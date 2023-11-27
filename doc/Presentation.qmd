@@ -14,6 +14,7 @@ author: "Anna Boateng (s175562), Marlies Goedknegt (s220675), Anne Gjelstrup (s1
 
 Genome-wide transcriptional effects in RA (rheumatoid arthritis) patients, undergoing treatment with several disease-modifying drugs (DMARDs).
 
+Purpose:
 What are the genetic differences in RA patients, before and after DMARD treatment?
 
 ## Materials and Methods
