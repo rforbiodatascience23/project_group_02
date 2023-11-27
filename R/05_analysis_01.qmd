@@ -127,9 +127,13 @@ ggsave(filename = "05_expr_plot_after.png",
 
 ```
 
+The two scatter plots show that there are significantly differential expressed upstream regulators, both before and after treatment. The criteria for being significant was defined by a p-value \> -log10(0.05) and a log-ratio gene expression between -1.5 and 1.5, indicated by the dotted black lines.
+
+There are found both unique and common significant upstream regulators in both cases. An example of an upstream regulator both cases have in common could be TGFB1, found in the top left corner in both plots. In "06_analysis_02" this finding is further investigated.
+
 #### Generate a comparison plot
 
-The following code generates a plot that depicts the influence of DMARD treatment on gene expression. It shows the genetic change in expression along the x-axis. Genes depicted further from the intercept at x = 0 indicate a larger influence from treatment.
+A plot is generated, depicting the influence of DMARD treatment on gene expression. It shows the genetic change in expression before and after treatment along the x-axis. Upstream regulators depicted further from the intercept at x = 0 indicate a larger influence from treatment.
 
 ```{r}
 
@@ -151,7 +155,7 @@ comparison_plot <- expr_intersect_analysis |>
   guides(colour = guide_legend(override.aes = list(size= 6))) +
   labs(
     x = "Change in gene expression",
-    y = "Regulator molecule",
+    y = "Upstream Regulator",
     color = "Gene regulation",
     title = "Changes in genetic expression due to treament",
     caption = "Data from DOI: 10.1371/journal.pone.0183928")
@@ -166,3 +170,5 @@ ggsave(filename = "05_comparison_plot.png",
        limitsize = TRUE)
 
 ```
+
+It can be seen from the plot that some upstream regulators are more affected by treatment than others. The following upstream regulators MLK2, OLR1, PER1, PTPRC, S100A8, S100A9, and TLR2, RNASE2, IGF2, LIPE,
