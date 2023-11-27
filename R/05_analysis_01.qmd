@@ -62,7 +62,7 @@ plot_before <- expr_before_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
-  guides(colour = guide_legend(override.aes = list(size= 6))) +
+  guides(colour = guide_legend(override.aes = list(size = 6))) +
   labs(
     x = "Log ratio of gene expression",
     y = "-log10(p)",
@@ -106,7 +106,7 @@ plot_after <- expr_after_analysis |>
     plot.title = element_text(hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom") +
-  guides(colour = guide_legend(override.aes = list(size= 6))) +
+  guides(colour = guide_legend(override.aes = list(size = 6))) +
   labs(
     x = "Log ratio of gene expression",
     y = "-log10(p)",
