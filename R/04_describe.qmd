@@ -100,12 +100,6 @@ The upstream regulators are different types of molecules, e.g., cytokine, enzyme
 #| label: Pie chart 2
 #| warning: false 
 
-# Calculating the count of target molecules for each molecule type
-#molecule_counts <- expr_intersect_aug |>
- # group_by(molecule_type) |>
-  #summarize(count = n())
-
-
 # Making the chart 
 pie_chart <- expr_intersect_aug |> 
   group_by(molecule_type) |>
