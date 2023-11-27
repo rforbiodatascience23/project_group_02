@@ -144,7 +144,7 @@ modules_plot <- module_analysis |>
         plot.title = element_text(hjust = 0.5)) +
   labs(x = "",
        y = "Number of target molecules",
-       title = "Involment of upstream regulators in biological pathways (modules)",
+       title = "Involvement of upstream regulators in biological pathways (modules)",
        subtitle = "Before treatment ",
        caption = "Data from DOI: 10.1371/journal.pone.0183928") +
   scale_fill_manual(values = c( "#F8766D",
@@ -163,4 +163,4 @@ ggsave(filename = "06_modules_plot.png",
                     
 ```
 
-The plot shows how the three regulators influence specific biological pathways (modules). It is clear from the results that both LIPE and S100A9 have a significant number of target molecules in several modules. Particularly, module 2, 6, and 7 are influenced by these two upstream regulators. This could imply that targeting LIPE and S100A9 could have a significant effect in RA treatment.
+The plot shows how the three regulators influence specific biological pathways (modules). It is clear from the results that both LIPE, OLR1, and S100A9 have a significant number of target molecules in several modules. Particularly, module 2, 6, and 7 are influenced by these upstream regulators. This could imply that targeting LIPE, OLR3, and S100A9 could have a significant effect in RA treatment.
