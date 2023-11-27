@@ -24,20 +24,19 @@ library("ggrepel")
 #| label: load files
 
 expr_before_analysis <- read_tsv("../data/03_expr_before_aug.tsv.gz",
-                                            show_col_types = FALSE)
+                                 show_col_types = FALSE)
 
 expr_after_analysis <- read_tsv("../data/03_expr_after_aug.tsv.gz",
-                                           show_col_types = FALSE)
+                                show_col_types = FALSE)
 
 expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
-                          show_col_types = FALSE)
+                                    show_col_types = FALSE)
 
 ```
 
 ### Generate scatter plots of the gene expression
 
-
-To depict which upstream regulators are expressed significantly different from healthy control group, two scatter plots are made. One plot comparing patients before treatment and the other comparing patients after treatment to the control group. The significant genes are depicted in turquoise and insignificant in red. 
+To depict which upstream regulators are expressed significantly different from the healthy control group, two scatter plots are made. One plot comparing patients before treatment, and the other comparing patients after treatment to the control group. The significant upstream regulators are depicted in turquoise and insignificant in red.
 
 ```{r}
 #| label: volcano plot before treatment 
@@ -127,7 +126,6 @@ ggsave(filename = "05_expr_plot_after.png",
        limitsize = TRUE)
 
 ```
-
 
 #### Generate a comparison plot
 
