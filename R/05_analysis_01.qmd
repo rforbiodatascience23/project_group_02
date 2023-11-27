@@ -34,9 +34,10 @@ expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
 
 ```
 
-### Generate volcano plots of the gene expression
+### Generate scatter plots of the gene expression
 
-To depict which upstream regulator genes are up- and down-regulated, two volcano plots are made. The first plot indicates the genes significantly up- and down-regulated before DMARD treatment, whereas the second plot depicts the same, but after the treatment. The colors in both plots indicate the genes that are significantly up- and down-regulated. With turquoise being those of significance.
+
+To depict which upstream regulators are expressed significantly different from healthy control group, two scatter plots are made. One plot comparing patients before treatment and the other comparing patients after treatment to the control group. The significant genes are depicted in turquoise and insignificant in red. 
 
 ```{r}
 #| label: volcano plot before treatment 
@@ -126,6 +127,7 @@ ggsave(filename = "05_expr_plot_after.png",
        limitsize = TRUE)
 
 ```
+
 
 #### Generate a comparison plot
 
