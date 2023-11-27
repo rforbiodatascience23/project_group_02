@@ -59,10 +59,10 @@ After cleaning and augmenting the data, five data frames will be present:
     -   p_value_after
     -   -log10_p_after
     -   is_significant
-3.  A table containing twenty co-expression modules and the target molecules each contains, called "03_coexpression_aug".
+3.  A table containing twenty co-expression modules and the target molecules each contains, called "03_coexpression_aug". Containing the following variables:
     -   modules
     -   target_molecule
-4.  A table containing the regulator molecules, shared between before and after treatment, along with their related target molecules, called "03_target_intersect_aug".
+4.  A table containing the regulator molecules, shared between before and after treatment, along with their related target molecules, called "03_target_intersect_aug". Containing the following variables:
     -   upstream_regulator
     -   n_target_before
     -   n_target_after
@@ -70,7 +70,7 @@ After cleaning and augmenting the data, five data frames will be present:
     -   change_class
     -   target_molecule_before_1 to target_molecule_before_198
     -   target_molecule_after_1 to target_molecule_after_215
-5.  A table containing the regulator molecules, shared between before and after treatment along with their respective expression levels called "03_expr_intersect_aug".
+5.  A table containing the regulator molecules, shared between before and after treatment along with their respective expression levels called "03_expr_intersect_aug". Containing the following variables:
     -   upstream_regulator
     -   molecule_type
     -   expr_log_ratio_before
@@ -94,7 +94,7 @@ These can be analyzed using ncol() for variables and nrow() for observations. Th
 
 ### Pie chart of molecule types
 
-The regulator molecules consist of several different types, e.g., cytokine, enzyme etc. To depict the distribution of different molecule types, a pie chart can be created with the code described below.
+The upstream regulators are different types of molecules, e.g., cytokine, enzyme etc. To depict the distribution of different molecule types, a pie chart is shown below.
 
 ```{r}
 #| label: Pie chart 2
@@ -107,8 +107,8 @@ molecule_counts <- expr_intersect_aug |>
 
 
 # Making the chart 
-pie_chart2 <- ggplot(molecule_counts, 
-       aes(x = "", y = count, fill = molecule_type)) +
+pie_chart <- ggplot(molecule_counts,
+                    aes(x = "", y = count, fill = molecule_type)) +
   geom_col(color = "white") +
   geom_label(aes(x = 1.35,
                  label = count),
@@ -116,7 +116,8 @@ pie_chart2 <- ggplot(molecule_counts,
             color = "white",
             size = 4,
             show.legend = FALSE) +
-  coord_polar(theta = "y", start = 0) +
+  coord_polar(theta = "y",
+              start = 0) +
   labs(
     x = NULL, 
     y = NULL,
@@ -128,10 +129,10 @@ pie_chart2 <- ggplot(molecule_counts,
         legend.spacing.y = unit(0.3, "lines")
         )
 
-pie_chart2
+pie_chart
 
 #Saving
-ggsave(filename = "04_pie_chart2.png",
+ggsave(filename = "04_pie_chart.png",
        plot = last_plot(),
        device = "png",
        path = "../results", 
