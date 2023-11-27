@@ -25,7 +25,7 @@ Purpose: What are the genetic differences in RA patients, before and after DMARD
 
 Does DMARD treatment affect expression levels?
 
-![](images/04_box_plot-01.png){fig-align="center"}
+![](images/04_box_plot-02.png){fig-align="center"}
 
 ## Results: Differential expressed regulators
 
@@ -57,14 +57,25 @@ What types of biological molecules are the common upstream regulators?
 
 How does the treatment change the influence of the upstream regulators?
 
-![](images/06_targets_plot-03.png){fig-align="center"}
+![](images/06_targets_plot.png){fig-align="center"}
 
 ## Results: Molecular mechanisms
 
 Which modules are the target molecules involved in?
 
-![](images/06_modules_plot-02.png){fig-align="center"}
+![](images/06_modules_plot-03.png){fig-align="center"}
 
 ## Discussion
 
+::: columns
+::: {.column width="50%"}
+![](images/flowchart_dis.png){fig-align="center"}
+:::
 
+::: {.column width="50%"}
+-   Clearer purpose at the start
+-   Exclude data
+-   Iterate the process
+-   Look into pathways
+:::
+:::
