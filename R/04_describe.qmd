@@ -107,8 +107,10 @@ molecule_counts <- expr_intersect_aug |>
 
 
 # Making the chart 
-pie_chart <- ggplot(molecule_counts,
-                    aes(x = "", y = count, fill = molecule_type)) +
+pie_chart <- expr_intersect_aug |> 
+  group_by(molecule_type) |>
+  summarize(count = n()) |> 
+  ggplot(aes(x = "", y = count, fill = molecule_type)) +
   geom_col(color = "white") +
   geom_label(aes(x = 1.35,
                  label = count),
