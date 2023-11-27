@@ -85,16 +85,6 @@ expr_intersect_aug <- expr_intersect_aug |>
   
 ```
 
-Changing all names of upstream regulators that has several names, e.g. "KLRC4-KLRK1/KLRK1" becomes "KLRK1"
-
-```{r}
-expr_intersect_aug <- expr_intersect_aug |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", "")) 
-
-target_intesect_aug <- target_intersect_aug |> 
-  mutate(upstream_regulator = str_replace(upstream_regulator, ".*/", ""))
-```
-
 #### Augment the dataframe containing the target molecules
 
 A variable called change_in_n\_molecules showing the difference in target molecules after treatment compared to before treatment for each regulator was added along with a classification variable called change_class that determines if the change in molecules leads to a increase, decrease or unchange of target molecules.

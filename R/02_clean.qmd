@@ -71,6 +71,16 @@ regulators_after_clean <- fix_headers_and_values(regulators_after_clean,
                                                  " after") 
 ```
 
+Changing names of upstream regulators that has several names. After reviewing the names of the upstream regulators, it pertains to "KLRC4-KLRK1/KLRK1" which is changed to "KLRK1". 
+
+```{r}
+regulators_before_clean <- regulators_before_clean |> 
+  mutate(upstream_regulator = str_replace(upstream_regulator, "KLRC4-KLRK1/KLRK1", "KLRK1")) 
+
+regulators_after_clean <- regulators_after_clean |> 
+  mutate(upstream_regulator = str_replace(upstream_regulator, "KLRC4-KLRK1/KLRK1", "KLRK1"))
+```
+
 The following code chunk creates new dataframes containing expression data before and after treatment. These separate dataframes are necessary for performing an analysis to compare expression data before and after treatment.
 
 ```{r}
