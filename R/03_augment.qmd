@@ -7,12 +7,6 @@ author: "Anna Boateng: s175562, Marlies Goedknegt: s220675, Anne Gjelstrup: s194
 
 The third part of the project is to augment the cleaned data.
 
-```{r}
-#| label: use functions from file
-
-source("99_proj_func.R")
-```
-
 ### Import required packages
 
 ```{r}
@@ -20,7 +14,14 @@ source("99_proj_func.R")
 #| message: false
 
 library("tidyverse")
+```
 
+### Accessing relevant functions
+
+```{r}
+#| label: use functions from file
+
+source("99_proj_func.R")
 ```
 
 ### Load in cleaned data files
@@ -29,30 +30,33 @@ library("tidyverse")
 #| label: load data
 
 coexpression_aug <- read_tsv("../data/02_coexpression_clean.tsv.gz",
-                               show_col_types = FALSE)
+                             show_col_types = FALSE)
 
 expr_intersect_aug <- read_tsv("../data/02_expr_intersect_clean.tsv.gz",
-                     show_col_types = FALSE)
+                               show_col_types = FALSE)
 
 target_intersect_aug <- read_tsv("../data/02_target_intersect_clean.tsv.gz",
-                       show_col_types = FALSE)
+                                 show_col_types = FALSE)
 
 expr_before_aug <- read_tsv("../data/02_expr_before_clean.tsv.gz",
-                               show_col_types = FALSE)
+                            show_col_types = FALSE)
 
 expr_after_aug <- read_tsv("../data/02_expr_after_clean.tsv.gz",
-                               show_col_types = FALSE)
+                           show_col_types = FALSE)
 
 ```
 
 ### Augment the data frames
 
-#### Augment the data frame containing all observations before and after treatment
+#### Augment data frames "expr_before" and "expr_after"
 
-The function used below creates a column that indicates whether a datapoint is significant or not. Furthermore, a -log10 transformation of the p-values is added.
+The function used below creates a column that indicates whether a data point is significant or not. Furthermore, a -log10 transformation of the p-values is added.
 
 ```{r}
+#| label: 
+
 expr_before_aug <- significant_label(expr_before_aug, p_value_before, expr_log_ratio_before)
+
 expr_after_aug <- significant_label(expr_after_aug, p_value_after, expr_log_ratio_after) 
 ```
 
