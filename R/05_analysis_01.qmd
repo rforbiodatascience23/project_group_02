@@ -38,8 +38,6 @@ expr_intersect_analysis <- read_tsv("../data/03_expr_intersect_aug.tsv.gz",
 
 To depict which upstream regulators are expressed significantly different from the healthy control group, two scatter plots are made. One plot comparing patients before treatment, and the other comparing patients after treatment to the control group. The significant upstream regulators are depicted in turquoise and insignificant in red.
 
-To depict which upstream regulators are expressed significantly different from healthy control group, two scatter plots are made. One plot comparing patients before treatment and the other comparing patients after treatment to the control group. The significant genes are depicted in turquoise and insignificant in red.
-
 ```{r}
 #| label: volcano plot before treatment 
 #| warning: false 
@@ -85,7 +83,6 @@ ggsave(filename = "05_expr_plot_before.png",
 ```
 
 ```{r}
-
 #| label: volcano plot after treatment 
 #| warning: false 
 
@@ -138,7 +135,6 @@ There are found both unique and common significant upstream regulators in both c
 A plot is generated, depicting the influence of DMARD treatment on gene expression. It shows the genetic change in expression before and after treatment along the x-axis. Upstream regulators depicted further from the intercept at x = 0 indicate a larger influence from treatment.
 
 ```{r}
-
 #| label: comparison plot
 #| warning: false
 
@@ -173,4 +169,4 @@ ggsave(filename = "05_comparison_plot.png",
 
 ```
 
-It can be seen from the plot that some upstream regulators are more affected by treatment than others. The following upstream regulators IGF2, LIPE, MLK2, OLR1, PTPRC, RNASE2, S100A9, and TLR2 seems to be most affected by the treatment. They will be further analyzed in "06_analysis_02". w
+It can be seen from the plot that some upstream regulators are more affected by treatment than others. The following upstream regulators IGF2, LIPE, MLK2, OLR1, PTPRC, RNASE2, S100A9, and TLR2 seems to be most affected by the treatment. They will be further analyzed in "06_analysis_02".
