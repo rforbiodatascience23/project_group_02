@@ -80,7 +80,7 @@ The plot indicates that the number of target molecules, influenced by each upstr
 
 ### Biological context of the target molecules
 
-The analysis of the expression data, together with the target molecule analysis above, revealed the following interesting regulators: S100A9, TGFB1, and TLR2. They all have a significant change in expression and in the number of target molecules. These regulators could be potential drug targets.
+The analysis of the expression data, together with the target molecule analysis above, revealed the following interesting regulators: LIPE, OLR1, and S100A9. They all have a significant change in expression and in the number of target molecules. These regulators could be potential drug targets.
 
 As mentioned, the modules in the co-expression data set represent possible biological pathways. Therefore a further analysis was performed to look into which modules the target molecules of the candidates regulators belonged to.
 
