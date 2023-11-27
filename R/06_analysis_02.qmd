@@ -121,7 +121,9 @@ The result of the module analysis is visualized in the bar plot below.
 #| label: generate module analysis plot
 
 modules_plot <- module_analysis |>
-  ggplot(aes(x = fct_inorder(modules), y = counts, fill = candidate)) +
+  ggplot(aes(x = fct_inorder(modules), 
+             y = counts, 
+             fill = candidate)) +
   geom_bar(stat = "identity",
            color = "grey",
            alpha = 0.5,
